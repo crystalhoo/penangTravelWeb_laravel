@@ -1,0 +1,34 @@
+Database Relationship
+
+Table -- City 
+street, George town , category Island
+street, Butterworth , category mainLand
+...
+
+
+Table -- Famous Food 
+cendol(category), shopName(PK) street, city, rating    
+lasak , street, city, rating
+
+Table -- shopping Mall
+Table -- street art
+
+role: user (auth, authorization)
+Table -- userInfo 
+userId, UserName
+
+Table -- userRate
+rate, comment(maybe)
+
+role: admin (authorization and auth) 
+crud for shopping mall, food, street art  
+
+
+Realtionship
+1 user can have many userRate
+1 userRate only 1 user
+
+1 city can have many food, shoppping mall and street art
+1 food, shopping mall, street art can have only 1 city
+
+
