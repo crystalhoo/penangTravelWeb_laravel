@@ -6,12 +6,6 @@
 <main id="main">
   @include('sections.about')
 
-  <!-- @include('sections.hotels')
-
-  @include('sections.gallery')
-
-  @include('sections.faq') -->
-
 
 </main>
 @endsection
