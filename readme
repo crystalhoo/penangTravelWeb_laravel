@@ -5,7 +5,6 @@ street, George town , category Island
 street, Butterworth , category mainLand
 ...
 
-
 Table -- Famous Food 
 cendol(category), shopName(PK) street, city, rating    
 lasak , street, city, rating
