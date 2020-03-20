@@ -18,7 +18,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'youtube_link',
-                'value' => 'https://www.youtube.com/watch?v=jDDaplaOz7Q'
+                'value' => 'https://www.youtube.com/watch?v=_fEW5gX4U2k'
             ],
             [
                 'key'   => 'about_description',
