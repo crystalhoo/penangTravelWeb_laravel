@@ -15,18 +15,21 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
 
-            $table->increments('id');
-
-            $table->integer('day_number');
-
-            $table->time('start_time');
-
-            $table->string('title');
-
-            $table->longText('full_description')->nullable();
-
-            $table->timestamps();
-
+                $table->increments('id');
+    
+                $table->unsignedInteger('plan_id')->nullable();
+    
+                $table->integer('day_number');
+    
+                $table->time('start_time');
+    
+                $table->string('title');
+    
+                $table->longText('full_description')->nullable();
+    
+                $table->foreign('plan_id')->references('id')->on('plans');
+    
+                $table->timestamps();
         });
     }
 
