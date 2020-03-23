@@ -16,7 +16,7 @@ class Plan extends Controller
                 return $query->where('title', 'like', "%$title%");
             })
             ->paginate(10);
-
+    //need to create 1 plan collection
         return new PlanCollection($plans);
     }
 }
