@@ -34,7 +34,7 @@ class Plan extends Model
     //change here
     public function schedules()
     {
-        return $this->hasMany(Schedule::class);
+        return $this->hasMany(Schedule::class, 'plan_id', 'id');
     }
 
     public function getPhotoAttribute()
@@ -44,7 +44,7 @@ class Plan extends Model
         if ($file) {
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-        } 
+        }
 
         return $file;
     }

@@ -10,11 +10,11 @@ class SettingsTableSeeder extends Seeder
         $settings = [
             [
                 'key'   => 'title',
-                'value' => 'The Annual<br><span>Marketing</span> Conference'
+                'value' => 'Penang<br><span>Travel</span>'
             ],
             [
                 'key'   => 'subtitle',
-                'value' => '10-12 December, Downtown Conference Center, New York'
+                'value' => 'Penang best travel agency'
             ],
             [
                 'key'   => 'youtube_link',
@@ -22,7 +22,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'about_description',
-                'value' => 'Sed nam ut dolor qui repellendus iusto odit. Possimus inventore eveniet accusamus error amet eius aut accusantium et. Non odit consequatur repudiandae sequi ea odio molestiae. Enim possimus sunt inventore in est ut optio sequi unde.'
+                'value' => 'Our goal is to make your trip enjoyable, carefree and memorable. Our team of professional staff are available 24/7 to help guests with leisure travel-related services and booking of vacation packages with a smile. As travel advisors, we go that extra mile to always deliver the best possible services to all our clients at genuinely affordable rates. All you have to do is sit back, relax while we do the work.'
             ],
             [
                 'key'   => 'about_where',
@@ -46,7 +46,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'footer_description',
-                'value' => 'In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.'
+                'value' => 'Our Company simple and effective philosophy, lies a relationship with the customer so immense that it can only be compared to something that we treasured you most with the best possible way of services. For us, it means heart and soul effort in planning your itinerary. And for us it’s not just a tour, it’s really our pride and joy too.'
             ],
             [
                 'key'   => 'footer_address',
