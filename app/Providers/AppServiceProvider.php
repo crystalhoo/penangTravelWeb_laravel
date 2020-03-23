@@ -29,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
         // { 
         //     return $user->id == $faq->user_id;
         // });
+
+        Schema::defaultStringLength(191);
     }
 
 }

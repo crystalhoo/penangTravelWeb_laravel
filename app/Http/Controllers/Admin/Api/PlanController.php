@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Plan;
 use Illuminate\Http\Request;
+use App\Http\Resources\AuthorCollection;
+use App\Http\Resources\AuthorResource;
+use Illuminate\Database\QueryException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Http\Controllers\Controller;
 
-class Plan extends Controller
+class PlanController extends Controller
 {
     //havent test: this is front end 
     public function index(Request $request)
