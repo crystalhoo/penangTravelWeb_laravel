@@ -24,7 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        Schema::defaultStringLength(191);
+        // $this->registerPolicies();
+        // Gate::define('update-faq', function ($user, $faq) 
+        // { 
+        //     return $user->id == $faq->user_id;
+        // });
     }
+
 }
