@@ -24,4 +24,10 @@ Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');
 Route::post('refresh', 'AuthController@refresh');
 Route::post('me', 'AuthController@me');
+
+
+//admin
+Route::get('/posts/delete', 'PostController@delete')->middleware('can:isAdmin')->name('post.delete');
+Route::get('/posts/update', 'PostController@update')->middleware('can:isAdmin')->name('post.update');
+Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')->name('post.create');
 });

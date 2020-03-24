@@ -6,12 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-//use Silber\Bouncer\Database\HasRolesAndAbilities;//bouncer
+
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    //use HasRolesAndAbilities; //bouncer
+
 
     /**
      * The attributes that are mass assignable.
