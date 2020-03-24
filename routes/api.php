@@ -31,3 +31,7 @@ Route::get('/posts/delete', 'PostController@delete')->middleware('can:isAdmin')-
 Route::get('/posts/update', 'PostController@update')->middleware('can:isAdmin')->name('post.update');
 Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')->name('post.create');
 });
+
+
+//api plan
+Route::apiResource('plans', 'PlanController');
