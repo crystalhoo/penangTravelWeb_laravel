@@ -4,7 +4,7 @@
       <div class="row">
 
         <div class="col-lg-3 col-md-6 footer-info">
-          <img src="img/logo.png" alt="TheEvenet">
+          <img src="img/logo.png" alt="TRAVEL">
           <p>{{ $settings['footer_description'] ?? '' }}</p>
         </div>
 
@@ -16,6 +16,12 @@
             <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
+            @guest
+              <li><i class="fa fa-angle-right"></i> <a href="{{ route('login') }}">Login</a></li>
+            @endguest
+            @auth
+              <li><i class="fa fa-angle-right"></i> <a href="{{ route('admin.home') }}">Admin Panel</a></li>
+            @endauth
           </ul>
         </div>
 
@@ -27,6 +33,12 @@
             <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
+            @guest
+              <li><i class="fa fa-angle-right"></i> <a href="{{ route('login') }}">Login</a></li>
+            @endguest
+            @auth
+              <li><i class="fa fa-angle-right"></i> <a href="{{ route('admin.home') }}">Admin Panel</a></li>
+            @endauth
           </ul>
         </div>
 
