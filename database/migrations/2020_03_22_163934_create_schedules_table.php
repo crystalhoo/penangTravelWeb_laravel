@@ -23,7 +23,7 @@ class CreateSchedulesTable extends Migration
     
                 $table->time('start_time');
     
-                $table->string('title');
+                $table->string('title')->indexed();;
     
                 $table->longText('full_description')->nullable();
     
