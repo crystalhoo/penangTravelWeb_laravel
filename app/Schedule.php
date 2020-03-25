@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 class Schedule extends Model
 {
@@ -16,15 +19,30 @@ class Schedule extends Model
 
     protected $fillable = [
 
-        'plan_id',
+        'hotel_id',
         'day_number',
         'start_time',
         'title',
         'full_description'
     ];
 
-    public function plan()
-    {
-        return $this->belongsTo(Plan::class);
-    }
+//     public function hotel()
+//     {
+//         return $this->belongsTo(Hotel::class);
+//     }
+// }
+public function hotel()
+{
+    return $this->belongsTo(Hotel::class);
 }
+
+/**
+ * Get the authors who wrote the book
+ *
+ */
+public function plan()
+{
+    return $this->belongsToMany(Plan::class);
+}
+}
+

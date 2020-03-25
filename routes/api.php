@@ -35,3 +35,5 @@ Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')-
 
 //api plan
 Route::apiResource('plans', 'PlanController');
+Route::apiResource('hotels', 'HotelController');
+Route::apiResource('schedules', 'ScheduleController');

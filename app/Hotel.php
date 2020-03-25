@@ -25,12 +25,9 @@ class Hotel extends Model implements HasMedia
 
     protected $fillable = [
         'name',
-        'rating',
         'address',
-        'created_at',
-        'updated_at',
-        'deleted_at',
         'description',
+        'rating',
     ];
 
     public function registerMediaConversions(Media $media = null)
@@ -48,5 +45,9 @@ class Hotel extends Model implements HasMedia
         }
 
         return $file;
+    }
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
     }
 }

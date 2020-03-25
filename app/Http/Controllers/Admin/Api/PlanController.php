@@ -15,6 +15,7 @@ class PlanController extends Controller
     public function index(Request $request)
     {
         $title = $request->input('title');
+        $description = $request->input('description');
 
         $plans = Plan::with('schedule')
             ->when($title, function($query) use($title) {
