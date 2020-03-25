@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 use App\Plan;
 use Illuminate\Http\Request;
-use App\Http\Resources\AuthorCollection;
-use App\Http\Resources\AuthorResource;
+use App\Http\Resources\PlanCollection;
+use App\Http\Resources\PlanResource;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Controller;
