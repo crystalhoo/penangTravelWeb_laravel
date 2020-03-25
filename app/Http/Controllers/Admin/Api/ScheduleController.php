@@ -53,7 +53,7 @@ class ScheduleController extends Controller
         return new ScheduleCollection($schedules);
 }
 //public function store(ScheduleRequest $request)
-public function store(Request $request)
+public function store(ScheduleRequest $request)
 {
     try {
         $schedule = new Schedule;
@@ -62,7 +62,7 @@ public function store(Request $request)
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            //$schedule->plans()->sync($request->plans);
+            $schedule->plans()->sync($request->plans);
         });
 
         return response()->json([
@@ -122,7 +122,7 @@ public function update(Request $request, $id)
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            //$schedule->plans()->sync($request->plans);
+            $schedule->plans()->sync($request->plans);
         });
 
         return response()->json(null, 204);
