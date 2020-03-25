@@ -22,7 +22,7 @@ Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 
 Route::get('/admin/settings', 'Admin\SettingsController@index')->name('admin.settings.index');
 Route::get('/admin/settings/create', 'Admin\SettingsController@create')->name('admin.settings.create');
-Route::get('/admin/settings/{$settings}', 'Admin\SettingsController@show')->name('admin.settings.show');
+Route::get('/admin/settings/$settings.id', 'Admin\SettingsController@show')->name('admin.settings.show');
 Route::get('/admin/settings/edit', 'Admin\SettingsController@edit')->name('admin.settings.edit');
 Route::post('/admin/settings/update', 'Admin\SettingsController@update')->name('admin.settings.update');
 Route::get('/admin/settings/store', 'Admin\SettingsController@store')->name('admin.settings.store');
