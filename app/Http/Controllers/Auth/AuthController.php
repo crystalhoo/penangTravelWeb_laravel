@@ -55,4 +55,34 @@ class AuthController extends Controller
     ]);
   }
 
+  //CRUD for admin
+  public function create()
+  {
+    if (Gate::allows('isAdmin')) {
+        dd('Admin allowed');
+    } else {
+        dd('You are not Admin');
+    }
+
+  }
+
+  public function edit()
+  {
+    if (Gate::allows('isAdmin')) {
+        dd('Admin allowed');
+    } else {
+        dd('You are not Admin');
+    }
+
+  }
+  public function delete()
+{
+    if (Gate::allows('isAdmin')) {
+        dd('Admin allowed');
+    } else {
+        dd('You are not Admin');
+    }
+
+}
+
 }
