@@ -26,23 +26,25 @@ class Schedule extends Model
         'full_description'
     ];
 
-//     public function hotel()
-//     {
-//         return $this->belongsTo(Hotel::class);
-//     }
-// }
-public function hotel()
-{
-    return $this->belongsTo(Hotel::class);
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
+    public function plan()
+    {
+    return $this->belongsToMany(Plan::class);
+    }
 }
+//}
+// public function hotel()
+// {
+//     return $this->belongsTo(Hotel::class);
+// }
 
 /**
  * Get the authors who wrote the book
  *
  */
-public function plan()
-{
-    return $this->belongsToMany(Plan::class);
-}
-}
+
+
 

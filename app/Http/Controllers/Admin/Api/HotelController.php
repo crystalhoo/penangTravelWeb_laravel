@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Hotel;
-// use App\Http\Requests\HotelRequest;
-// use App\Http\Resources\HotelCollection;
-// use App\Http\Resources\HotelResource;
+use App\Http\Requests\HotelRequest;
+use App\Http\Resources\HotelCollection;
+use App\Http\Resources\HotelResource;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

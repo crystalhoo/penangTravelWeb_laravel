@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Schedule;
-// use App\Http\Requests\ScheduleRequest;
-// use App\Http\Resources\ScheduleCollection;
-// use App\Http\Resources\ScheduleResource;
+use App\Http\Requests\ScheduleRequest;
+use App\Http\Resources\ScheduleCollection;
+use App\Http\Resources\ScheduleResource;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Http\Controllers\Controller;
 
 class ScheduleController extends Controller
 {
@@ -22,7 +21,6 @@ class ScheduleController extends Controller
         $start_time = $request->input('start_time');
         $full_description = $request->input('full_description');
         $plan = $request->input('plan');
-        $hotel = $request->input('hotel');
         $timestamps = $request->input('timestamps');                   
 
         $schedules = Schedule::with(['plans', 'hotel'])
@@ -64,7 +62,7 @@ public function store(Request $request)
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            $schedule->plans()->sync($request->plans);
+            //$schedule->plans()->sync($request->plans);
         });
 
         return response()->json([
@@ -115,7 +113,8 @@ public function show($id)
 public function update(Request $request, $id)
 {
     try {
-        $schedule = Schedule::with('plans')->with('hotel')->find($id);
+        $schedule = Schedule::with('hotel')->find($id);
+        //$schedule = Schedule::with('plans')->with('hotel')->find($id);
         if(!$schedule) throw new ModelNotFoundException;
 
         $schedule->fill($request->all());
@@ -123,7 +122,7 @@ public function update(Request $request, $id)
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            $schedule->plans()->sync($request->plans);
+            //$schedule->plans()->sync($request->plans);
         });
 
         return response()->json(null, 204);
