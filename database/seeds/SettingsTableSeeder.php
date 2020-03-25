@@ -10,11 +10,11 @@ class SettingsTableSeeder extends Seeder
         $settings = [
             [
                 'key'   => 'title',
-                'value' => 'The Annual<br><span>Marketing</span> Conference'
+                'value' => 'The Annual<br><span>Penang</span> Travel'
             ],
             [
                 'key'   => 'subtitle',
-                'value' => '10-12 December, Downtown Conference Center, New York'
+                'value' => 'What to do in Penang'
             ],
             [
                 'key'   => 'youtube_link',

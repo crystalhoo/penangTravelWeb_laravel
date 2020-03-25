@@ -5,7 +5,7 @@
 
 <main id="main">
   @include('sections.about')
-
+  @include('sections.plan')
 
 </main>
 @endsection
