@@ -21,6 +21,8 @@ class ScheduleController extends Controller
         $start_time = $request->input('start_time');
         $full_description = $request->input('full_description');
         $plan = $request->input('plan');
+        $hotel = $request->input('hotel');
+
         $timestamps = $request->input('timestamps');                   
 
         $schedules = Schedule::with(['plans', 'hotel'])
@@ -29,9 +31,6 @@ class ScheduleController extends Controller
             })
             ->whereHas('hotel', function($query) use($hotel) {
                 return $query->where('name', 'like', "%$hotel%");
-            })
-            ->when($id, function($query) use($id) {
-                return $query->where('id', $id);
             })
             ->when($title, function($query) use($title) {
                 return $query->where('title', 'like', "%$title%");
@@ -43,7 +42,7 @@ class ScheduleController extends Controller
                 return $query->where('start_time', $start_time);
             })
             ->when($full_description, function($query) use($full_description) {
-                return $query->where('full_description', 'full_description', "%$full_description%");
+                return $query->where('full_description', 'like', "%$full_description%");
             })
             ->when($timestamps, function($query) use($timestamps) {
                 return $query->where('timestamps', $timestamps);

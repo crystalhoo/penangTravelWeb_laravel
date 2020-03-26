@@ -9,6 +9,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Controller;
 
+
 class PlanController extends Controller
 {
     //havent test: this is front end 
@@ -17,7 +18,7 @@ class PlanController extends Controller
         $title = $request->input('title');
         $description = $request->input('description');
 
-        $plans = Plan::with('schedule')
+        $plans = Plan::with('schedules')
             ->when($title, function($query) use($title) {
                 return $query->where('title', 'like', "%$title%");
             })

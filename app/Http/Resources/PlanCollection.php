@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Http\Resources\PlanResource;
 
 class PlanCollection extends ResourceCollection
 {
@@ -16,6 +17,7 @@ class PlanCollection extends ResourceCollection
     {
         return [
             'data' => PlanResource::collection($this->collection),
+
         ];
     }
 }
