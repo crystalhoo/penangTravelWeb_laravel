@@ -18,6 +18,7 @@ class PlanResource extends Resource
             'id' => $this->when(!is_null($this->id), $this->id),
             'title' => $this->when(!is_null($this->title), $this->title),
             'description' => $this->when(!is_null($this->description), $this->description),
+            'schedules' => BookResource::collection($this->whenLoaded('schedules')),
         ];
     }
 }
