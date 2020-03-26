@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use DB;
 use App\Plan;
 use Illuminate\Http\Request;
 use App\Http\Resources\PlanCollection;

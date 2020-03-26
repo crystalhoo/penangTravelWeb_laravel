@@ -15,20 +15,15 @@ class ScheduleController extends Controller
 {
     public function index(Request $request)
     {
-        $id = $request ->input('id');
         $title = $request->input('title');
         $day_number = $request->input('day_number');
         $start_time = $request->input('start_time');
         $full_description = $request->input('full_description');
-        $plan = $request->input('plan');
         $hotel = $request->input('hotel');
 
         $timestamps = $request->input('timestamps');                   
 
-        $schedules = Schedule::with(['plans', 'hotel'])
-            ->whereHas('plans', function($query) use($plan) {
-                return $query->where('name', 'like', "%$plan%");
-            })
+        $schedules = Schedule::with([ 'hotel'])
             ->whereHas('hotel', function($query) use($hotel) {
                 return $query->where('name', 'like', "%$hotel%");
             })
@@ -112,8 +107,7 @@ public function show($id)
 public function update(Request $request, $id)
 {
     try {
-        $schedule = Schedule::with('hotel')->find($id);
-        //$schedule = Schedule::with('plans')->with('hotel')->find($id);
+        $schedule = Schedule::with('plans')->with('hotel')->find($id);
         if(!$schedule) throw new ModelNotFoundException;
 
         $schedule->fill($request->all());

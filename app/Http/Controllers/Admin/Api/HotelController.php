@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use DB;
 use App\Hotel;
 use App\Http\Requests\HotelRequest;
 use App\Http\Resources\HotelCollection;
