@@ -129,6 +129,32 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        try {
+            $hotel = Hotel::find($id);
+            if(!$hotel) throw new ModelNotFoundException;
+
+            $hotel->delete(); 
+            // $hotel->saveOrFail();
+
+            //return response()->json(null, 204);
+            return redirect()->route('hotels')
+                        ->with('success','hotel deleted successfully');
+        }
+        catch(ModelNotFoundException $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 404);
+        }
+        catch(QueryException $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+        catch(\Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
     }
 }

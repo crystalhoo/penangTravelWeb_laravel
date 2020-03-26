@@ -99,5 +99,35 @@ class PlanController extends Controller
             ], 500);
         }
     }
+    public function destroy($id)
+    {
+        
+        try {
+            $plan = Plan::find($id);
+            if(!$plan) throw new ModelNotFoundException;
+
+            $plan->delete(); 
+            // $plan->saveOrFail();
+
+            //return response()->json(null, 204);
+            return redirect()->route('plans')
+                        ->with('success','plan deleted successfully');
+        }
+        catch(ModelNotFoundException $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 404);
+        }
+        catch(QueryException $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+        catch(\Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
 
 }

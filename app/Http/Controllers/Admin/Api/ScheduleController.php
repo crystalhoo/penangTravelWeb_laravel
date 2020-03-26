@@ -145,6 +145,32 @@ public function update(Request $request, $id)
  */
 public function destroy($id)
 {
-    //
+    
+        try {
+            $schedule = Schedule::find($id);
+            if(!$schedule) throw new ModelNotFoundException;
+
+            $schedule->delete(); 
+            // $schedule->saveOrFail();
+
+            //return response()->json(null, 204);
+            return redirect()->route('schedules')
+                        ->with('success','schedule deleted successfully');
+        }
+        catch(ModelNotFoundException $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 404);
+        }
+        catch(QueryException $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+        catch(\Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
 }
 }
