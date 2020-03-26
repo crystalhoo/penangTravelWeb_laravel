@@ -39,6 +39,9 @@ Route::get('/posts/update', 'PostController@update')->middleware('can:isAdmin')-
 Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')->name('post.create');
 });
 
-
 //api plan
 Route::apiResource('plans', 'PlanController');
+<<<<<<< HEAD
+Route::apiResource('hotels', 'HotelController');
+Route::apiResource('schedules', 'ScheduleController');
+>>>>>>> 635509b859a98e2df48f6cf5fb79fb761f6f9e13

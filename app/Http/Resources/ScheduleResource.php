@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class ScheduleResource extends Resource
+class ScheduleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,12 @@ class ScheduleResource extends Resource
     {
         return [
             'id' => $this->when(!is_null($this->id), $this->id),
-            'plan_id' => PlanResource::collection($this->whenLoaded('plan')),
             'day_number' => $this->when(!is_null($this->day_number), $this->day_number),
             'start_time' => $this->when(!is_null($this->start_time), $this->start_time),
             'title' => $this->when(!is_null($this->title), $this->title),
             'full_description' => $this->when(!is_null($this->full_description), $this->full_description),
+            'hotel' => new HotelResource($this->whenLoaded('hotel')),
+            'plans' => PlanResource::collection($this->whenLoaded('plans')),
         ];
     }
 }

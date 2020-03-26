@@ -21,8 +21,8 @@ class ScheduleRequest extends ApiFormRequest
      */
     public function rules()
     {
-        // return [
-        //     'name'         => 'required|string|max:100',
-        // ];
+        return [
+            'title'         => 'required|string|max:100',
+        ];
     }
 }

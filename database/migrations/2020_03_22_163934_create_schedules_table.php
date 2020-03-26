@@ -17,17 +17,17 @@ class CreateSchedulesTable extends Migration
 
                 $table->increments('id');
     
-                $table->unsignedInteger('plan_id')->nullable();
+                $table->unsignedInteger('hotel_id')->nullable();
     
                 $table->integer('day_number');
     
                 $table->time('start_time');
     
-                $table->string('title');
+                $table->string('title')->indexed();;
     
                 $table->longText('full_description')->nullable();
     
-                $table->foreign('plan_id')->references('id')->on('plans');
+                $table->foreign('hotel_id')->references('id')->on('hotels');
     
                 $table->timestamps();
         });

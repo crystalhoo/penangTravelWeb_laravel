@@ -16,7 +16,7 @@ class CreatePlansTable extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('title');
+            $table->string('title')->indexed();
 
             $table->longText('description')->nullable();
 

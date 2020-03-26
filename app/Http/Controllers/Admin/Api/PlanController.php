@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use DB;
 use App\Plan;
 use Illuminate\Http\Request;
-use App\Http\Resources\AuthorCollection;
-use App\Http\Resources\AuthorResource;
+use App\Http\Resources\PlanCollection;
+use App\Http\Resources\PlanResource;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Controller;
+
 
 class PlanController extends Controller
 {
@@ -15,8 +18,9 @@ class PlanController extends Controller
     public function index(Request $request)
     {
         $title = $request->input('title');
+        $description = $request->input('description');
 
-        $plans = Plan::with('schedule')
+        $plans = Plan::with('schedules')
             ->when($title, function($query) use($title) {
                 return $query->where('title', 'like', "%$title%");
             })
@@ -78,6 +82,36 @@ class PlanController extends Controller
             $plan->saveOrFail();
 
             return response()->json(null, 204);
+        }
+        catch(ModelNotFoundException $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 404);
+        }
+        catch(QueryException $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+        catch(\Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+    public function destroy($id)
+    {
+        
+        try {
+            $plan = Plan::find($id);
+            if(!$plan) throw new ModelNotFoundException;
+
+            $plan->delete(); 
+            // $plan->saveOrFail();
+
+            //return response()->json(null, 204);
+            return redirect()->route('plans')
+                        ->with('success','plan deleted successfully');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([

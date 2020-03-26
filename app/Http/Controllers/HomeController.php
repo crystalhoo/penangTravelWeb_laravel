@@ -18,14 +18,14 @@ class HomeController extends Controller
         $settings = Setting::pluck('value', 'key');
         $hotels = Hotel::all();
         $plans = Plan::all();
-        $schedules = Schedule::with('plan')
-        ->orderBy('start_time', 'asc')
-        ->get()
-        ->groupBy('day_number');
+        // $schedules = Schedule::with('plan')
+        // ->orderBy('start_time', 'asc')
+        // ->get()
+        // ->groupBy('day_number');
         $galleries = Gallery::all();
         $faqs = Faq::all();
 
-        return view('home', compact('settings', 'hotels', 'galleries', 'faqs','plans','schedules'));
+        return view('home', compact('settings', 'hotels', 'galleries', 'faqs','plans'));
     }
     
     //for?
