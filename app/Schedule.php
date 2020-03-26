@@ -33,6 +33,7 @@ class Schedule extends Model
     public function plans()
     {
     return $this->belongsToMany(Plan::class)->withPivot('plan_id', 'schedule_id');
+        // return $this->belongsTo(Plan::class, 'plan_id');
     }
 }
 //}
