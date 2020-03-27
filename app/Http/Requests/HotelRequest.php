@@ -21,8 +21,11 @@ class HotelRequest extends ApiFormRequest
      */
     public function rules()
     {
-        // return [
-        //     'name'         => 'required|string|max:100',
-        // ];
+        return [
+            'name'          => 'required|string|max:100',
+            'address'       => 'required|string|max:100',  
+            'description'   => 'string|max:500',
+            'rating'        => 'required|interger',
+        ];
     }
 }
