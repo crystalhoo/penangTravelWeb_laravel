@@ -19,13 +19,16 @@ class ScheduleController extends Controller
         $day_number = $request->input('day_number');
         $start_time = $request->input('start_time');
         $full_description = $request->input('full_description');
-        $hotel = $request->input('hotel');
-
-        $timestamps = $request->input('timestamps');                   
-
-        $schedules = Schedule::with([ 'hotel'])
-            ->whereHas('hotel', function($query) use($hotel) {
-                return $query->where('name', 'like', "%$hotel%");
+        // $hotel = $request->input('hotel');
+        $plan = $request->input('plan');
+        $timestamps = $request->input('timestamp');
+        //$schedules = Schedule::with([ 'hotels', 'plan'])
+        $schedules = Schedule::with([ 'plan'])
+            // ->whereHas('hotels', function($query) use($hotel) {
+            //     return $query->where('name', 'like', "%$hotel%");
+            // })
+            ->whereHas('plan', function($query) use($plan) {
+                return $query->where('name', 'like', "%$plan%");
             })
             ->when($title, function($query) use($title) {
                 return $query->where('title', 'like', "%$title%");
@@ -52,7 +55,7 @@ public function store(ScheduleRequest $request)
     try {
         $schedule = new Schedule;
         $schedule->fill($request->all());
-        $schedule->hotel_id = $request->hotel_id;
+        $schedule->plan_id = $request->plan_id;
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
@@ -85,7 +88,8 @@ public function store(ScheduleRequest $request)
 public function show($id)
 {
     try {
-        $schedule = Schedule::with('plans')->with('hotel')->find($id);
+        //$schedule = Schedule::with('hotels')->with('plan')->find($id);
+        $schedule = Schedule::with('plan')->find($id);
         if(!$schedule) throw new ModelNotFoundException;
 
         return new ScheduleResource($schedule);
@@ -107,11 +111,12 @@ public function show($id)
 public function update(Request $request, $id)
 {
     try {
-        $schedule = Schedule::with('plans')->with('hotel')->find($id);
+        //$schedule = Schedule::with('hotels')->with('plan')->find($id);
+        $schedule = Schedule::with('plan')->find($id);
         if(!$schedule) throw new ModelNotFoundException;
 
         $schedule->fill($request->all());
-        $schedule->hotel_id = $request->hotel_id;
+        $schedule->plan_id = $request->plan_id;
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();

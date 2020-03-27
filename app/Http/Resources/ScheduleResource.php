@@ -20,8 +20,8 @@ class ScheduleResource extends JsonResource
             'start_time' => $this->when(!is_null($this->start_time), $this->start_time),
             'title' => $this->when(!is_null($this->title), $this->title),
             'full_description' => $this->when(!is_null($this->full_description), $this->full_description),
-            'hotel' => new HotelResource($this->whenLoaded('hotel')),
-            'plans' => PlanResource::collection($this->whenLoaded('plans')),
+            'plan' => new PlanResource($this->whenLoaded('plan')),
+            'hotels' => HotelResource::collection($this->whenLoaded('hotels')),
         ];
     }
 }

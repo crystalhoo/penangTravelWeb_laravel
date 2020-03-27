@@ -34,7 +34,7 @@ class Plan extends Model
     //change here
     public function schedules()
     {
-        return $this->belongsToMany(Schedule::class);
+        return $this->hasMany(Schedule::class);
     }
 
     // public function getPhotoAttribute()

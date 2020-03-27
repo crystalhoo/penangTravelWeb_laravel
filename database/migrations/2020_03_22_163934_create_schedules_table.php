@@ -17,7 +17,7 @@ class CreateSchedulesTable extends Migration
 
                 $table->increments('id');
     
-                $table->unsignedInteger('hotel_id')->nullable();
+                $table->unsignedInteger('plan_id')->nullable();
     
                 $table->integer('day_number');
     
@@ -27,7 +27,7 @@ class CreateSchedulesTable extends Migration
     
                 $table->longText('full_description')->nullable();
     
-                $table->foreign('hotel_id')->references('id')->on('hotels');
+                $table->foreign('plan_id')->references('id')->on('plans');
     
                 $table->timestamps();
         });

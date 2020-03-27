@@ -19,21 +19,22 @@ class Schedule extends Model
 
     protected $fillable = [
 
-        'hotel_id',
+        'plan_id',
         'day_number',
         'start_time',
         'title',
         'full_description'
     ];
 
-    public function hotel()
+    public function plan()
     {
-        return $this->belongsTo(Hotel::class);
+    return $this->belongsTo(Plan::class);
     }
-    public function plans()
+    public function hotels()
     {
-    return $this->belongsToMany(Plan::class)->withPivot('plan_id', 'schedule_id');
+        return $this->belongsToMany(Hotel::class);//->withPivot('hotel_id', 'schedule_id');
     }
+
 }
 //}
 // public function hotel()
