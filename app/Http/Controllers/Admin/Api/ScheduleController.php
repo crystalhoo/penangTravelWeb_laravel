@@ -21,14 +21,14 @@ class ScheduleController extends Controller
         $full_description = $request->input('full_description');
         // $hotel = $request->input('hotel');
         $plan = $request->input('plan');
-        $timestamps = $request->input('timestamp');
+        $timestamps = $request->input('timestamps');
         //$schedules = Schedule::with([ 'hotels', 'plan'])
-        $schedules = Schedule::with([ 'plan'])
+        $schedules = Schedule::with(['plan'])
             // ->whereHas('hotels', function($query) use($hotel) {
             //     return $query->where('name', 'like', "%$hotel%");
             // })
             ->whereHas('plan', function($query) use($plan) {
-                return $query->where('name', 'like', "%$plan%");
+                return $query->where('plan_id', 'like', "%$plan%");
             })
             ->when($title, function($query) use($title) {
                 return $query->where('title', 'like', "%$title%");
