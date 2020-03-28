@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 use App\User;
 use Illuminate\Console\Command;
 
+
 class InitUsers extends Command
 {
     /**
