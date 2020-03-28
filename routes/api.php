@@ -43,3 +43,6 @@ Route::apiResource('schedules', 'ScheduleController');
      Route::post('galleries/media', 'GalleriesApiController@storeMedia')->name('galleries.storeMedia');
      Route::apiResource('galleries', 'GalleriesApiController');
 });
+
+
+

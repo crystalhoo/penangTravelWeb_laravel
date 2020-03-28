@@ -97,3 +97,8 @@ Route::get('/admin/faqs/massDestroy', 'Admin\FaqsController@massDestroy')->name(
 //     Route::resource('faqs', 'FaqsController');
 //
 // });
+
+ // Galleries
+ Route::delete('galleries/destroy', 'GalleriesController@massDestroy')->name('galleries.massDestroy');
+ Route::post('galleries/media', 'GalleriesController@storeMedia')->name('galleries.storeMedia');
+ Route::resource('galleries', 'GalleriesController');
