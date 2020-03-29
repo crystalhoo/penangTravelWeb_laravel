@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AuthController extends Controller
 {
@@ -56,34 +57,6 @@ class AuthController extends Controller
     ]);
   }
 
-  //CRUD for admin
-  public function create()
-  {
-    if (Gate::allows('isAdmin')) {
-        dd('Admin allowed');
-    } else {
-        dd('You are not Admin');
-    }
 
-  }
-
-  public function edit()
-  {
-    if (Gate::allows('isAdmin')) {
-        dd('Admin allowed');
-    } else {
-        dd('You are not Admin');
-    }
-
-  }
-  public function delete()
-{
-    if (Gate::allows('isAdmin')) {
-        dd('Admin allowed');
-    } else {
-        dd('You are not Admin');
-    }
-
-}
 
 }

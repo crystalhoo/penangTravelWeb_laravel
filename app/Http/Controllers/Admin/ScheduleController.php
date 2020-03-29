@@ -29,13 +29,23 @@ class ScheduleController extends Controller
 
         $speakers = Speaker::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
+        if (Gate::allows('isAdmin')) {
+            dd('Admin allowed');
+        } else {
+            dd('You are not Admin');
+        }
+
         return view('admin.schedules.create', compact('speakers'));
     }
 
     public function store(StoreScheduleRequest $request)
     {
         $schedule = Schedule::create($request->all());
-
+        if (Gate::allows('isAdmin')) {
+            dd('Admin allowed');
+        } else {
+            dd('You are not Admin');
+        }
         return redirect()->route('admin.schedules.index');
     }
 
@@ -47,13 +57,24 @@ class ScheduleController extends Controller
 
         $schedule->load('speaker');
 
+
+
+        if (Gate::allows('isAdmin')) {
+            dd('Admin allowed');
+        } else {
+            dd('You are not Admin');
+        }
         return view('admin.schedules.edit', compact('speakers', 'schedule'));
     }
 
     public function update(UpdateScheduleRequest $request, Schedule $schedule)
     {
         $schedule->update($request->all());
-
+        if (Gate::allows('isAdmin')) {
+            dd('Admin allowed');
+        } else {
+            dd('You are not Admin');
+        }
         return redirect()->route('admin.schedules.index');
     }
 
@@ -72,6 +93,12 @@ class ScheduleController extends Controller
 
         $schedule->delete();
 
+        if (Gate::allows('isAdmin')) {
+            dd('Admin allowed');
+        } else {
+            dd('You are not Admin');
+        }
+
         return back();
     }
 
@@ -81,4 +108,6 @@ class ScheduleController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+
 }
