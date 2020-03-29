@@ -7,7 +7,7 @@ use App\Http\Requests\MassDestroyScheduleRequest;
 use App\Http\Requests\StoreScheduleRequest;
 use App\Http\Requests\UpdateScheduleRequest;
 use App\Schedule;
-use App\Speaker;
+use App\Plan;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,16 +20,25 @@ class ScheduleController extends Controller
 
         $schedules = Schedule::all();
 
-        return view('admin.schedules.index', compact('schedules'));
+        foreach ($schedules as $schedule) {
+          echo $schedule->plan_id;
+        }
+
+        $plans = Plan::all();
+        echo $plans;
+
+        echo compact(plans);
+        //
+        // return view('admin.schedules.index', [ 'schedules' => $schedules], [ 'plans' => $plans]);
     }
 
     public function create()
     {
         // abort_if(Gate::denies('schedule_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $speakers = Speaker::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        // $speakers = Speaker::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.schedules.create', compact('speakers'));
+        return view('admin.schedules.create');
     }
 
     public function store(StoreScheduleRequest $request)

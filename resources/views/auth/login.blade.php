@@ -38,6 +38,11 @@
                     @endif
                 </div>
 
+                <div class="row">
+                  <div class="col-10">
+                    <a href="{{ route("register") }}">New user? Click here to Register.</a>
+                  </div>
+                </div>
 
                 <div class="row">
                     <div class="col-8">

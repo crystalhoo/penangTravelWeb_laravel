@@ -57,16 +57,16 @@
                     {{ trans('cruds.schedule.fields.subtitle_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('speaker_id') ? 'has-error' : '' }}">
-                <label for="speaker">{{ trans('cruds.schedule.fields.speaker') }}</label>
-                <select name="speaker_id" id="speaker" class="form-control select2">
-                    @foreach($speakers as $id => $speaker)
-                        <option value="{{ $id }}" {{ (isset($schedule) && $schedule->speaker ? $schedule->speaker->id : old('speaker_id')) == $id ? 'selected' : '' }}>{{ $speaker }}</option>
+            <div class="form-group {{ $errors->has('plan_id') ? 'has-error' : '' }}">
+                <label for="plan">{{ trans('cruds.schedule.fields.plan') }}</label>
+                <select name="plan_id" id="plan" class="form-control select2">
+                    @foreach($plans ?? '' as $id => $plan)
+                        <option value="{{ $id }}" {{ (isset($schedule) && $schedule->plan ? $schedule->plan->id : old('plan_id')) == $id ? 'selected' : '' }}>{{ $plan }}</option>
                     @endforeach
                 </select>
-                @if($errors->has('speaker_id'))
+                @if($errors->has('plan_id'))
                     <p class="help-block">
-                        {{ $errors->first('speaker_id') }}
+                        {{ $errors->first('plan_id') }}
                     </p>
                 @endif
             </div>

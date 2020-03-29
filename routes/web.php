@@ -15,10 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/register', 'RegisterController@create')->name('register');
+Route::post('register', 'RegisterController@store')->name('auth.register.store');
+
 Route::post('login', 'Auth\LoginController@login');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
+
+
 
 Route::get('/admin/settings', 'Admin\SettingsController@index')->name('admin.settings.index');
 Route::get('/admin/settings/create', 'Admin\SettingsController@create')->name('admin.settings.create');
@@ -29,7 +36,7 @@ Route::get('/admin/settings/store', 'Admin\SettingsController@store')->name('adm
 Route::post('/admin/settings/destroy', 'Admin\SettingsController@destroy')->name('admin.settings.destroy');
 Route::get('/admin/settings/massDestroy', 'Admin\SettingsController@massDestroy')->name('admin.settings.massDestroy');
 
-Route::get('/admin/schedules', 'Admin\ScheduleController@index')->name('admin.schedules.index');
+Route::get('/admin/schedules/index', 'Admin\ScheduleController@index')->name('admin.schedules.index');
 Route::get('/admin/schedules/create', 'Admin\ScheduleController@create')->name('admin.schedules.create');
 Route::get('/admin/schedules/{$schedules}', 'Admin\ScheduleController@show')->name('admin.schedules.show');
 Route::get('/admin/schedules/edit', 'Admin\ScheduleController@edit')->name('admin.schedules.edit');
