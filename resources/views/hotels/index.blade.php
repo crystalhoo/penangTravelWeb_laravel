@@ -15,17 +15,9 @@ use App\Hotel;
 <thead>
 <tr>
 <th>No.</th>
-<th>Membership No</th>
-<th>NRIC</th>
 <th>Name</th>
-<th>Gender</th>
-<th>Address</th>
-<th>Postcode</th>
-<th>City</th>
-<th>State</th>
-<th>Phone</th>
-<th>Division Id</th>
-<th>Action</th>
+<th>Description</th>
+<th>Rating</th>
 </tr>
 </thead>
 
@@ -37,15 +29,7 @@ use App\Hotel;
 <div>{{ $i+1 }}</div>
 </td>
 <td class="table-text">
-<!-- <div> -->
-<!-- {!! link_to_route(
-'hotel.show',
-$title = $hotel->hotel,
-$parameters = [
-'id' => $hotel->id,
-]
-) !!} -->
-<!-- </div> -->
+
 </td>
 <td class="table-text">
 <div>{{ $hotel->name }}</div>
@@ -64,23 +48,7 @@ $parameters = [
 <div></div>
 </td>
 <td class="table-text">
-<div>
-{!! link_to_route(
-'hotel.edit',
-$title = 'Edit',
-$parameters = [
-'id' => $hotel->id,
-]
-) !!}
-<!--
-{!!
-Form::open(['method' => 'DELETE', 'route' => ['member.destroy', $member->id]]) 
-!!}
-{!!
-Form::submit('Delete')
-!!}
--->
-<a href="{{ route('hotel.delete', $hotel->id) }}">Delete</a>
+
 </div>
 </td>
 </tr>

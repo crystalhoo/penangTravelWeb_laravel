@@ -27,7 +27,9 @@ class HotelController extends Controller
             ->when($name, function($query) use($name) {
                 return $query->where('name', 'like', "%$name%");
             })
-            ->paginate(10);
+            ->paginate(20);
+
+        // $hotels = Hotel::orderBy('name', 'asc')->get();
 
         // return new HotelCollection($hotels);
         return view('hotels.index', [
@@ -59,10 +61,11 @@ class HotelController extends Controller
 
             $hotel->saveOrFail();
 
-            // return response()->json([
-            //     'id' => $hotel->id,
-            //     'created_at' => $hotel->created_at,
-            // ], 201);
+            return response()->json([
+                'id' => $hotel->id,
+                'created_at' => $hotel->created_at,
+            ], 201);
+            
             return redirect()->route('hotels.index');
         }
         catch(QueryException $ex) {
