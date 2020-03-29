@@ -30,7 +30,7 @@ Route::middleware(['jwt.auth', 'can:manage-users'])->group(function() {
 });
 
 
-//admin
+//NOT SURE put which file (authorisation)
 Route::get('/posts/delete', 'PostController@delete')->middleware('can:isAdmin')->name('post.delete');
 Route::get('/posts/update', 'PostController@update')->middleware('can:isAdmin')->name('post.update');
 Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')->name('post.create');
