@@ -25,6 +25,10 @@ Route::post('logout', 'AuthController@logout');
 Route::post('refresh', 'AuthController@refresh');
 Route::post('me', 'AuthController@me');
 
+Route::middleware(['jwt.auth', 'can:manage-users'])->group(function() {
+
+});
+
 
 //admin
 Route::get('/posts/delete', 'PostController@delete')->middleware('can:isAdmin')->name('post.delete');
