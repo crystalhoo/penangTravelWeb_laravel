@@ -10,21 +10,21 @@ use App\Common;
 <!-- Bootstrap Boilerplate... -->
 
 <div class="panel-body">
-<!-- New Division Form -->
-{!! Form::model($division, [
-'route' => ['division.update', $division->id],
+<!-- New hotel Form -->
+{!! Form::model($hotel, [
+'route' => ['hotel.update', $hotel->id],
 'method' => 'put',
 'class' => 'form-horizontal'
 ]) !!}
 
 <!-- Code -->
 <div class="form-group row">
-{!! Form::label('division-code', 'Code', [
+{!! Form::label('hotel-code', 'Code', [
 'class' => 'control-label col-sm-3',
 ]) !!}
 <div class="col-sm-9">
-{!! Form::text('code', $division->code, [
-'id' => 'division-code',
+{!! Form::text('code', $hotel->code, [
+'id' => 'hotel-code',
 'class' => 'form-control',
 'maxlength' => 3,
 ]) !!}
@@ -33,12 +33,12 @@ use App\Common;
 
 <!-- Name -->
 <div class="form-group row">
-{!! Form::label('division-name', 'Name', [
+{!! Form::label('hotel-name', 'Name', [
 'class' => 'control-label col-sm-3',
 ]) !!}
 <div class="col-sm-9">
-{!! Form::text('name', $division->name, [
-'id' => 'division-name',
+{!! Form::text('name', $hotel->name, [
+'id' => 'hotel-name',
 'class' => 'form-control',
 'maxlength' => 100,
 ]) !!}
@@ -47,54 +47,43 @@ use App\Common;
 
 <!-- Address -->
 <div class="form-group row">
-{!! Form::label('division-address', 'Address', [
+{!! Form::label('hotel-address', 'Address', [
 'class' => 'control-label col-sm-3',
 ]) !!}
 <div class="col-sm-9">
-{!! Form::textarea('address', $division->address, [
-'id' => 'division-address',
+{!! Form::textarea('address', $hotel->address, [
+'id' => 'hotel-address',
 'class' => 'form-control',
 ]) !!}
 </div>
 </div>
 
-<!-- Postcode -->
+
+<!-- description-->
 <div class="form-group row">
-{!! Form::label('division-postcode', 'Postcode', [
+{!! Form::label('hotel-description', 'Description', [
 'class' => 'control-label col-sm-3',
 ]) !!}
 <div class="col-sm-9">
-{!! Form::text('postcode', $division->postcode, [
-'id' => 'division-postcode',
+{!! Form::text('description', null, [
+'id' => 'hotel-description',
 'class' => 'form-control',
-'maxlength' => 5,
+'maxlength' => 100,
 ]) !!}
 </div>
 </div>
 
-<!-- City -->
-<div class="form-group row">
-{!! Form::label('division-city', 'City', [
-'class' => 'control-label col-sm-3',
-]) !!}
-<div class="col-sm-9">
-{!! Form::text('city', $division->city, [
-'id' => 'division-city',
-'class' => 'form-control',
-'maxlength' => 50,
-]) !!}
-</div>
-</div>
 
-<!-- State -->
+<!-- Rating-->
 <div class="form-group row">
-{!! Form::label('division-state', 'State', [
+{!! Form::label('hotel-rating', 'Rating', [
 'class' => 'control-label col-sm-3',
 ]) !!}
 <div class="col-sm-9">
-{!! Form::select('state', Common::$states, $division->state, [
+{!! Form::text('rating', null, [
+'id' => 'hotel-rating',
 'class' => 'form-control',
-'placeholder' => '- Select State -',
+'maxlength' => 100,
 ]) !!}
 </div>
 </div>
@@ -102,10 +91,10 @@ use App\Common;
 <!-- Submit Button -->
 <div class="form-group row">
 <div class="col-sm-offset-3 col-sm-6">
-{!! Form::button('Update', [
-'type' => 'submit',
-'class' => 'btn btn-primary',
-]) !!}
+	{!! Form::button('Save', [
+	'type' => 'submit',
+	'class' => 'btn btn-primary',
+	]) !!}
 </div>
 </div>
 {!! Form::close() !!}

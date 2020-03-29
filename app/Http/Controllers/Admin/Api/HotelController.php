@@ -92,7 +92,12 @@ class HotelController extends Controller
             $hotel = Hotel::with('schedules')->find($id);
             if(!$hotel) throw new ModelNotFoundException;
 
-            return new HotelResource($hotel);
+            // return new HotelResource($hotel);
+            return view('hotels.show', [
+                'hotel' => $hotel
+                ]);
+                
+        
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
@@ -118,7 +123,7 @@ class HotelController extends Controller
 
             $hotel->saveOrFail();
 
-            return response()->json(null, 204);
+            return redirect()->route('hotel.index');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
@@ -136,7 +141,15 @@ class HotelController extends Controller
             ], 500);
         }
     }
+    public function edit($id)
+	{
+		$hotel = Hotel::find($id);
+		if(!$hotel) throw new ModelNotFoundException;
 
+		return view('hotels.edit', [
+		'hotel' => $hotel
+		]);
+	}
     /**
      * Remove the specified resource from storage.
      *
@@ -155,8 +168,10 @@ class HotelController extends Controller
             // $hotel->saveOrFail();
 
             //return response()->json(null, 204);
-            return redirect()->route('hotels')
-                        ->with('success','hotel deleted successfully');
+            // return redirect()->route('hotels')
+            //             ->with('success','hotel deleted successfully');
+            return redirect()->route('hotels.index')
+                        ->with('success','Hotel deleted successfully');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([

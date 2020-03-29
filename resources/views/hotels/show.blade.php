@@ -14,39 +14,30 @@ use App\Common;
 <!-- Table Headings -->
 <thead>
 <tr>
-<th>Attribute</th>
-<th>Value</th>
+<th>
+<div>
+<a href="{{ route('hotel.index', $hotel->id) }}">Back to index</a>
+</div>
+</th>
 </tr>
 </thead>
 <!-- Table Body -->
 <tbody>
 <tr>
-<td>Code</td>
-<td>{{ $division->code }}</td>
-</tr>
-<tr>
 <td>Name</td>
-<td>{{ $division->name }}</td>
+<td>{{ $hotel->name }}</td>
 </tr>
 <tr>
 <td>Address</td>
-<td>{!! nl2br($division->address) !!}</td>
+<td>{{ $hotel->address }}</td>
 </tr>
 <tr>
-<td>Postcode</td>
-<td>{{ $division->postcode }}</td>
+<td>Description</td>
+<td>{{ $hotel->description }}</td>
 </tr>
 <tr>
-<td>City</td>
-<td>{{ $division->city }}</td>
-</tr>
-<tr>
-<td>State</td>
-<td>{{ Common::$states[$division->state] }}</td>
-</tr>
-<tr>
-<td>Created</td>
-<td>{{ $division->created_at }}</td>
+<td>Rating</td>
+<td>{{ $hotel->rating }}</td>
 </tr>
 </tbody>
 </table>

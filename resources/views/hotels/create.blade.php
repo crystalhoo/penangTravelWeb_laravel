@@ -26,13 +26,27 @@ use App\Common;
 </div>
 </div>
 
+<!-- address-->
+<div class="form-group row">
+{!! Form::label('hotel-address', 'Address', [
+'class' => 'control-label col-sm-3',
+]) !!}
+<div class="col-sm-9">
+{!! Form::text('address', null, [
+'id' => 'hotel-address',
+'class' => 'form-control',
+'maxlength' => 100,
+]) !!}
+</div>
+</div>
+
 <!-- description-->
 <div class="form-group row">
 {!! Form::label('hotel-description', 'Description', [
 'class' => 'control-label col-sm-3',
 ]) !!}
 <div class="col-sm-9">
-{!! Form::text('Description', null, [
+{!! Form::text('description', null, [
 'id' => 'hotel-description',
 'class' => 'form-control',
 'maxlength' => 100,
@@ -47,7 +61,7 @@ use App\Common;
 'class' => 'control-label col-sm-3',
 ]) !!}
 <div class="col-sm-9">
-{!! Form::text('Rating', null, [
+{!! Form::text('rating', null, [
 'id' => 'hotel-rating',
 'class' => 'form-control',
 'maxlength' => 100,
