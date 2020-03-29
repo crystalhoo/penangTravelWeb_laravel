@@ -26,10 +26,10 @@ class Plan extends Model
         'description',
     ];
 
-    // public function registerMediaConversions(Media $media = null)
-    // {
-    //     $this->addMediaConversion('thumb')->width(50)->height(50);
-    // }
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')->width(50)->height(50);
+    }
 
     //change here
     public function schedules()
@@ -37,16 +37,16 @@ class Plan extends Model
         return $this->hasMany(Schedule::class);
     }
 
-    // public function getPhotoAttribute()
-    // {
-    //     $file = $this->getMedia('photo')->last();
+    public function getPhotoAttribute()
+    {
+        $file = $this->getMedia('photo')->last();
 
-    //     if ($file) {
-    //         $file->url       = $file->getUrl();
-    //         $file->thumbnail = $file->getUrl('thumb');
-    //     } 
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+        } 
 
-    //     return $file;
-    // }
+        return $file;
+    }
 
 }
