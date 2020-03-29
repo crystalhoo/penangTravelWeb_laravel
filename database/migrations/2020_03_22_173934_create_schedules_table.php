@@ -27,7 +27,7 @@ class CreateSchedulesTable extends Migration
     
                 $table->longText('full_description')->nullable();
     
-                $table->foreign('plan_id')->references('id')->on('plans');
+                $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
     
                 $table->timestamps();
         });

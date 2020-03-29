@@ -134,6 +134,7 @@ class HotelController extends Controller
             $hotel = Hotel::find($id);
             if(!$hotel) throw new ModelNotFoundException;
 
+            //remove the detach()
             $hotel->delete(); 
             // $hotel->saveOrFail();
 
