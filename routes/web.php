@@ -97,3 +97,10 @@ Route::get('/admin/faqs/massDestroy', 'Admin\FaqsController@massDestroy')->name(
 //     Route::resource('faqs', 'FaqsController');
 //
 // });
+
+//hotel admin page
+Route::resource('/admin/hotel', 'HotelController');
+Route::get('admin/hotel/delete/{hotel}',['as' => 'hotel.delete', 'uses' => 'HotelController@destroy']);
+
+// Route::get('/admin/hotel', 'Admin\Api\HotelController@index')->name('admin.hotels.index');
+// Route::get('/admin/hotel/create', 'Admin\Api\HotelController@create')->name('admin.hotels.create');

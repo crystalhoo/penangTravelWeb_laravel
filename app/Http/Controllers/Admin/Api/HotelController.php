@@ -29,9 +29,21 @@ class HotelController extends Controller
             })
             ->paginate(10);
 
-        return new HotelCollection($hotels);
+        // return new HotelCollection($hotels);
+        return view('hotels.index', [
+            'hotels' => $hotels
+            ]);
     }
 
+    public function create()
+	{
+		$hotel = new Hotel();
+
+		return view('hotels.create', [
+		'hotel' => $hotel,
+		]);
+    }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -47,10 +59,11 @@ class HotelController extends Controller
 
             $hotel->saveOrFail();
 
-            return response()->json([
-                'id' => $hotel->id,
-                'created_at' => $hotel->created_at,
-            ], 201);
+            // return response()->json([
+            //     'id' => $hotel->id,
+            //     'created_at' => $hotel->created_at,
+            // ], 201);
+            return redirect()->route('hotels.index');
         }
         catch(QueryException $ex) {
             return response()->json([
