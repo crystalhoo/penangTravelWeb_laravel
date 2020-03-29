@@ -59,7 +59,7 @@ public function store(ScheduleRequest $request)
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            $schedule->plans()->sync($request->plans);
+            $schedule->hotels()->sync($request->hotels);
         });
 
         return response()->json([
@@ -120,7 +120,7 @@ public function update(Request $request, $id)
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            $schedule->plans()->sync($request->plans);
+            $schedule->hotels()->sync($request->hotels);
         });
 
         return response()->json(null, 204);
