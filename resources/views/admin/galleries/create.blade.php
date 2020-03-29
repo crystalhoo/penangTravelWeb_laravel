@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.galleries.store") }}" method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('admin.galleries.store') }}">
             @csrf
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('cruds.gallery.fields.name') }}*</label>

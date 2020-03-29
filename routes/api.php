@@ -39,7 +39,10 @@ Route::apiResource('schedules', 'ScheduleController');
 
  Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
 
+    Route::get('/', 'HomeController@index')->name('home');
      // Galleries
      Route::post('galleries/media', 'GalleriesApiController@storeMedia')->name('galleries.storeMedia');
      Route::apiResource('galleries', 'GalleriesApiController');
 });
+
+// Route::post('galleries','GalleriesApiController@store')->name('galleries');
