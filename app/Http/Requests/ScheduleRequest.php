@@ -23,8 +23,8 @@ class ScheduleRequest extends ApiFormRequest
     {
         return [
             'title'           => 'required|string|max:100',
-            'plan_id'         => 'required|string|max:5',
-            'day_number'      => 'required|integer|max:2',
+            'plan_id'         => 'required',
+            'day_number'      => 'required|integer|max:30',
             'start_time'      => 'required',
             'full_description'=> 'string|max:500'
         ];

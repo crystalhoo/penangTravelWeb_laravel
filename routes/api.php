@@ -36,8 +36,6 @@ Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')-
 Route::apiResource('plans', 'PlanController');
 Route::apiResource('hotels', 'HotelController');
 Route::apiResource('schedules', 'ScheduleController');
-<<<<<<< HEAD
-=======
 
  Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
 
@@ -45,4 +43,3 @@ Route::apiResource('schedules', 'ScheduleController');
      Route::post('galleries/media', 'GalleriesApiController@storeMedia')->name('galleries.storeMedia');
      Route::apiResource('galleries', 'GalleriesApiController');
 });
->>>>>>> 10bfa13ec9c40c4c19f4e6195f3022f008d28d27
