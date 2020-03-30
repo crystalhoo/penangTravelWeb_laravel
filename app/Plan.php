@@ -3,12 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-// use Spatie\MediaLibrary\HasMedia\HasMedia;
-// use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-// use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
-class Plan extends Model
+class Plan extends Model implements HasMedia
 {
+
+    use HasMediaTrait;
+    
     public $table = 'plans';
 
     // protected $appends = [
@@ -44,7 +47,7 @@ class Plan extends Model
         if ($file) {
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-        } 
+        }
 
         return $file;
     }

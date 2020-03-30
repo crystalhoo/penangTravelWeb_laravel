@@ -95,6 +95,28 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route("admin.hotels.index") }}" class="nav-link {{ request()->is('admin/hotels') || request()->is('admin/hotels/*') ? 'active' : '' }}">
+                            <i class="fa-fw fas fa-hotel">
+
+                            </i>
+                            <p>
+                                <span>{{ trans('cruds.hotel.title') }}</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route("admin.plans.index") }}" class="nav-link {{ request()->is('admin/plans') || request()->is('admin/plans/*') ? 'active' : '' }}">
+                            <i class="fa-fw fas fa-tasks">
+
+                            </i>
+                            <p>
+                                <span>{{ trans('cruds.plan.title') }}</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route("admin.galleries.index") }}" class="nav-link {{ request()->is('admin/galleries') || request()->is('admin/galleries/*') ? 'active' : '' }}">
                             <i class="fa-fw fas fa-images">
 

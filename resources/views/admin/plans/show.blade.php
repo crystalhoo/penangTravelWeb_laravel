@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.hotel.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.plan.title') }}
     </div>
 
     <div class="card-body">
@@ -12,54 +12,26 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.hotel.fields.id') }}
+                            {{ trans('cruds.plan.fields.id') }}
                         </th>
                         <td>
-                            {{ $hotel->id }}
+                            {{ $plan->id }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.hotel.fields.name') }}
+                            {{ trans('cruds.plan.fields.title') }}
                         </th>
                         <td>
-                            {{ $hotel->name }}
+                            {{ $plan->title }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.hotel.fields.photo') }}
+                            {{ trans('cruds.plan.fields.description') }}
                         </th>
                         <td>
-                            @if($hotel->photo)
-                                <a href="{{ $hotel->photo->getUrl() }}" target="_blank">
-                                    <img src="{{ $hotel->photo->getUrl('thumb') }}" width="50px" height="50px">
-                                </a>
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.hotel.fields.address') }}
-                        </th>
-                        <td>
-                            {{ $hotel->address }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.hotel.fields.description') }}
-                        </th>
-                        <td>
-                            {!! $hotel->description !!}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.hotel.fields.rating') }}
-                        </th>
-                        <td>
-                            {{ $hotel->rating }}
+                            {{ $plan->description }}
                         </td>
                     </tr>
                 </tbody>

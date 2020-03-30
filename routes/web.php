@@ -27,14 +27,12 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 
-
-
 Route::get('/admin/settings', 'Admin\SettingsController@index')->name('admin.settings.index');
-Route::get('/admin/settings/create', 'Admin\SettingsController@create')->name('admin.settings.create');
+Route::post('/admin/settings/create', 'Admin\SettingsController@create')->name('admin.settings.create');
 Route::get('/admin/settings/$settings.id', 'Admin\SettingsController@show')->name('admin.settings.show');
 Route::get('/admin/settings/edit', 'Admin\SettingsController@edit')->name('admin.settings.edit');
 Route::post('/admin/settings/update', 'Admin\SettingsController@update')->name('admin.settings.update');
-Route::get('/admin/settings/store', 'Admin\SettingsController@store')->name('admin.settings.store');
+Route::post('/admin/settings/store', 'Admin\SettingsController@store')->name('admin.settings.store');
 Route::post('/admin/settings/destroy', 'Admin\SettingsController@destroy')->name('admin.settings.destroy');
 Route::get('/admin/settings/massDestroy', 'Admin\SettingsController@massDestroy')->name('admin.settings.massDestroy');
 
@@ -46,6 +44,38 @@ Route::post('/admin/schedules/update', 'Admin\ScheduleController@update')->name(
 Route::get('/admin/schedules/store', 'Admin\ScheduleControllerScheduleController@store')->name('admin.schedules.store');
 Route::post('/admin/schedules/destroy', 'Admin\ScheduleController@destroy')->name('admin.schedules.destroy');
 Route::get('/admin/schedules/massDestroy', 'Admin\ScheduleController@massDestroy')->name('admin.schedules.massDestroy');
+
+//hotel admin page
+Route::resource('/admin/hotel', 'HotelController');
+Route::get('/admin/hotel', 'HotelController@index')->name('admin.hotels.index');
+
+Route::get('/admin/hotel/create',['as' => 'admin.hotels.create', 'uses' => 'HotelController@create']);
+Route::get('/admin/hotel/{hotel}',['as' => 'admin.hotels.show', 'uses' => 'HotelController@show']);
+Route::put('/admin/hotel/{hotel}/edit',['as' => 'admin.hotels.edit', 'uses' => 'HotelController@edit']);
+Route::get('admin/hotel/delete/{hotel}',['as' => 'admin.hotels.destroy', 'uses' => 'HotelController@destroy']);
+Route::post('hotel/media', 'HotelsController@storeMedia')->name('admin.hotels.storeMedia');
+
+//plan admin page
+Route::resource('/admin/plan', 'PlanController');
+Route::get('/admin/plan', 'PlanController@index')->name('admin.plans.index');
+
+Route::get('/admin/plan/create',['as' => 'admin.plans.create', 'uses' => 'PlanController@create']);
+Route::get('/admin/plan/{plan}',['as' => 'admin.plans.show', 'uses' => 'PlanController@show']);
+Route::put('/admin/plan/{plan}/edit',['as' => 'admin.plans.edit', 'uses' => 'PlanController@edit']);
+Route::get('admin/plan/delete/{plan}',['as' => 'admin.plans.destroy', 'uses' => 'PlanController@destroy']);
+Route::post('plan/media', 'PlanController@storeMedia')->name('admin.plans.storeMedia');
+
+//schedule admin page
+// Route::resource('/admin/schedules', 'HotelController');
+// Route::get('/admin/schedules', 'HotelController@index')->name('admin.schedules.index');
+// Route::get('/admin/schedules/create',['as' => 'admin.schedules.create', 'uses' => 'HotelController@create']);
+// Route::post('/admin/schedules/create',['as' => 'admin.schedules.store', 'uses' => 'HotelController@store']);
+// Route::get('/admin/schedulesschedules/{schedules}',['as' => 'admin.schedules.show', 'uses' => 'HotelController@show']);
+// Route::get('/admin/schedules/{schedules}',['as' => 'admin.schedules.edit', 'uses' => 'HotelController@edit']);
+// Route::put('/admin/schedules/{schedules}/edit',['as' => 'admin.schedules.edit', 'uses' => 'HotelController@store']);
+// Route::post('admin/schedules/delete/{schedules}',['as' => 'hotel.delete', 'uses' => 'HotelController@destroy']);
+
+
 
 Route::get('/admin/galleries', 'Admin\GalleriesController@index')->name('admin.galleries.index');
 Route::get('/admin/galleries', 'Admin\GalleriesController@index')->name('admin.galleries.index');
@@ -107,9 +137,7 @@ Route::get('/admin/faqs/massDestroy', 'Admin\FaqsController@massDestroy')->name(
 //
 // });
 
-//hotel admin page
-Route::resource('/admin/hotel', 'HotelController');
-Route::get('admin/hotel/delete/{hotel}',['as' => 'hotel.delete', 'uses' => 'HotelController@destroy']);
+
 
 // Route::get('/admin/hotel', 'Admin\Api\HotelController@index')->name('admin.hotels.index');
 // Route::get('/admin/hotel/create', 'Admin\Api\HotelController@create')->name('admin.hotels.create');

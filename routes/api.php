@@ -40,26 +40,18 @@ Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')-
 Route::apiResource('plans', 'PlanController');
 Route::apiResource('hotels', 'HotelController');
 Route::apiResource('schedules', 'ScheduleController');
-<<<<<<< HEAD
-// <<<<<<< HEAD
-// =======
-//
-//  Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
-//
-//      // Galleries
-//      Route::post('galleries/media', 'GalleriesApiController@storeMedia')->name('galleries.storeMedia');
-//      Route::apiResource('galleries', 'GalleriesApiController');
-// });
-// >>>>>>> 10bfa13ec9c40c4c19f4e6195f3022f008d28d27
-=======
 
- Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
+//hotel actions
+Route::post('/admin/hotel/create',['as' => 'admin.hotels.create', 'uses' => 'HotelController@create']);
+Route::post('/admin/hotel/edit',['as' => 'admin.hotels.store', 'uses' => 'HotelController@store']);
+Route::put('/admin/hotel/{hotel}',['as' => 'admin.hotels.edit', 'uses' => 'HotelController@edit']);
+Route::put('/admin/hotel/{hotel}/edit',['as' => 'admin.hotels.update', 'uses' => 'HotelController@update']);
+Route::delete('admin/hotel/delete/{hotel}',['as' => 'admin.hotels.destroy', 'uses' => 'HotelController@destroy']);
 
-    Route::get('/', 'HomeController@index')->name('home');
-     // Galleries
-     Route::post('galleries/media', 'GalleriesApiController@storeMedia')->name('galleries.storeMedia');
-     Route::apiResource('galleries', 'GalleriesApiController');
-});
 
-// Route::post('galleries','GalleriesApiController@store')->name('galleries');
->>>>>>> 23f07f56364cd7211e101a475fc463485f6df57e
+//plan actions
+Route::post('/admin/plan/create',['as' => 'admin.plans.create', 'uses' => 'PlanController@create']);
+Route::post('/admin/plan/edit',['as' => 'admin.plans.store', 'uses' => 'PlanController@store']);
+Route::put('/admin/plan/{plan}',['as' => 'admin.plans.edit', 'uses' => 'PlanController@edit']);
+Route::put('/admin/plan/{plan}/edit',['as' => 'admin.plans.update', 'uses' => 'PlanController@update']);
+Route::delete('admin/plan/delete/{plan}',['as' => 'admin.plans.destroy', 'uses' => 'PlanController@destroy']);
