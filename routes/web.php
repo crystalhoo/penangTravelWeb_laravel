@@ -31,14 +31,24 @@ Route::get('/admin/settings/store', 'Admin\SettingsController@store')->name('adm
 Route::post('/admin/settings/destroy', 'Admin\SettingsController@destroy')->name('admin.settings.destroy');
 Route::get('/admin/settings/massDestroy', 'Admin\SettingsController@massDestroy')->name('admin.settings.massDestroy');
 
+Route::resource('/admin/schedules', 'ScheduleController');
 Route::get('/admin/schedules', 'Admin\ScheduleController@index')->name('admin.schedules.index');
 Route::get('/admin/schedules/create', 'Admin\ScheduleController@create')->name('admin.schedules.create');
 Route::get('/admin/schedules/{$schedules}', 'Admin\ScheduleController@show')->name('admin.schedules.show');
 Route::get('/admin/schedules/edit', 'Admin\ScheduleController@edit')->name('admin.schedules.edit');
 Route::post('/admin/schedules/update', 'Admin\ScheduleController@update')->name('admin.schedules.update');
-Route::get('/admin/schedules/store', 'Admin\ScheduleControllerScheduleController@store')->name('admin.schedules.store');
+Route::post('/admin/schedules/store', 'Admin\ScheduleController@store')->name('admin.schedules.store');
 Route::post('/admin/schedules/destroy', 'Admin\ScheduleController@destroy')->name('admin.schedules.destroy');
 Route::get('/admin/schedules/massDestroy', 'Admin\ScheduleController@massDestroy')->name('admin.schedules.massDestroy');
+
+// //copy giap hotel code to implement on schedule
+// Route::resource('/admin/hotel', 'HotelController');
+// Route::get('/admin/hotel', 'HotelController@index')->name('admin.hotels.index');
+// Route::get('/admin/hotel/create',['as' => 'admin.hotels.create', 'uses' => 'HotelController@create']);
+// Route::get('/admin/hotel/{hotel}',['as' => 'admin.hotels.show', 'uses' => 'HotelController@show']);
+// Route::post('/admin/hotel/{hotel}/edit',['as' => 'admin.hotels.edit', 'uses' => 'HotelController@edit']);
+// Route::get('admin/hotel/delete/{hotel}',['as' => 'admin.hotels.destroy', 'uses' => 'HotelController@destroy']);
+// //Route::post('hotels/media', 'HotelsController@storeMedia')->name('admin.hotels.storeMedia');
 
 Route::get('/admin/galleries', 'Admin\GalleriesController@index')->name('admin.galleries.index');
 Route::get('/admin/galleries', 'Admin\GalleriesController@index')->name('admin.galleries.index');

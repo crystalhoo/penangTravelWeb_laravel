@@ -19,9 +19,9 @@ class CreateSchedulesTable extends Migration
     
                 $table->unsignedInteger('plan_id')->nullable();
     
-                $table->integer('day_number');
+                $table->integer('day_number')->nullable();
     
-                $table->time('start_time');
+                $table->time('start_time')->nullable();
     
                 $table->string('title')->indexed();;
     

@@ -26,6 +26,9 @@
                             {{ trans('cruds.schedule.fields.id') }}
                         </th>
                         <th>
+                            {{ trans('Plan_id') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.schedule.fields.day_number') }}
                         </th>
                         <th>
@@ -35,10 +38,10 @@
                             {{ trans('cruds.schedule.fields.title') }}
                         </th>
                         <th>
-                            {{ trans('cruds.schedule.fields.subtitle') }}
+                            {{ trans('Full_description') }}
                         </th>
                         <th>
-                            {{ trans('cruds.schedule.fields.speaker') }}
+                            {{ trans('hotel_id') }}
                         </th>
                         <th>
                             &nbsp;
@@ -46,13 +49,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- @foreach($schedules as $key => $schedule)
+                    @foreach($schedules as $key => $schedule)
                         <tr data-entry-id="{{ $schedule->id }}">
                             <td>
 
                             </td>
                             <td>
                                 {{ $schedule->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $schedule->plan_id ?? '' }}
                             </td>
                             <td>
                                 {{ $schedule->day_number ?? '' }}
@@ -64,10 +70,10 @@
                                 {{ $schedule->title ?? '' }}
                             </td>
                             <td>
-                                {{ $schedule->subtitle ?? '' }}
+                                {{ $schedule->full_description ?? '' }}
                             </td>
                             <td>
-                                {{ $schedule->speaker->name ?? '' }}
+                                {{ $hotel->hotel_id ?? '' }}
                             </td>
                             <td>
                                 
@@ -93,7 +99,7 @@
                             </td>
 
                         </tr>
-                    @endforeach -->
+                    @endforeach
                 </tbody>
             </table>
         </div>

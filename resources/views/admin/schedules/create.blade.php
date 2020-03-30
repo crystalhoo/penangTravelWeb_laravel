@@ -7,8 +7,20 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.schedules.store") }}" method="POST" enctype="multipart/form-data">
+        <form action= "{{ route("admin.schedules.store") }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <div class="form-group {{ $errors->has('plan_id') ? 'has-error' : '' }}">
+                <label for="plan_id">{{ trans('Plan ID') }}*</label>
+                <input type="number" id="plan_id" name="plan_id" class="form-control" value="{{ old('plan_id', isset($schedule) ? $schedule->plan_id : '') }}" step="1" required>
+                @if($errors->has('plan_id'))
+                    <p class="help-block">
+                        {{ $errors->first('plan_id') }}
+                    </p>
+                @endif
+                <!-- <p class="helper-block">
+                    {{ trans('cruds.schedule.fields.plan_id_helper') }}
+                </p> -->
+            </div>
             <div class="form-group {{ $errors->has('day_number') ? 'has-error' : '' }}">
                 <label for="day_number">{{ trans('cruds.schedule.fields.day_number') }}*</label>
                 <input type="number" id="day_number" name="day_number" class="form-control" value="{{ old('day_number', isset($schedule) ? $schedule->day_number : '') }}" step="1" required>
@@ -17,9 +29,9 @@
                         {{ $errors->first('day_number') }}
                     </p>
                 @endif
-                <p class="helper-block">
+                <!-- <p class="helper-block">
                     {{ trans('cruds.schedule.fields.day_number_helper') }}
-                </p>
+                </p> -->
             </div>
             <div class="form-group {{ $errors->has('start_time') ? 'has-error' : '' }}">
                 <label for="start_time">{{ trans('cruds.schedule.fields.start_time') }}*</label>
@@ -44,32 +56,32 @@
                 <p class="helper-block">
                     {{ trans('cruds.schedule.fields.title_helper') }}
                 </p>
-            </div>
-            <div class="form-group {{ $errors->has('subtitle') ? 'has-error' : '' }}">
-                <label for="subtitle">{{ trans('cruds.schedule.fields.subtitle') }}</label>
-                <input type="text" id="subtitle" name="subtitle" class="form-control" value="{{ old('subtitle', isset($schedule) ? $schedule->subtitle : '') }}">
-                @if($errors->has('subtitle'))
+            </div><div class="form-group {{ $errors->has('full_description') ? 'has-error' : '' }}">
+                <label for="full_description">{{ trans('Full Description') }}*</label>
+                <input type="text" id="full_description" name="full_description" class="form-control" value="{{ old('full_description', isset($schedule) ? $schedule->full_description : '') }}" required>
+                @if($errors->has('full_description'))
                     <p class="help-block">
-                        {{ $errors->first('subtitle') }}
+                        {{ $errors->first('full_description') }}
                     </p>
                 @endif
-                <p class="helper-block">
-                    {{ trans('cruds.schedule.fields.subtitle_helper') }}
-                </p>
+                <!-- <p class="helper-block">
+                    {{ trans('cruds.schedule.fields.full_description_helper') }}
+                </p> -->
             </div>
-            <div class="form-group {{ $errors->has('speaker_id') ? 'has-error' : '' }}">
-                <label for="speaker">{{ trans('cruds.schedule.fields.speaker') }}</label>
-                <select name="speaker_id" id="speaker" class="form-control select2">
-                    @foreach($speakers as $id => $speaker)
-                        <option value="{{ $id }}" {{ (isset($schedule) && $schedule->speaker ? $schedule->speaker->id : old('speaker_id')) == $id ? 'selected' : '' }}>{{ $speaker }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('speaker_id'))
+            <div class="form-group {{ $errors->has('hotels') ? 'has-error' : '' }}">
+                <label for="hotels">{{ trans('hotels') }}*</label>
+                <input type="array" id="hotels" name="hotels" class="form-control" value="{{ old('hotels', isset($schedule) ? $schedule->hotels : '') }}" step="1" required>
+                @if($errors->has('hotels'))
                     <p class="help-block">
-                        {{ $errors->first('speaker_id') }}
+                        {{ $errors->first('hotels') }}
                     </p>
                 @endif
+                <!-- <p class="helper-block">
+                    {{ trans('cruds.schedule.fields.plan_id_helper') }}
+                </p> -->
             </div>
+            
+
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>

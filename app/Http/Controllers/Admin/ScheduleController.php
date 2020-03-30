@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyScheduleRequest;
 use App\Http\Requests\StoreScheduleRequest;
 use App\Http\Requests\UpdateScheduleRequest;
 use App\Schedule;
-use App\Speaker;
+// use App\Speaker;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,27 +26,44 @@ class ScheduleController extends Controller
 
     public function create()
     {
+        
         // abort_if(Gate::denies('schedule_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $speakers = Speaker::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        //$speakers = Speaker::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else {
-            dd('You are not Admin');
-        }
+        //Uncomment later when done
+        // if (Gate::allows('isAdmin')) {
+        //     dd('Admin allowed');
+        // } else {
+        //     dd('You are not Admin');
+        // }
 
-        return view('admin.schedules.create', compact('speakers'));
+       // return view('admin.schedules.create', compact('speakers'));
+        return view('admin.schedules.create');
     }
 
-    public function store(StoreScheduleRequest $request)
+    public function store(Schedule $request)
     {
-        $schedule = Schedule::create($request->all());
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else {
-            dd('You are not Admin');
-        }
+        $schedule = new Schedule;
+        $schedule->plan_id = $request->plan_id;
+        // Schedule::whereId($schedule)->update($request->all());
+         //Schedule::where('schedule', $schedule)->update($request->all());
+        //$schedule = Schedule::save();
+        //$schedule->$request::save();
+        // $schedule->plan_id = $request->plan_id;
+
+
+        // DB::transaction(function() use($schedule, $request) {
+        //     $schedule->saveOrFail();
+        //     $schedule->hotels()->sync($request->hotels);
+        // });
+        
+        //Uncomment later when done
+        // if (Gate::allows('isAdmin')) {
+        //     dd('Admin allowed');
+        // } else {
+        //     dd('You are not Admin');
+        // }
         return redirect()->route('admin.schedules.index');
     }
 
@@ -53,28 +71,29 @@ class ScheduleController extends Controller
     {
         // abort_if(Gate::denies('schedule_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $speakers = Speaker::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        //$speakers = Speaker::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $schedule->load('speaker');
+        //$schedule->load('speaker');
 
 
-
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else {
-            dd('You are not Admin');
-        }
+         //Uncomment later when done
+        // if (Gate::allows('isAdmin')) {
+        //     dd('Admin allowed');
+        // } else {
+        //     dd('You are not Admin');
+        // }
         return view('admin.schedules.edit', compact('speakers', 'schedule'));
     }
 
     public function update(UpdateScheduleRequest $request, Schedule $schedule)
     {
         $schedule->update($request->all());
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else {
-            dd('You are not Admin');
-        }
+        //Uncomment later when done
+        // if (Gate::allows('isAdmin')) {
+        //     dd('Admin allowed');
+        // } else {
+        //     dd('You are not Admin');
+        // }
         return redirect()->route('admin.schedules.index');
     }
 
@@ -82,7 +101,7 @@ class ScheduleController extends Controller
     {
         // abort_if(Gate::denies('schedule_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $schedule->load('speaker');
+        //$schedule->load('speaker');
 
         return view('admin.schedules.show', compact('schedule'));
     }
@@ -93,11 +112,11 @@ class ScheduleController extends Controller
 
         $schedule->delete();
 
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else {
-            dd('You are not Admin');
-        }
+        // if (Gate::allows('isAdmin')) {
+        //     dd('Admin allowed');
+        // } else {
+        //     dd('You are not Admin');
+        // }
 
         return back();
     }

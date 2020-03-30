@@ -24,11 +24,22 @@ class PlanController extends Controller
             ->when($title, function($query) use($title) {
                 return $query->where('title', 'like', "%$title%");
             })
-            ->paginate(10);
+            ->paginate(20);
     //need to create 1 plan collection
-        return new PlanCollection($plans);
+        // return new PlanCollection($plans);
+        return view('plans.index', [
+            'plans' => $plans
+            ]);
     }
 
+    public function create()
+	{
+		$plan = new Plan();
+
+		return view('plans.create', [
+		'plan' => $plan,
+		]);
+    }
     //need to add plan request here 
     public function store(Request $request)
     {
@@ -61,7 +72,10 @@ class PlanController extends Controller
             $plan = Plan::with('schedules')->find($id);
             if(!$plan) throw new ModelNotFoundException;
 
-            return new PlanResource($plan);
+            // return new PlanResource($plan);
+            return view('plans.show', [
+                'plan' => $plan
+                ]);
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
@@ -81,7 +95,8 @@ class PlanController extends Controller
 
             $plan->saveOrFail();
 
-            return response()->json(null, 204);
+            // return response()->json(null, 204);
+            return redirect()->route('plan.index');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
@@ -99,6 +114,15 @@ class PlanController extends Controller
             ], 500);
         }
     }
+    public function edit($id)
+	{
+		$plan = Plan::find($id);
+		if(!$plan) throw new ModelNotFoundException;
+
+		return view('plans.edit', [
+		'plan' => $plan
+		]);
+	}
     public function destroy($id)
     {
         
@@ -110,8 +134,8 @@ class PlanController extends Controller
             // $plan->saveOrFail();
 
             //return response()->json(null, 204);
-            return redirect()->route('plans')
-                        ->with('success','plan deleted successfully');
+            return redirect()->route('plans.index')
+                        ->with('success','Plan deleted successfully');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
