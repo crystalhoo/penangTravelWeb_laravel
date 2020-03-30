@@ -18,7 +18,7 @@ class GalleriesApiController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('gallery_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('gallery_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new GalleryResource(Gallery::all());
     }
@@ -38,7 +38,7 @@ class GalleriesApiController extends Controller
 
     public function show(Gallery $gallery)
     {
-        abort_if(Gate::denies('gallery_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('gallery_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new GalleryResource($gallery);
     }
@@ -62,7 +62,7 @@ class GalleriesApiController extends Controller
 
     public function destroy(Gallery $gallery)
     {
-        abort_if(Gate::denies('gallery_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('gallery_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $gallery->delete();
 

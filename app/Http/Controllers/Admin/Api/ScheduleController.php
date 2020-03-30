@@ -48,7 +48,20 @@ class ScheduleController extends Controller
             ->paginate(10);
 
         return new ScheduleCollection($schedules);
+        return view('schedules.index', [
+            'schedules' => $schedules
+            ]);
 }
+
+public function create()
+{
+    $schedules = new Schedules();
+
+    return view('schedules.create', [
+    'schedule' => $schedule,
+    ]);
+}
+
 //public function store(ScheduleRequest $request)
 public function store(ScheduleRequest $request)
 {
@@ -59,13 +72,15 @@ public function store(ScheduleRequest $request)
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            $schedule->plans()->sync($request->plans);
+            $schedule->hotels()->sync($request->hotels);
         });
 
         return response()->json([
             'id' => $schedule->id,
             'created_at' => $schedule->created_at,
         ], 201);
+
+        return redirect()->route('schedules.index');
     }
     catch(QueryException $ex) {
         return response()->json([
@@ -92,7 +107,10 @@ public function show($id)
         $schedule = Schedule::with('plan')->find($id);
         if(!$schedule) throw new ModelNotFoundException;
 
-        return new ScheduleResource($schedule);
+        // return new ScheduleResource($schedule);
+        return view('plans.show', [
+            'plan' => $plan
+            ]);
     }
     catch(ModelNotFoundException $ex) {
         return response()->json([
@@ -120,10 +138,11 @@ public function update(Request $request, $id)
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            $schedule->plans()->sync($request->plans);
+            $schedule->hotels()->sync($request->hotels);
         });
 
-        return response()->json(null, 204);
+        // return response()->json(null, 204);
+        return redirect()->route('schedule.index');
     }
     catch(ModelNotFoundException $ex) {
         return response()->json([

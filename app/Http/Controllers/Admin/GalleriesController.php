@@ -28,7 +28,11 @@ class GalleriesController extends Controller
     public function create()
     {
         // abort_if(Gate::denies('gallery_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        if (Gate::allows('isAdmin')) {
+            dd('Admin allowed');
+        } else {
+            dd('You are not Admin');
+        }
         return view('admin.galleries.create');
     }
 
@@ -40,13 +44,23 @@ class GalleriesController extends Controller
             $gallery->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('photos');
         }
 
+        if (Gate::allows('isAdmin')) {
+            dd('Admin allowed');
+        } else {
+            dd('You are not Admin');
+        }
+
         return redirect()->route('admin.galleries.index');
     }
 
     public function edit(Gallery $gallery)
     {
         // abort_if(Gate::denies('gallery_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        if (Gate::allows('isAdmin')) {
+            dd('Admin allowed');
+        } else {
+            dd('You are not Admin');
+        }
         return view('admin.galleries.edit', compact('gallery'));
     }
 
@@ -60,6 +74,11 @@ class GalleriesController extends Controller
                     $media->delete();
                 }
             }
+        }
+        if (Gate::allows('isAdmin')) {
+            dd('Admin allowed');
+        } else {
+            dd('You are not Admin');
         }
 
         $media = $gallery->photos->pluck('file_name')->toArray();

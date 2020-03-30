@@ -25,8 +25,12 @@ Route::post('logout', 'AuthController@logout');
 Route::post('refresh', 'AuthController@refresh');
 Route::post('me', 'AuthController@me');
 
+Route::middleware(['jwt.auth', 'can:manage-users'])->group(function() {
 
-//admin
+});
+
+
+//NOT SURE put which file (authorisation)
 Route::get('/posts/delete', 'PostController@delete')->middleware('can:isAdmin')->name('post.delete');
 Route::get('/posts/update', 'PostController@update')->middleware('can:isAdmin')->name('post.update');
 Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')->name('post.create');
@@ -36,6 +40,7 @@ Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')-
 Route::apiResource('plans', 'PlanController');
 Route::apiResource('hotels', 'HotelController');
 Route::apiResource('schedules', 'ScheduleController');
+<<<<<<< HEAD
 // <<<<<<< HEAD
 // =======
 //
@@ -46,3 +51,15 @@ Route::apiResource('schedules', 'ScheduleController');
 //      Route::apiResource('galleries', 'GalleriesApiController');
 // });
 // >>>>>>> 10bfa13ec9c40c4c19f4e6195f3022f008d28d27
+=======
+
+ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
+
+    Route::get('/', 'HomeController@index')->name('home');
+     // Galleries
+     Route::post('galleries/media', 'GalleriesApiController@storeMedia')->name('galleries.storeMedia');
+     Route::apiResource('galleries', 'GalleriesApiController');
+});
+
+// Route::post('galleries','GalleriesApiController@store')->name('galleries');
+>>>>>>> 23f07f56364cd7211e101a475fc463485f6df57e

@@ -10,9 +10,9 @@
       @foreach($hotels as $hotel)
         <div class="col-lg-4 col-md-6">
           <div class="hotel">
-            <div class="hotel-img">
+            <!-- <div class="hotel-img">
               <img src="{{ $hotel->photo->getUrl() }}" alt="{{ $hotel->name }}" class="img-fluid">
-            </div>
+            </div> -->
             <h3><a href="#">{{ $hotel->name }}</a></h3>
             <div class="stars">
               @for($i = 0; $i < $hotel->rating; $i++)
