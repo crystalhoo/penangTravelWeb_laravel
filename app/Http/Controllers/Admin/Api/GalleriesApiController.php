@@ -45,46 +45,47 @@ class GalleriesApiController extends Controller
 
     public function update(UpdateGalleryRequest $request, $id)
     {
-        // $gallery->update($request->all());
+        $gallery = Gallery::find($id);
+        $gallery->update($request->all());
+
+        if ($request->input('photos', false)) {
+            if (!$gallery->photos || $request->input('photos') !== $gallery->photos->file_name) {
+                $gallery->addMedia(storage_path('tmp/uploads/' . $request->input('photos')))->toMediaCollection('photos');
+            }
+        } elseif ($gallery->photos) {
+            $gallery->photos->delete();
+        }
+
+        return (new GalleryResource($gallery))
+            ->response()
+            ->setStatusCode(Response::HTTP_ACCEPTED);
+
+        // try {
+        //     $gallery = Gallery::find($id);
+        //     if(!$gallery) throw new ModelNotFoundException;
         //
-        // if ($request->input('photos', false)) {
-        //     if (!$gallery->photos || $request->input('photos') !== $gallery->photos->file_name) {
-        //         $gallery->addMedia(storage_path('tmp/uploads/' . $request->input('photos')))->toMediaCollection('photos');
-        //     }
-        // } elseif ($gallery->photos) {
-        //     $gallery->photos->delete();
+        //     $gallery->fill($request->all());
+        //
+        //     $gallery->saveOrFail();
+        //
+        //     // return response()->json(null, 204);
+        //     return redirect()->route('admin.galleries.index');
         // }
-        //
-        // return (new GalleryResource($gallery))
-        //     ->response()
-        //     ->setStatusCode(Response::HTTP_ACCEPTED);
-
-        try {
-            $gallery = Gallery::find($id);
-            if(!$gallery) throw new ModelNotFoundException;
-
-            $gallery->fill($request->all());
-
-            $gallery->saveOrFail();
-
-            // return response()->json(null, 204);
-            return redirect()->route('admin.galleries.index');
-        }
-        catch(ModelNotFoundException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 404);
-        }
-        catch(QueryException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-        catch(\Exception $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
+        // catch(ModelNotFoundException $ex) {
+        //     return response()->json([
+        //         'message' => $ex->getMessage(),
+        //     ], 404);
+        // }
+        // catch(QueryException $ex) {
+        //     return response()->json([
+        //         'message' => $ex->getMessage(),
+        //     ], 500);
+        // }
+        // catch(\Exception $ex) {
+        //     return response()->json([
+        //         'message' => $ex->getMessage(),
+        //     ], 500);
+        // }
     }
 
     public function destroy($id)
