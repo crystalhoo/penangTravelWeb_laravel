@@ -60,7 +60,7 @@ Route::delete('admin/plan/delete/{plan}',['as' => 'admin.plans.destroy', 'uses' 
 
 //gallery actions
 Route::post('/admin/galleries/create',['as' => 'admin.galleries.create', 'uses' => 'Admin\Api\GalleriesApiController@create']);
-Route::post('/admin/galleries/edit',['as' => 'admin.galleries.store', 'uses' => 'Admin\Api\GalleriesApiController@store']);
+// Route::post('/admin/galleries/store',['as' => 'admin.galleries.store', 'uses' => 'Admin\Api\GalleriesApiController@store']);
 Route::put('/admin/galleries/{galleries}',['as' => 'admin.galleries.edit', 'uses' => 'Admin\Api\GalleriesApiController@edit']);
 Route::put('/admin/galleries/{galleries}/edit',['as' => 'admin.galleries.update', 'uses' => 'Admin\Api\GalleriesApiController@update']);
 Route::delete('admin/galleries/delete/{galleries}',['as' => 'admin.galleries.destroy', 'uses' => 'Admin\Api\GalleriesApiController@destroy']);

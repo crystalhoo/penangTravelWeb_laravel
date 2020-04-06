@@ -79,8 +79,9 @@ Route::resource('admin/galleries', 'Admin\GalleriesController');
 Route::get('/admin/galleries', 'Admin\GalleriesController@index')->name('admin.galleries.index');
 
 Route::get('/admin/galleries/create', 'Admin\GalleriesController@create')->name('admin.galleries.create');
+Route::post('/admin/galleries/store',['as' => 'admin.galleries.store', 'uses' => 'Admin\GalleriesController@store']);
 Route::get('/admin/galleries/{gallery}', 'Admin\GalleriesController@show')->name('admin.galleries.show');
-Route::put('/admin/galleries/{gallery}/edit', 'Admin\GalleriesController@edit')->name('admin.galleries.edit');
+Route::post('/admin/galleries/{gallery}/edit', 'Admin\GalleriesController@edit')->name('admin.galleries.edit');
 Route::post('galleries/media', 'Admin\GalleriesController@storeMedia')->name('admin.galleries.storeMedia');
 
 
