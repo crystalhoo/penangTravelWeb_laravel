@@ -10,10 +10,13 @@ use App\Http\Resources\HotelResource;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 
 
 class HotelController extends Controller
 {
+
+  use MediaUploadingTrait;
     /**
      * Display a listing of the resource.
      *

@@ -40,6 +40,8 @@ Route::get('/posts/create', 'PostController@create')->middleware('can:isAdmin')-
 Route::apiResource('plans', 'PlanController');
 Route::apiResource('hotels', 'HotelController');
 Route::apiResource('schedules', 'ScheduleController');
+Route::post('galleries/media', 'GalleriesApiController@storeMedia')->name('admin.galleries.storeMedia');
+Route::apiResource('galleries', 'GalleriesApiController');
 
 //hotel actions
 Route::post('/admin/hotel/create',['as' => 'admin.hotels.create', 'uses' => 'HotelController@create']);
@@ -55,3 +57,10 @@ Route::post('/admin/plan/edit',['as' => 'admin.plans.store', 'uses' => 'PlanCont
 Route::put('/admin/plan/{plan}',['as' => 'admin.plans.edit', 'uses' => 'PlanController@edit']);
 Route::put('/admin/plan/{plan}/edit',['as' => 'admin.plans.update', 'uses' => 'PlanController@update']);
 Route::delete('admin/plan/delete/{plan}',['as' => 'admin.plans.destroy', 'uses' => 'PlanController@destroy']);
+
+//gallery actions
+Route::post('/admin/galleries/create',['as' => 'admin.galleries.create', 'uses' => 'Admin\Api\GalleriesApiController@create']);
+Route::post('/admin/galleries/edit',['as' => 'admin.galleries.store', 'uses' => 'Admin\Api\GalleriesApiController@store']);
+Route::put('/admin/galleries/{galleries}',['as' => 'admin.galleries.edit', 'uses' => 'Admin\Api\GalleriesApiController@edit']);
+Route::put('/admin/galleries/{galleries}/edit',['as' => 'admin.galleries.update', 'uses' => 'Admin\Api\GalleriesApiController@update']);
+Route::delete('admin/galleries/delete/{galleries}',['as' => 'admin.galleries.destroy', 'uses' => 'Admin\Api\GalleriesApiController@destroy']);
