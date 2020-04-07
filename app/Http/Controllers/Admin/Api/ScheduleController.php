@@ -23,7 +23,7 @@ class ScheduleController extends Controller
         $plan = $request->input('plan');
         $timestamps = $request->input('timestamps');
         //$schedules = Schedule::with([ 'hotels', 'plan'])
-        $schedules = Schedule::with('plans')
+        $schedules = Schedule::with('plan')
             // ->whereHas('hotels', function($query) use($hotel) {
             //     return $query->where('name', 'like', "%$hotel%");
             // })
@@ -104,7 +104,7 @@ public function show($id)
 {
     try {
         //$schedule = Schedule::with('hotels')->with('plan')->find($id);
-        $schedule = Schedule::with('plans')->find($id);
+        $schedule = Schedule::with('plan')->find($id);
         if(!$schedule) throw new ModelNotFoundException;
 
         // return new ScheduleResource($schedule);
@@ -170,16 +170,6 @@ public function edit($id)
 		]);
 	}
 
-public function edit($id)
-{
-    $schedule = Schedule::find($id);
-    if(!$schedule) throw new ModelNotFoundException;
-
-    return view('schedules.edit', [
-    'schedule' => $schedule
-    ]);
-}
-
 /**
  * Remove the specified resource from storage.
  *
@@ -215,5 +205,5 @@ public function destroy($id)
                 'message' => $ex->getMessage(),
             ], 500);
         }
-}
+    }
 }
