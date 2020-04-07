@@ -43,9 +43,9 @@ class GalleriesApiController extends Controller
         return new GalleryResource($gallery);
     }
 
-    public function update(UpdateGalleryRequest $request, $id)
+    public function update(UpdateGalleryRequest $request, Gallery $gallery)
     {
-        $gallery = Gallery::find($id);
+        // $gallery = Gallery::find($id);
         $gallery->update($request->all());
 
         if ($request->input('photos', false)) {

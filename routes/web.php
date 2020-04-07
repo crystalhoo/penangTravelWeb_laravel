@@ -75,13 +75,14 @@ Route::post('plan/media', 'PlanController@storeMedia')->name('admin.plans.storeM
 // Route::put('/admin/schedules/{schedules}/edit',['as' => 'admin.schedules.edit', 'uses' => 'HotelController@store']);
 // Route::post('admin/schedules/delete/{schedules}',['as' => 'hotel.delete', 'uses' => 'HotelController@destroy']);
 
-Route::resource('admin/galleries', 'Admin\GalleriesController');
+Route::resource('/admin/galleries', 'Admin\GalleriesController');
 Route::get('/admin/galleries', 'Admin\GalleriesController@index')->name('admin.galleries.index');
 
 Route::get('/admin/galleries/create', 'Admin\GalleriesController@create')->name('admin.galleries.create');
 Route::post('/admin/galleries/store',['as' => 'admin.galleries.store', 'uses' => 'Admin\GalleriesController@store']);
 Route::get('/admin/galleries/{gallery}', 'Admin\GalleriesController@show')->name('admin.galleries.show');
 Route::post('/admin/galleries/{gallery}/edit', 'Admin\GalleriesController@edit')->name('admin.galleries.edit');
+Route::put('/admin/galleries/{galleries}/edit',['as' => 'admin.galleries.update', 'uses' => 'Admin\GalleriesController@update']);
 Route::post('galleries/media', 'Admin\GalleriesController@storeMedia')->name('admin.galleries.storeMedia');
 
 

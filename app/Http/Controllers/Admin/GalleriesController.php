@@ -64,9 +64,10 @@ class GalleriesController extends Controller
         return view('admin.galleries.edit', compact('gallery'));
     }
 
-    public function update(UpdateGalleryRequest $request, Gallery $gallery)
+    public function update(UpdateGalleryRequest $request, Gallery $gallery, $id)
     {
-        $gallery->update($request->all());
+      $gallery = Gallery::find($id);
+        $gallery->fill($request->all());
 
         if (count($gallery->photos) > 0) {
             foreach ($gallery->photos as $media) {
@@ -88,7 +89,7 @@ class GalleriesController extends Controller
                 $gallery->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('photos');
             }
         }
-
+        $gallery->update();
         return redirect()->route('admin.galleries.index');
     }
 
