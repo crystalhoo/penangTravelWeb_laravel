@@ -3,7 +3,7 @@
 use App\Common;
 
 ?>
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -38,6 +38,16 @@ use App\Common;
 <tr>
 <td>Rating</td>
 <td>{{ $hotel->rating }}</td>
+</tr>
+<tr>
+<td>Schedules</td>
+<td>
+<ul>
+@foreach ($schedules as $schedule)
+<li>{{ $schedule->title }}</li>
+@endforeach
+</ul>
+</td>
 </tr>
 </tbody>
 </table>

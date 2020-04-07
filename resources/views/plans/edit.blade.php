@@ -3,7 +3,7 @@
 use App\Common;
 
 ?>
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -17,19 +17,7 @@ use App\Common;
 'class' => 'form-horizontal'
 ]) !!}
 
-<!-- Code -->
-<div class="form-group row">
-{!! Form::label('plan-code', 'Code', [
-'class' => 'control-label col-sm-3',
-]) !!}
-<div class="col-sm-9">
-{!! Form::text('code', $plan->code, [
-'id' => 'plan-code',
-'class' => 'form-control',
-'maxlength' => 3,
-]) !!}
-</div>
-</div>
+
 
 <!-- Title -->
 <div class="form-group row">

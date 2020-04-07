@@ -163,7 +163,7 @@ class HotelController extends Controller
 
 		return view('hotels.edit', [
         'hotel' => $hotel,
-        'schedules' => $schedule,
+        'schedules' => $schedules,
 		]);
 	}
     /**

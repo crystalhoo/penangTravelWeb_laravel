@@ -1,9 +1,11 @@
 <?php
 use App\Common;
 ?>
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
+
+
 
 <div class="panel-body">
 <!-- New Division Form -->
@@ -66,6 +68,16 @@ use App\Common;
 'class' => 'form-control',
 'maxlength' => 100,
 ]) !!}
+</div>
+</div>
+
+<div class="form-group row">
+	{!! Form::label('Schedules','',['class' => 'control-label col-sm-3',]) !!}
+<div class="col-sm-9">
+	{!! Form::select('schedules[]',
+	$schedules,
+	null,
+	['class' => 'form-control','placeholder' => '- Select Schedule -',]) !!}
 </div>
 </div>
 

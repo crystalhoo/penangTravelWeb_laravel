@@ -14,7 +14,7 @@ class AddTourguideAndPlanToSchedulesTable extends Migration
     public function up()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->string('tourguide', 20)->after('full_description');
+            $table->string('tourguide',20)->after('full_description');
 			$table->unsignedInteger('plan_id')->after('tourguide');
 
 			$table->foreign('plan_id')

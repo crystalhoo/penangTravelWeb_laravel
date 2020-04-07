@@ -20,14 +20,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('Plan ID') }}
-                        </th>
-                        <td>
-                            {{ $schedule->plan_id }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.schedule.fields.day_number') }}
                         </th>
                         <td>
@@ -44,18 +36,26 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.schedule.fields.title') }}
-                        </th>
-                        <td>
-                            {{ $schedule->title }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('Full Description') }}
                         </th>
                         <td>
                             {{ $schedule->full_description }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('Tour Guide') }}
+                        </th>
+                        <td>
+                            {{ $schedule->tourguide }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('Plan ID') }}
+                        </th>
+                        <td>
+                            {{ $schedule->plan_id }}
                         </td>
                     </tr>
                     

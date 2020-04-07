@@ -30,10 +30,9 @@ use App\Schedule;
 
                         </th>
                         <th>No.</th>
-                        <th>Plan_ID</th>
+                        <th>Title</th>
                         <th>Day_Number</th>
                         <th>Start_Time</th>
-                        <th>Title</th>
                         <th>Full_Description</th>
                         <th>Tour Guide</th>
                         <th>Plan ID</th>
@@ -61,9 +60,6 @@ use App\Schedule;
                             </td>
                             <td class="table-text">
                                 <div>{{ $schedule->start_time }}</div>
-                            </td>
-                            <td class="table-text">
-                                <div>{{ $schedule->title }}</div>
                             </td>
                             <td class="table-text">
                                 <div>{{ $schedule->full_description }}</div>

@@ -3,14 +3,14 @@
 use App\Common;
 
 ?>
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
 <div class="card">
-    <div class="card-header">
+    <!-- <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.hotel.title_singular') }}
-    </div>
+    </div> -->
 
 <!-- Bootstrap Boilerplate... -->
 
@@ -90,6 +90,17 @@ use App\Common;
 'class' => 'form-control',
 'maxlength' => 100,
 ]) !!}
+</div>
+</div>
+
+<div class="form-group row">
+	{!! Form::label('Schedules','',['class' => 'control-label col-sm-3',]) !!}
+<div class="col-sm-9">
+	{!! Form::select('schedules[]',
+	$schedules,
+	null,
+	['class' => 'form-control',
+	'multiple' => 'multiple']) !!}
 </div>
 </div>
 

@@ -68,33 +68,42 @@ public function create()
 //public function store(ScheduleRequest $request)
 public function store(Request $request)
 {
-    try {
+    // try {
+    //     $schedule = new Schedule;
+    //     $schedule->fill($request->all());
+        
+    //     $schedule->plan_id = $request->plan_id;
+
+    //     DB::transaction(function() use($schedule, $request) {
+    //         $schedule->saveOrFail();
+    //         $schedule->hotels()->sync($request->get('hotels'));
+    //     });
+
+    //     // return response()->json([
+    //     //     'id' => $schedule->id,
+    //     //     'created_at' => $schedule->created_at,
+    //     // ], 201);
+
+    //     return redirect()->route('schedule.index');
+    // }
+    // catch(QueryException $ex) {
+    //     return response()->json([
+    //         'message' => $ex->getMessage(),
+    //     ], 500);
+    // }
+    // catch(\Exception $ex) {
+    //     return response()->json([
+    //         'message' => $ex->getMessage(),
+    //     ], 500);
+    // }
+
         $schedule = new Schedule;
-        $schedule->fill($request->all());
-        $schedule->plan_id = $request->plan_id;
-
-        DB::transaction(function() use($schedule, $request) {
-            $schedule->saveOrFail();
-            $schedule->hotels()->sync($request->get('hotels'));
-        });
-
-        // return response()->json([
-        //     'id' => $schedule->id,
-        //     'created_at' => $schedule->created_at,
-        // ], 201);
-
-        return redirect()->route('schedule.index');
-    }
-    catch(QueryException $ex) {
-        return response()->json([
-            'message' => $ex->getMessage(),
-        ], 500);
-    }
-    catch(\Exception $ex) {
-        return response()->json([
-            'message' => $ex->getMessage(),
-        ], 500);
-    }
+		$schedule->fill($request->all());
+		$schedule->save();
+		
+		$schedule->groups()->sync($request->get('hotels'));
+	
+		return redirect()->route('schedule.index');
 }
 
 /**
@@ -108,7 +117,7 @@ public function show($id)
     try {
         //$schedule = Schedule::with('hotels')->with('plan')->find($id);
         $schedule = Schedule::with('plan')->find($id);
-        $hotels = $member->hotels()->get();
+        $hotels = $schedule->hotels()->get();
         if(!$schedule) throw new ModelNotFoundException;
 
         // return new ScheduleResource($schedule);
