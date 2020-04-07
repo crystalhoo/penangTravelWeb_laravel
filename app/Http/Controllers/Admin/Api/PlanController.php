@@ -53,6 +53,8 @@ class PlanController extends Controller
                 'id' => $plan->id,
                 'created_at' => $plan->created_at,
             ], 201);
+
+            return redirect()->route('plans.index');
         }
         catch(QueryException $ex) {
             return response()->json([
