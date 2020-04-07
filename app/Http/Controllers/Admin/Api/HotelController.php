@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-
 class HotelController extends Controller
 {
     /**
