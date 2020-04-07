@@ -161,6 +161,16 @@ public function update(Request $request, $id)
     }
 }
 
+public function edit($id)
+{
+    $schedule = Schedule::find($id);
+    if(!$schedule) throw new ModelNotFoundException;
+
+    return view('schedules.edit', [
+    'schedule' => $schedule
+    ]);
+}
+
 /**
  * Remove the specified resource from storage.
  *
