@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Hotel;
+use App\Schedule;
 use App\Http\Requests\HotelRequest;
 use App\Http\Resources\HotelCollection;
 use App\Http\Resources\HotelResource;
@@ -32,16 +33,20 @@ class HotelController extends Controller
 
         // return new HotelCollection($hotels);
         return view('hotels.index', [
-            'hotels' => $hotels
+            'hotels' => $hotels,
+            'request' => $request,
             ]);
     }
 
     public function create()
 	{
-		$hotel = new Hotel();
+        $hotel = new Hotel();
+        
+        $schedules = Schedule::pluck('title','id');
 
 		return view('hotels.create', [
-		'hotel' => $hotel,
+        'hotel' => $hotel,
+        'schedules' => $schedules,
 		]);
     }
     
@@ -60,6 +65,7 @@ class HotelController extends Controller
 
             $hotel->saveOrFail();
 
+            $hotel->schedules()->sync($request->get('schedules'));
             // return response()->json([
             //     'id' => $hotel->id,
             //     'created_at' => $hotel->created_at,
@@ -91,9 +97,15 @@ class HotelController extends Controller
             $hotel = Hotel::with('schedules')->find($id);
             if(!$hotel) throw new ModelNotFoundException;
 
+            $schedules= Schedule::pluck('title','id');
+
+            $hotel = Hotel::find($id);
+		    $schedules = $hotel->schedules()->get();
+
             // return new HotelResource($hotel);
             return view('hotels.show', [
-                'hotel' => $hotel
+                'hotel' => $hotel,
+                'schedules' => $schedules,
                 ]);
                 
         
@@ -122,6 +134,8 @@ class HotelController extends Controller
 
             $hotel->saveOrFail();
 
+            $hotel->schedules()->sync($request->get('schedules'));
+
             return redirect()->route('hotel.index');
         }
         catch(ModelNotFoundException $ex) {
@@ -143,10 +157,13 @@ class HotelController extends Controller
     public function edit($id)
 	{
 		$hotel = Hotel::find($id);
-		if(!$hotel) throw new ModelNotFoundException;
+        if(!$hotel) throw new ModelNotFoundException;
+        
+        $schedules = Schedule::pluck('title','id');
 
 		return view('hotels.edit', [
-		'hotel' => $hotel
+        'hotel' => $hotel,
+        'schedules' => $schedule,
 		]);
 	}
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Common;
+use App\Plan;
 use App\Schedule;
 
 ?>
@@ -34,6 +35,8 @@ use App\Schedule;
                         <th>Start_Time</th>
                         <th>Title</th>
                         <th>Full_Description</th>
+                        <th>Tour Guide</th>
+                        <th>Plan ID</th>
                         <th>Actions</th>
                             &nbsp;
                         </th>
@@ -64,6 +67,12 @@ use App\Schedule;
                             </td>
                             <td class="table-text">
                                 <div>{{ $schedule->full_description }}</div>
+                            </td>
+                            <td class="table-text">
+                            <div>{{ $schedule->tourguide }}</div>
+                            </td>
+                            <td class="table-text">
+                            <div>{{ Plan::pluck('title','id')[$schedule->plan_id] }}</div>
                             </td>
                             <td class="table-text">
                                 <a class="btn btn-xs btn-primary" href="{{ route('schedule.show', $schedule->id) }}">

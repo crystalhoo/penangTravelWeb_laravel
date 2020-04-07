@@ -1,6 +1,7 @@
 <?php
 
 use App\Common;
+use App\Schedule;
 use App\Hotel;
 
 ?>

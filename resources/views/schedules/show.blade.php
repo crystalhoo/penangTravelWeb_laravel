@@ -20,6 +20,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('Plan ID') }}
+                        </th>
+                        <td>
+                            {{ $schedule->plan_id }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.schedule.fields.day_number') }}
                         </th>
                         <td>
@@ -44,20 +52,13 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.schedule.fields.subtitle') }}
+                            {{ trans('Full Description') }}
                         </th>
                         <td>
-                            {{ $schedule->subtitle }}
+                            {{ $schedule->full_description }}
                         </td>
                     </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.schedule.fields.speaker') }}
-                        </th>
-                        <td>
-                            {{ $schedule->speaker->name ?? '' }}
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">

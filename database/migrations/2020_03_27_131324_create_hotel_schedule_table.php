@@ -14,12 +14,16 @@ class CreateHotelScheduleTable extends Migration
     public function up()
     {
         Schema::create('hotel_schedule', function (Blueprint $table) {
-            $table->unsignedInteger('hotel_id');
             $table->unsignedInteger('schedule_id');
+            $table->unsignedInteger('hotel_id');
+            
 
-            $table->primary(['hotel_id', 'schedule_id']);
-            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            $table->primary(['schedule_id','hotel_id']);
+            
             $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+
+
         });
     }
 

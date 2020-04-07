@@ -74,13 +74,16 @@ class PlanController extends Controller
     public function show($id)
     {
         try {
-            $plan = Plan::with('schedules')->find($id);
+            $plan = Plan::find($id);
+            $schedules = $plan->schedules()->get();
             if(!$plan) throw new ModelNotFoundException;
 
             // return new PlanResource($plan);
             return view('plans.show', [
-                'plan' => $plan
+                'plan' => $plan,
+                'schedules' => $schedules,
                 ]);
+                
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([

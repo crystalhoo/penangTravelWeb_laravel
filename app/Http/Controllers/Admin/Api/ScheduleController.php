@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\Hotel;
 use App\Schedule;
 use App\Http\Requests\ScheduleRequest;
 use App\Http\Resources\ScheduleCollection;
@@ -56,9 +57,11 @@ class ScheduleController extends Controller
 public function create()
 {
     $schedule = new Schedule();
+    $hotels = Hotel::pluck('name','id');
 
     return view('schedules.create', [
     'schedule' => $schedule,
+    'hotels' => $hotels,
     ]);
 }
 
@@ -72,7 +75,7 @@ public function store(Request $request)
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            $schedule->hotels()->sync($request->hotels);
+            $schedule->hotels()->sync($request->get('hotels'));
         });
 
         // return response()->json([
@@ -105,12 +108,17 @@ public function show($id)
     try {
         //$schedule = Schedule::with('hotels')->with('plan')->find($id);
         $schedule = Schedule::with('plan')->find($id);
+        $hotels = $member->hotels()->get();
         if(!$schedule) throw new ModelNotFoundException;
 
         // return new ScheduleResource($schedule);
         return view('schedules.show', [
-            'schedule' => $schedule
+            'schedule' => $schedule,
+            'hotels' => $hotels,
             ]);
+    
+        $groups = Group::pluck('name','id');
+	
     }
     catch(ModelNotFoundException $ex) {
         return response()->json([
@@ -130,15 +138,17 @@ public function update(Request $request, $id)
 {
     try {
         //$schedule = Schedule::with('hotels')->with('plan')->find($id);
-        $schedule = Schedule::with('plan')->find($id);
+        //$schedule = Schedule::with('plan')->find($id);
+        $schedule = Schedule::find($id);
         if(!$schedule) throw new ModelNotFoundException;
 
         $schedule->fill($request->all());
+
         $schedule->plan_id = $request->plan_id;
 
         DB::transaction(function() use($schedule, $request) {
             $schedule->saveOrFail();
-            $schedule->hotels()->sync($request->hotels);
+            $schedule->hotels()->sync($request->get('hotels'));
         });
 
         // return response()->json(null, 204);
@@ -163,10 +173,13 @@ public function update(Request $request, $id)
 public function edit($id)
 	{
 		$schedule = Schedule::find($id);
-		if(!$schedule) throw new ModelNotFoundException;
+        if(!$schedule) throw new ModelNotFoundException;
+        
+        $hotels = Hotel::pluck('name','id');
 
 		return view('schedules.edit', [
-		'schedule' => $schedule
+        'schedule' => $schedule,
+        'hotels' => $hotels,
 		]);
 	}
 
