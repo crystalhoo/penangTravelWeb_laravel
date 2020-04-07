@@ -25,7 +25,7 @@ class HotelRequest extends ApiFormRequest
             'name'          => 'required|string|max:100',
             'address'       => 'required|string|max:100',  
             'description'   => 'string|max:500',
-            'rating'        => 'required|interger',
+            'rating'        => 'required|numeric|max:5',
         ];
     }
 }

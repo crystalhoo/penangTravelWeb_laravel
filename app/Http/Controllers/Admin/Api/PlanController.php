@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Plan;
 use Illuminate\Http\Request;
+use App\Http\Requests\PlanRequest;
 use App\Http\Resources\PlanCollection;
 use App\Http\Resources\PlanResource;
 use Illuminate\Database\QueryException;
@@ -43,7 +44,7 @@ class PlanController extends Controller
     }
 
     //need to add plan request here 
-    public function store(Request $request)
+    public function store(PlanRequest $request)
     {
         try {
             $plan = new Plan;
@@ -89,7 +90,7 @@ class PlanController extends Controller
     }
 
     //need to add plan req here
-    public function update(Request $request, $id)
+    public function update(PlanRequest $request, $id)
     {
         try {
             $plan = Plan::find($id);
