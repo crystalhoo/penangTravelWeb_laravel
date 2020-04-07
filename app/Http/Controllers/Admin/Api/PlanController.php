@@ -30,6 +30,7 @@ class PlanController extends Controller
         return view('plans.index', [
             'plans' => $plans
             ]);
+
     }
 
     public function create()
@@ -40,6 +41,7 @@ class PlanController extends Controller
 		'plan' => $plan,
 		]);
     }
+
     //need to add plan request here 
     public function store(Request $request)
     {
@@ -116,6 +118,8 @@ class PlanController extends Controller
             ], 500);
         }
     }
+
+
     public function edit($id)
 	{
 		$plan = Plan::find($id);
@@ -124,7 +128,9 @@ class PlanController extends Controller
 		return view('plans.edit', [
 		'plan' => $plan
 		]);
+
 	}
+
     public function destroy($id)
     {
         
