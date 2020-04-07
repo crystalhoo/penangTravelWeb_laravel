@@ -29,16 +29,17 @@ Route::middleware(['jwt.auth', 'can:manage-users'])->group(function() {
 
 });
 
-Route::post('schedules', function(Request $request) {
-    $data = $request->all();
-        return Schedule::create([
-             'plan_id' => $data['plan_id'],
-             'day_number' => $data['day_number'],
-             'start_time' => $data['start_time'],
-             'title' => $data['title'],
-             'full_description' => $data['full_description']
-        ]);
-});
+//giap stuff
+// Route::post('schedules', function(Request $request) {
+//     $data = $request->all();
+//         return Schedule::create([
+//              'plan_id' => $data['plan_id'],
+//              'day_number' => $data['day_number'],
+//              'start_time' => $data['start_time'],
+//              'title' => $data['title'],
+//              'full_description' => $data['full_description']
+//         ]);
+// });
 //NOT SURE put which file (authorisation)
 //Grace do part
 // Route::get('/posts/delete', 'PostController@delete')->middleware('can:isAdmin')->name('post.delete');
@@ -47,9 +48,10 @@ Route::post('schedules', function(Request $request) {
  });
 
 //api plan
-Route::apiResource('plans', 'PlanController');
-Route::apiResource('hotels', 'HotelController');
-Route::apiResource('schedules', 'ScheduleController');
+// Route::apiResource('plans', 'PlanController');
+// Route::apiResource('hotels', 'HotelController');
+// Route::apiResource('schedules', 'ScheduleController');
+
 
  Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
 
@@ -60,8 +62,9 @@ Route::apiResource('schedules', 'ScheduleController');
 });
 
 // Route::post('galleries','GalleriesApiController@store')->name('galleries');
-Route::post('/admin/schedule/create',['as' => 'admin.schedules.create', 'uses' => 'ScheduleController@create']);
-Route::post('/admin/schedule/edit',['as' => 'admin.schedules.store', 'uses' => 'ScheduleController@store']);
-Route::post('/admin/schedule/{schedule}',['as' => 'admin.schedules.edit', 'uses' => 'ScheduleController@edit']);
-Route::post('/admin/schedule/{schedule}/edit',['as' => 'admin.schedules.update', 'uses' => 'ScheduleController@update']);
-Route::delete('admin/schedule/delete/{schedule}',['as' => 'admin.schedules.destroy', 'uses' => 'ScheduleController@destroy']);
+// Route::post('/admin/schedule/create',['as' => 'admin.schedules.create', 'uses' => 'ScheduleController@create']);
+// Route::post('/admin/schedule/edit',['as' => 'admin.schedules.store', 'uses' => 'ScheduleController@store']);
+// Route::post('/admin/schedule/{schedule}',['as' => 'admin.schedules.edit', 'uses' => 'ScheduleController@edit']);
+// Route::post('/admin/schedule/{schedule}/edit',['as' => 'admin.schedules.update', 'uses' => 'ScheduleController@update']);
+// Route::delete('admin/schedule/delete/{schedule}',['as' => 'admin.schedules.destroy', 'uses' => 'ScheduleController@destroy']);
+

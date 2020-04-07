@@ -16,6 +16,8 @@
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#about">About</a></li>
         <!-- <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#speakers">Speakers</a></li> -->
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#schedule">Schedule</a></li>
+        <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#plan">Plan</a></li>
+        <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#hotel">Hotel</a></li>
         <!-- <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#venue">Venue</a></li> -->
         <!-- <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#hotels">Hotels</a></li> -->
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#gallery">Gallery</a></li>

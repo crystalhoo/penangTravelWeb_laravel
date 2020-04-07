@@ -51,12 +51,12 @@ class PlanController extends Controller
 
             $plan->saveOrFail();
 
-            return response()->json([
-                'id' => $plan->id,
-                'created_at' => $plan->created_at,
-            ], 201);
+            // return response()->json([
+            //     'id' => $plan->id,
+            //     'created_at' => $plan->created_at,
+            // ], 201);
 
-            return redirect()->route('plans.index');
+            return redirect()->route('plan.index');
         }
         catch(QueryException $ex) {
             return response()->json([
@@ -142,8 +142,8 @@ class PlanController extends Controller
             // $plan->saveOrFail();
 
             //return response()->json(null, 204);
-            return redirect()->route('plans.index')
-                        ->with('success','Plan deleted successfully');
+            return redirect()->route('plan.index');
+                        // ->with('success','Plan deleted successfully');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
