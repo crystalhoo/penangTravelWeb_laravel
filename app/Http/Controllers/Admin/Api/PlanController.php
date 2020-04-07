@@ -27,9 +27,25 @@ class PlanController extends Controller
             ->paginate(20);
     //need to create 1 plan collection
         // return new PlanCollection($plans);
+<<<<<<< HEAD
         return view('plans.index', [
             'plans' => $plans
             ]);
+=======
+        
+        return view('plans.index', [
+            'plans' => $plans
+            ]);
+    }
+
+    public function create()
+	{
+		$plan = new Plan();
+
+		return view('plans.create', [
+		'plan' => $plan,
+		]);
+>>>>>>> 23f07f56364cd7211e101a475fc463485f6df57e
     }
 
     public function create()
@@ -53,6 +69,8 @@ class PlanController extends Controller
                 'id' => $plan->id,
                 'created_at' => $plan->created_at,
             ], 201);
+
+            return redirect()->route('plans.index');
         }
         catch(QueryException $ex) {
             return response()->json([
@@ -114,6 +132,10 @@ class PlanController extends Controller
             ], 500);
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23f07f56364cd7211e101a475fc463485f6df57e
     public function edit($id)
 	{
 		$plan = Plan::find($id);
@@ -122,7 +144,12 @@ class PlanController extends Controller
 		return view('plans.edit', [
 		'plan' => $plan
 		]);
+<<<<<<< HEAD
 	}
+=======
+    }
+    
+>>>>>>> 23f07f56364cd7211e101a475fc463485f6df57e
     public function destroy($id)
     {
         
