@@ -7,6 +7,11 @@ use App\Common;
 
 @section('content')
 
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.edit') }} {{ trans('cruds.hotel.title_singular') }}
+    </div>
+
 <!-- Bootstrap Boilerplate... -->
 
 <div class="panel-body">
@@ -19,7 +24,7 @@ use App\Common;
 
 <!-- Code -->
 <div class="form-group row">
-{!! Form::label('hotel-code', 'Code', [
+{!! Form::label('hotel-code', 'Hotel_ID', [
 'class' => 'control-label col-sm-3',
 ]) !!}
 <div class="col-sm-9">

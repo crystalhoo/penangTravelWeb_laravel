@@ -84,7 +84,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route("admin.schedules.index") }}" class="nav-link {{ request()->is('admin/schedules') || request()->is('admin/schedules/*') ? 'active' : '' }}">
+                        <a href="{{ route('schedule.index') }}" class="nav-link {{ request()->is('admin/schedule') || request()->is('admin/schedule/*') ? 'active' : '' }}">
                             <i class="fa-fw far fa-clock">
 
                             </i>
@@ -93,6 +93,30 @@
                             </p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('plan.index') }}" class="nav-link {{ request()->is('admin/plan') || request()->is('admin/plan/*') ? 'active' : '' }}">
+                            <i class="fa-fw far fa-clock">
+
+                            </i>
+                            <p>
+                                <span>{{ trans('Plan') }}</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('hotel.index') }}" class="nav-link {{ request()->is('admin/hotel') || request()->is('admin/hotel/*') ? 'active' : '' }}">
+                            <i class="fa-fw far fa-clock">
+
+                            </i>
+                            <p>
+                                <span>{{ trans('Hotel') }}</span>
+                            </p>
+                        </a>
+                    </li>
+
+
 
                     <li class="nav-item">
                         <a href="{{ route("admin.galleries.index") }}" class="nav-link {{ request()->is('admin/galleries') || request()->is('admin/galleries/*') ? 'active' : '' }}">

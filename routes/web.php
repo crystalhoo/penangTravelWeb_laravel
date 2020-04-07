@@ -31,15 +31,16 @@ Route::get('/admin/settings/store', 'Admin\SettingsController@store')->name('adm
 Route::post('/admin/settings/destroy', 'Admin\SettingsController@destroy')->name('admin.settings.destroy');
 Route::get('/admin/settings/massDestroy', 'Admin\SettingsController@massDestroy')->name('admin.settings.massDestroy');
 
-Route::resource('/admin/schedules', 'ScheduleController');
-Route::get('/admin/schedules', 'Admin\ScheduleController@index')->name('admin.schedules.index');
-Route::get('/admin/schedules/create', 'Admin\ScheduleController@create')->name('admin.schedules.create');
-Route::get('/admin/schedules/{$schedules}', 'Admin\ScheduleController@show')->name('admin.schedules.show');
-Route::get('/admin/schedules/edit', 'Admin\ScheduleController@edit')->name('admin.schedules.edit');
-Route::post('/admin/schedules/update', 'Admin\ScheduleController@update')->name('admin.schedules.update');
-Route::post('/admin/schedules/store', 'Admin\ScheduleController@store')->name('admin.schedules.store');
-Route::post('/admin/schedules/destroy', 'Admin\ScheduleController@destroy')->name('admin.schedules.destroy');
-Route::get('/admin/schedules/massDestroy', 'Admin\ScheduleController@massDestroy')->name('admin.schedules.massDestroy');
+//Giap schedule
+// Route::resource('/admin/schedules', 'ScheduleController');
+// Route::get('/admin/schedules', 'Admin\ScheduleController@index')->name('admin.schedules.index');
+// Route::get('/admin/schedules/create', 'Admin\ScheduleController@create')->name('admin.schedules.create');
+// Route::get('/admin/schedules/{$schedules}', 'Admin\ScheduleController@show')->name('admin.schedules.show');
+// Route::get('/admin/schedules/edit', 'Admin\ScheduleController@edit')->name('admin.schedules.edit');
+// Route::post('/admin/schedules/update', 'Admin\ScheduleController@update')->name('admin.schedules.update');
+// Route::post('/admin/schedules/store', 'Admin\ScheduleController@store')->name('admin.schedules.store');
+// Route::post('/admin/schedules/destroy', 'Admin\ScheduleController@destroy')->name('admin.schedules.destroy');
+// Route::get('/admin/schedules/massDestroy', 'Admin\ScheduleController@massDestroy')->name('admin.schedules.massDestroy');
 
 // //copy giap hotel code to implement on schedule
 // Route::resource('/admin/hotel', 'HotelController');
@@ -114,5 +115,42 @@ Route::get('/admin/faqs/massDestroy', 'Admin\FaqsController@massDestroy')->name(
 Route::resource('/admin/hotel', 'HotelController');
 Route::get('admin/hotel/delete/{hotel}',['as' => 'hotel.delete', 'uses' => 'HotelController@destroy']);
 
+// Route::get('/admin/hotel', 'Admin\HotelController@index')->name('admin.hotel.index');
+//Route::get('/admin/hotel/create', 'Admin\HotelController@create')->name('admin.hotel.create');
+Route::get('/admin/hotel/{$hotel}', 'Admin\HotelController@show')->name('admin.hotel.show');
+Route::get('/admin/hotel/edit', 'Admin\HotelController@edit')->name('admin.hotel.edit');
+Route::post('/admin/hotel/update', 'Admin\HotelController@update')->name('admin.hotel.update');
+Route::post('/admin/hotel/store', 'Admin\HotelController@store')->name('admin.hotel.store');
+Route::post('/admin/hotel/destroy', 'Admin\HotelController@destroy')->name('admin.hotel.destroy');
+Route::get('/admin/hotel/massDestroy', 'Admin\HotelController@massDestroy')->name('admin.hotel.massDestroy');
+
+
 // Route::get('/admin/hotel', 'Admin\Api\HotelController@index')->name('admin.hotels.index');
 // Route::get('/admin/hotel/create', 'Admin\Api\HotelController@create')->name('admin.hotels.create');
+
+//plan admin page
+Route::resource('/admin/plan', 'PlanController');
+Route::get('admin/plan/delete/{plan}',['as' => 'plan.delete', 'uses' => 'PlanController@destroy']);
+
+// Route::get('/admin/plan', 'Admin\PlanController@index')->name('admin.plan.index');
+// Route::get('/admin/plan/create', 'Admin\PlanController@create')->name('admin.plan.create');
+Route::get('/admin/plan/{$plan}', 'Admin\PlanController@show')->name('admin.plan.show');
+Route::get('/admin/plan/edit', 'Admin\PlanController@edit')->name('admin.plan.edit');
+Route::post('/admin/plan/update', 'Admin\PlanController@update')->name('admin.plan.update');
+Route::post('/admin/plan/store', 'Admin\PlanController@store')->name('admin.plan.store');
+Route::post('/admin/plan/destroy', 'Admin\PlanController@destroy')->name('admin.plan.destroy');
+Route::get('/admin/plan/massDestroy', 'Admin\PlanController@massDestroy')->name('admin.plan.massDestroy');
+
+
+//schedule admin page
+Route::resource('/admin/schedule', 'ScheduleController');
+Route::get('admin/schedule/delete/{schedule}',['as' => 'schedule.delete', 'uses' => 'ScheduleController@destroy']);
+
+// Route::get('/admin/schedule', 'Admin\ScheduleController@index')->name('admin.schedule.index');
+// Route::get('/admin/schedule/create', 'Admin\ScheduleController@create')->name('admin.schedule.create');
+Route::get('/admin/schedule/{$schedule}', 'Admin\ScheduleController@show')->name('admin.schedule.show');
+Route::get('/admin/schedule/edit', 'Admin\ScheduleController@edit')->name('admin.schedule.edit');
+Route::post('/admin/schedule/update', 'Admin\ScheduleController@update')->name('admin.schedule.update');
+Route::post('/admin/schedule/store', 'Admin\ScheduleController@store')->name('admin.schedule.store');
+Route::post('/admin/schedule/destroy', 'Admin\ScheduleController@destroy')->name('admin.schedule.destroy');
+Route::get('/admin/schedule/massDestroy', 'Admin\ScheduleController@massDestroy')->name('admin.schedule.massDestroy');

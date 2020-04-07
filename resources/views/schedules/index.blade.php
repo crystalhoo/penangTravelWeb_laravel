@@ -1,9 +1,15 @@
+<?php
+
+use App\Common;
+use App\Schedule;
+
+?>
 @extends('layouts.admin')
 @section('content')
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.schedules.create") }}">
+            <a class="btn btn-success" href="{{ route('schedule.create')}}">
                 {{ trans('global.add') }} {{ trans('cruds.schedule.title_singular') }}
             </a>
         </div>
@@ -22,74 +28,56 @@
                         <th width="10">
 
                         </th>
-                        <th>
-                            {{ trans('cruds.schedule.fields.id') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.schedule.fields.day_number') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.schedule.fields.start_time') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.schedule.fields.title') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.schedule.fields.subtitle') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.schedule.fields.speaker') }}
-                        </th>
-                        <th>
+                        <th>No.</th>
+                        <th>Plan_ID</th>
+                        <th>Day_Number</th>
+                        <th>Start_Time</th>
+                        <th>Title</th>
+                        <th>Full_Description</th>
+                        <th>Actions</th>
                             &nbsp;
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($schedules as $key => $schedule)
+                    @foreach($schedules as $i => $schedule)
                         <tr data-entry-id="{{ $schedule->id }}">
                             <td>
 
                             </td>
-                            <td>
-                                {{ $schedule->id ?? '' }}
+                            <td class="table-text">
+                                <div>
+                                <a href="{{ route('schedule.show', $schedule->id) }}">{{ $i+1 }}</a>
+                                </div>
                             </td>
-                            <td>
-                                {{ $schedule->day_number ?? '' }}
+                            <td class="table-text">
+                                <div><a href="{{ route('schedule.show', $schedule->id) }}">{{ $schedule->title }}</a></div>
                             </td>
-                            <td>
-                                {{ $schedule->start_time ?? '' }}
+                            <td class="table-text">
+                                <div>{{ $schedule->day_number }}</div>
                             </td>
-                            <td>
-                                {{ $schedule->title ?? '' }}
+                            <td class="table-text">
+                                <div>{{ $schedule->start_time }}</div>
                             </td>
-                            <td>
-                                {{ $schedule->subtitle ?? '' }}
+                            <td class="table-text">
+                                <div>{{ $schedule->title }}</div>
                             </td>
-                            <td>
-                                {{ $schedule->speaker->name ?? '' }}
+                            <td class="table-text">
+                                <div>{{ $schedule->full_description }}</div>
                             </td>
-                            <td>
-                                
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.schedules.show', $schedule->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                
-
-                                
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.schedules.edit', $schedule->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                
-
-                                
-                                    <form action="{{ route('admin.schedules.destroy', $schedule->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                
-
+                            <td class="table-text">
+                                <a class="btn btn-xs btn-primary" href="{{ route('schedule.show', $schedule->id) }}">
+                                    {{ trans('global.view') }}
+                                </a>
+                                <a class="btn btn-xs btn-info" href="{{ route('schedule.edit', $schedule->id) }}">
+                                    Edit
+                                </a>
+                                <a class="btn btn-xs btn-danger" href="{{ route('schedule.delete', $schedule->id) }}">
+                                    Delete
+                                </a>
+                            </td>
+                            </div>
+                            </td>
                             </td>
 
                         </tr>
@@ -109,7 +97,7 @@
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.schedules.massDestroy') }}",
+    url: "{{ route('admin.schedule.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {

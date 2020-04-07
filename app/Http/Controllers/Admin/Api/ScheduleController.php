@@ -23,15 +23,12 @@ class ScheduleController extends Controller
         $plan = $request->input('plan');
         $timestamps = $request->input('timestamps');
         //$schedules = Schedule::with([ 'hotels', 'plan'])
-        $schedules = Schedule::with(['plan'])
+        $schedules = Schedule::with('plans')
             // ->whereHas('hotels', function($query) use($hotel) {
             //     return $query->where('name', 'like', "%$hotel%");
             // })
             ->whereHas('plan', function($query) use($plan) {
                 return $query->where('plan_id', 'like', "%$plan%");
-            })
-            ->when($title, function($query) use($title) {
-                return $query->where('title', 'like', "%$title%");
             })
             ->when($day_number, function($query) use($day_number) {
                 return $query->where('day_number', $day_number);
@@ -39,15 +36,18 @@ class ScheduleController extends Controller
             ->when($start_time, function($query) use($start_time) {
                 return $query->where('start_time', $start_time);
             })
+            ->when($title, function($query) use($title) {
+                return $query->where('title', 'like', "%$title%");
+            })
             ->when($full_description, function($query) use($full_description) {
                 return $query->where('full_description', 'like', "%$full_description%");
             })
             ->when($timestamps, function($query) use($timestamps) {
                 return $query->where('timestamps', $timestamps);
             })
-            ->paginate(10);
+            ->paginate(20);
 
-        return new ScheduleCollection($schedules);
+        // return new ScheduleCollection($schedules);
         return view('schedules.index', [
             'schedules' => $schedules
             ]);
@@ -55,7 +55,7 @@ class ScheduleController extends Controller
 
 public function create()
 {
-    $schedules = new Schedules();
+    $schedule = new Schedule();
 
     return view('schedules.create', [
     'schedule' => $schedule,
@@ -63,7 +63,7 @@ public function create()
 }
 
 //public function store(ScheduleRequest $request)
-public function store(ScheduleRequest $request)
+public function store(Request $request)
 {
     try {
         $schedule = new Schedule;
@@ -75,12 +75,12 @@ public function store(ScheduleRequest $request)
             $schedule->hotels()->sync($request->hotels);
         });
 
-        return response()->json([
-            'id' => $schedule->id,
-            'created_at' => $schedule->created_at,
-        ], 201);
+        // return response()->json([
+        //     'id' => $schedule->id,
+        //     'created_at' => $schedule->created_at,
+        // ], 201);
 
-        return redirect()->route('schedules.index');
+        return redirect()->route('schedule.index');
     }
     catch(QueryException $ex) {
         return response()->json([
@@ -104,12 +104,12 @@ public function show($id)
 {
     try {
         //$schedule = Schedule::with('hotels')->with('plan')->find($id);
-        $schedule = Schedule::with('plan')->find($id);
+        $schedule = Schedule::with('plans')->find($id);
         if(!$schedule) throw new ModelNotFoundException;
 
         // return new ScheduleResource($schedule);
-        return view('plans.show', [
-            'plan' => $plan
+        return view('schedules.show', [
+            'schedule' => $schedule
             ]);
     }
     catch(ModelNotFoundException $ex) {
@@ -160,6 +160,15 @@ public function update(Request $request, $id)
         ], 500);
     }
 }
+public function edit($id)
+	{
+		$schedule = Schedule::find($id);
+		if(!$schedule) throw new ModelNotFoundException;
+
+		return view('schedules.edit', [
+		'schedule' => $schedule
+		]);
+	}
 
 /**
  * Remove the specified resource from storage.
@@ -178,8 +187,8 @@ public function destroy($id)
             // $schedule->saveOrFail();
 
             //return response()->json(null, 204);
-            return redirect()->route('schedules')
-                        ->with('success','schedule deleted successfully');
+            return redirect()->route('schedule.index');
+                        //->with('success','schedule deleted successfully');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([

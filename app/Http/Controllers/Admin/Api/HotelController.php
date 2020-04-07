@@ -61,12 +61,12 @@ class HotelController extends Controller
 
             $hotel->saveOrFail();
 
-            return response()->json([
-                'id' => $hotel->id,
-                'created_at' => $hotel->created_at,
-            ], 201);
+            // return response()->json([
+            //     'id' => $hotel->id,
+            //     'created_at' => $hotel->created_at,
+            // ], 201);
             
-            return redirect()->route('hotels.index');
+            return redirect()->route('hotel.index');
         }
         catch(QueryException $ex) {
             return response()->json([
@@ -170,8 +170,8 @@ class HotelController extends Controller
             //return response()->json(null, 204);
             // return redirect()->route('hotels')
             //             ->with('success','hotel deleted successfully');
-            return redirect()->route('hotels.index')
-                        ->with('success','Hotel deleted successfully');
+            return redirect()->route('hotel.index');
+                        // ->with('success','Hotel deleted successfully');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
