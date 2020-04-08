@@ -67,7 +67,7 @@ public function create()
 }
 
 //public function store(ScheduleRequest $request)
-public function store(Request $request)
+public function store(ScheduleRequest $request)
 {
     $schedule = new Schedule;
 
@@ -109,7 +109,7 @@ public function show($id)
  * @param  int  $id
  * @return \Illuminate\Http\Response
  */
-public function update(Request $request, $id)
+public function update(ScheduleRequest $request, $id)
 {
     $schedule = Schedule::find($id);
 

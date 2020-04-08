@@ -42,7 +42,7 @@ class LoginController extends Controller
 
        if (Auth::attempt(['email' => $email, 'password' => $password])) {
           // Authentication passed...
-          echo Auth::user();
+         
           return redirect()->route('admin.home');
        }else {
          echo $email;
