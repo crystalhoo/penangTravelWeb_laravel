@@ -26,8 +26,8 @@ use App\Hotel;
             <table class=" table table-bordered table-striped table-hover datatable datatable-Hotel">
                 <thead>
                     <tr>
-                        <th width="10">
-                        </th>
+                        <!-- <th width="10">
+                        </th> -->
                         <th>No.</th>
                         <th>Name</th>
                         <th>Address</th>
@@ -41,9 +41,9 @@ use App\Hotel;
                 <tbody>
                   @foreach ($hotels as $i => $hotel)
                         <tr data-entry-id="{{ $hotel->id }}">
-                            <td>
+                            <!-- <td>
 
-                            </td>
+                            </td> -->
                             <td class="table-text">
                                 <div>
                                     <a href="{{ route('hotel.show', $hotel->id) }}">{{ $i+1 }}</a>
@@ -87,7 +87,7 @@ use App\Hotel;
 @section('scripts')
 @parent
 <script>
-    $(function () {  
+    $(function () {
         let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
         $.extend(true, $.fn.dataTable.defaults, {
             order: [[ 1, 'desc' ]],

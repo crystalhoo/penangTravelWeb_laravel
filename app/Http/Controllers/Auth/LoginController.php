@@ -42,6 +42,7 @@ class LoginController extends Controller
 
        if (Auth::attempt(['email' => $email, 'password' => $password])) {
           // Authentication passed...
+          echo Auth::user();
           return redirect()->route('admin.home');
        }else {
          echo $email;
@@ -51,10 +52,8 @@ class LoginController extends Controller
      }
 
      public function logout(){
-       if(Auth::check()){
         Auth::logout();
         return redirect()->route('home');
-       }
      }
 
      public function showLoginForm(){

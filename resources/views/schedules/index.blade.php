@@ -26,9 +26,9 @@ use App\Schedule;
             <table class=" table table-bordered table-striped table-hover datatable datatable-Schedule">
                 <thead>
                     <tr>
-                        <th width="10">
+                        <!-- <th width="10">
 
-                        </th>
+                        </th> -->
                         <th>No.</th>
                         <th>Title</th>
                         <th>Day_Number</th>
@@ -44,9 +44,9 @@ use App\Schedule;
                 <tbody>
                     @foreach($schedules as $i => $schedule)
                         <tr data-entry-id="{{ $schedule->id }}">
-                            <td>
+                            <!-- <td>
 
-                            </td>
+                            </td> -->
                             <td class="table-text">
                                 <div>
                                 <a href="{{ route('schedule.show', $schedule->id) }}">{{ $i+1 }}</a>

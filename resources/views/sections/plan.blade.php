@@ -1,4 +1,4 @@
-section id="plan" class="section-with-bg wow fadeInUp">
+<section id="plan" class="section-with-bg wow fadeInUp">
 
   <div class="container">
     <div class="section-header">

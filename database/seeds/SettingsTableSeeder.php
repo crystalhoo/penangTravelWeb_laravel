@@ -18,7 +18,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'youtube_link',
-                'value' => 'https://www.youtube.com/watch?v=_fEW5gX4U2k'
+                'value' => 'https://www.youtube.com/watch?v=eMXSers8zGw'
             ],
             [
                 'key'   => 'about_description',
@@ -26,7 +26,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'about_where',
-                'value' => 'Downtown Conference Center, New York'
+                'value' => 'Georgetown, Penang'
             ],
             [
                 'key'   => 'about_when',
@@ -34,15 +34,15 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'contact_address',
-                'value' => 'A108 Adam Street, NY 535022, USA'
+                'value' => '1,Aboo Sittee Lane,10400 Georgetown,Penang'
             ],
             [
                 'key'   => 'contact_phone',
-                'value' => '+1 5589 55488 55'
+                'value' => '+604 – 226 6633'
             ],
             [
                 'key'   => 'contact_email',
-                'value' => 'info@example.com'
+                'value' => 'travelagency@mail.com'
             ],
             [
                 'key'   => 'footer_description',
@@ -50,7 +50,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'footer_address',
-                'value' => 'A108 Adam Street <br> New York, NY 535022<br> United States '
+                'value' => '1 <br> Aboo Sittee Lane, 10400 <br> Georgetown, Penang'
             ],
             [
                 'key'   => 'footer_twitter',

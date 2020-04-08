@@ -5,7 +5,7 @@
       <h1>
         <a href="{{ route('home') }}#intro">
           <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-          {{ env('APP_NAME', 'The Event') }}
+          {{ env('APP_NAME', 'TRAVEL') }}
         </a>
       </h1>
     </div>

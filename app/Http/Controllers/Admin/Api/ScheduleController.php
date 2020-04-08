@@ -17,17 +17,18 @@ class ScheduleController extends Controller
     public function index(Request $request)
     {
         $title = $request->input('title');
+
         $day_number = $request->input('day_number');
+
         $start_date = $request->input('start_date');
+
         $full_description = $request->input('full_description');
-        // $hotel = $request->input('hotel');
+
         $plan = $request->input('plan');
+
         $timestamps = $request->input('timestamps');
-        //$schedules = Schedule::with([ 'hotels', 'plan'])
+
         $schedules = Schedule::with('plan')
-            // ->whereHas('hotels', function($query) use($hotel) {
-            //     return $query->where('name', 'like', "%$hotel%");
-            // })
             ->whereHas('plan', function($query) use($plan) {
                 return $query->where('plan_id', 'like', "%$plan%");
             })
@@ -48,15 +49,15 @@ class ScheduleController extends Controller
             })
             ->paginate(20);
 
-        // return new ScheduleCollection($schedules);
-        return view('schedules.index', [
-            'schedules' => $schedules
-            ]);
+    return view('schedules.index', [
+        'schedules' => $schedules
+        ]);
 }
 
 public function create()
 {
     $schedule = new Schedule();
+
     $hotels = Hotel::pluck('name','id');
 
     return view('schedules.create', [
@@ -68,13 +69,15 @@ public function create()
 //public function store(ScheduleRequest $request)
 public function store(Request $request)
 {
-        $schedule = new Schedule;
-		$schedule->fill($request->all());
-		$schedule->save();
-		
-		$schedule->hotels()->sync($request->get('hotels'));
-	
-		return redirect()->route('schedule.index');
+    $schedule = new Schedule;
+
+    $schedule->fill($request->all());
+    
+    $schedule->save();
+    
+    $schedule->hotels()->sync($request->get('hotels'));
+
+    return redirect()->route('schedule.index');
 }
 
 /**
@@ -85,26 +88,18 @@ public function store(Request $request)
  */
 public function show($id)
 {
-    try {
-        //$schedule = Schedule::with('hotels')->with('plan')->find($id);
-        $schedule = Schedule::with('plan')->find($id);
-        $hotels = $schedule->hotels()->get();
-        if(!$schedule) throw new ModelNotFoundException;
+    $schedule = Schedule::with('plan')->find($id);
 
-        // return new ScheduleResource($schedule);
-        return view('schedules.show', [
-            'schedule' => $schedule,
-            'hotels' => $hotels,
-            ]);
-    
-        $hotels = Hotel::pluck('name','id');
-	
-    }
-    catch(ModelNotFoundException $ex) {
-        return response()->json([
-            'message' => $ex->getMessage(),
-        ], 404);
-    }
+    $hotels = $schedule->hotels()->get();
+
+    if(!$schedule) throw new ModelNotFoundException;
+
+    return view('schedules.show', [
+        'schedule' => $schedule,
+        'hotels' => $hotels,
+        ]);
+
+    $hotels = Hotel::pluck('name','id');
 }
 
 /**
@@ -116,87 +111,49 @@ public function show($id)
  */
 public function update(Request $request, $id)
 {
-    try {
-        //$schedule = Schedule::with('hotels')->with('plan')->find($id);
-        //$schedule = Schedule::with('plan')->find($id);
-        $schedule = Schedule::find($id);
-        if(!$schedule) throw new ModelNotFoundException;
+    $schedule = Schedule::find($id);
 
-        $schedule->fill($request->all());
+    if(!$schedule) throw new ModelNotFoundException;
 
-        $schedule->plan_id = $request->plan_id;
+    $schedule->fill($request->all());
 
-        DB::transaction(function() use($schedule, $request) {
-            $schedule->saveOrFail();
-            $schedule->hotels()->sync($request->get('hotels'));
-        });
+    $schedule->plan_id = $request->plan_id;
 
-        // return response()->json(null, 204);
-        return redirect()->route('schedule.index');
-    }
-    catch(ModelNotFoundException $ex) {
-        return response()->json([
-            'message' => $ex->getMessage(),
-        ], 404);
-    }
-    catch(QueryException $ex) {
-        return response()->json([
-            'message' => $ex->getMessage(),
-        ], 500);
-    }
-    catch(\Exception $ex) {
-        return response()->json([
-            'message' => $ex->getMessage(),
-        ], 500);
-    }
+    DB::transaction(function() use($schedule, $request) {
+        $schedule->saveOrFail();
+        $schedule->hotels()->sync($request->get('hotels'));
+    });
+    return redirect()->route('schedule.index');
 }
+
 public function edit($id)
-	{
-		$schedule = Schedule::find($id);
-        if(!$schedule) throw new ModelNotFoundException;
-        
-        $hotels = Hotel::pluck('name','id');
-
-		return view('schedules.edit', [
-        'schedule' => $schedule,
-        'hotels' => $hotels,
-		]);
-	}
-
-/**
- * Remove the specified resource from storage.
- *
- * @param  int  $id
- * @return \Illuminate\Http\Response
- */
-public function destroy($id)
 {
+    $schedule = Schedule::find($id);
     
-        try {
-            $schedule = Schedule::find($id);
-            if(!$schedule) throw new ModelNotFoundException;
+    if(!$schedule) throw new ModelNotFoundException;
+    
+    $hotels = Hotel::pluck('name','id');
 
-            $schedule->delete(); 
-            // $schedule->saveOrFail();
+    return view('schedules.edit', [
+    'schedule' => $schedule,
+    'hotels' => $hotels,
+    ]);
+}
 
-            //return response()->json(null, 204);
-            return redirect()->route('schedule.index');
-                        //->with('success','schedule deleted successfully');
-        }
-        catch(ModelNotFoundException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 404);
-        }
-        catch(QueryException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-        catch(\Exception $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $schedule = Schedule::find($id);
+
+        if(!$schedule) throw new ModelNotFoundException;
+
+        $schedule->delete(); 
+
+        return redirect()->route('schedule.index');
     }
 }

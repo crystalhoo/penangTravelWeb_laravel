@@ -25,8 +25,8 @@ use App\Plan;
             <table class=" table table-bordered table-striped table-hover datatable datatable-Plan">
                 <thead>
                     <tr>
-                        <th width="10">
-                        </th>
+                        <!-- <th width="10">
+                        </th> -->
                         <th>No.</th>
                         <th>Title</th>
                         <th>Description</th>
@@ -38,9 +38,9 @@ use App\Plan;
                 <tbody>
                   @foreach ($plans as $i => $plan)
                         <tr data-entry-id="{{ $plan->id }}">
-                            <td>
+                            <!-- <td>
 
-                            </td>
+                            </td> -->
                             <td class="table-text">
                                 <div>
                                     <a href="{{ route('plan.show', $plan->id) }}">{{ $i+1 }}</a>
