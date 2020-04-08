@@ -68,35 +68,6 @@ public function create()
 //public function store(ScheduleRequest $request)
 public function store(Request $request)
 {
-    // try {
-    //     $schedule = new Schedule;
-    //     $schedule->fill($request->all());
-        
-    //     $schedule->plan_id = $request->plan_id;
-
-    //     DB::transaction(function() use($schedule, $request) {
-    //         $schedule->saveOrFail();
-    //         $schedule->hotels()->sync($request->get('hotels'));
-    //     });
-
-    //     // return response()->json([
-    //     //     'id' => $schedule->id,
-    //     //     'created_at' => $schedule->created_at,
-    //     // ], 201);
-
-    //     return redirect()->route('schedule.index');
-    // }
-    // catch(QueryException $ex) {
-    //     return response()->json([
-    //         'message' => $ex->getMessage(),
-    //     ], 500);
-    // }
-    // catch(\Exception $ex) {
-    //     return response()->json([
-    //         'message' => $ex->getMessage(),
-    //     ], 500);
-    // }
-
         $schedule = new Schedule;
 		$schedule->fill($request->all());
 		$schedule->save();
