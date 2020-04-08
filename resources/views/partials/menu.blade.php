@@ -72,7 +72,7 @@
                         </ul>
                     </li>
                 @endcan
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="{{ route("admin.settings.index") }}" class="nav-link {{ request()->is('admin/settings') || request()->is('admin/settings/*') ? 'active' : '' }}">
                             <i class="fa-fw fas fa-cogs">
 
@@ -81,9 +81,9 @@
                                 <span>{{ trans('cruds.setting.title') }}</span>
                             </p>
                         </a>
-                    </li>
+                    </li> -->
 
-                    
+
 
                     <li class="nav-item">
                         <a href="{{ route('plan.index') }}" class="nav-link {{ request()->is('admin/plan') || request()->is('admin/plan/*') ? 'active' : '' }}">
@@ -125,7 +125,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="{{ route("admin.faqs.index") }}" class="nav-link {{ request()->is('admin/faqs') || request()->is('admin/faqs/*') ? 'active' : '' }}">
                             <i class="fa-fw fas fa-question">
                             </i>
@@ -133,7 +133,7 @@
                                 <span>{{ trans('cruds.faq.title') }}</span>
                             </p>
                         </a>
-                    </li>
+                    </li> -->
 
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
