@@ -1,3 +1,8 @@
+<?php 
+use App\User; 
+
+?>
+
 @extends('layouts.app')
 @section('content')
 
