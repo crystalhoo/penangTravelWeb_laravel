@@ -42,7 +42,7 @@ use App\Schedule;
             </div>
             <div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
                 <label for="start_date">{{ trans('cruds.schedule.fields.start_date') }}*</label>
-                <input type="text" id="start_date" name="start_date" class="form-control datepicker" value="{{ old('start_date', isset($schedule) ? $schedule->start_date : '') }}" required>
+                <input type="text" id="start_date" name="start_date" class="form-control" placeholder= "yyyy-mm-dd" value="{{ old('start_date', isset($schedule) ? $schedule->start_date : '') }}" required>
                 @if($errors->has('start_date'))
                     <p class="help-block">
                         {{ $errors->first('start_date') }}

@@ -21,7 +21,7 @@
         <div role="tabpanel" class="col-lg-9 tab-pane fade{{ $key === 1 ? ' show active' : '' }}" id="day-{{ $key }}">
           @foreach($day as $schedule)
             <div class="row schedule-item">
-              <div class="col-md-2"><date>{{ \Carbon\Carbon::parse($schedule->start_date)->format("h:i A") }}</date></div>
+              <div class="col-md-2">{{$schedule->start_date}}</div>
               <div class="col-md-10">
                 @if($schedule->port)
                   <div class="plans">
