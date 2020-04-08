@@ -15,7 +15,7 @@ use App\Http\Controllers\Controller;
 
 class PlanController extends Controller
 {
-    //havent test: this is front end 
+    //havent test: this is front end
     public function index(Request $request)
     {
         $title = $request->input('title');
@@ -38,7 +38,7 @@ class PlanController extends Controller
 	{
 		$plan = new Plan();
 
-		return view('plans.create', [
+		return view('admin.plans.create', [
 		'plan' => $plan,
 		]);
     }
@@ -137,12 +137,12 @@ class PlanController extends Controller
 
     public function destroy($id)
     {
-        
+
         try {
             $plan = Plan::find($id);
             if(!$plan) throw new ModelNotFoundException;
 
-            $plan->delete(); 
+            $plan->delete();
             // $plan->saveOrFail();
 
             //return response()->json(null, 204);

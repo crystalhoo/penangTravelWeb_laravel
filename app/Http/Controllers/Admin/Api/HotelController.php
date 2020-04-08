@@ -11,9 +11,12 @@ use App\Http\Resources\HotelResource;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 
 class HotelController extends Controller
 {
+
+  use MediaUploadingTrait;
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +52,7 @@ class HotelController extends Controller
         'schedules' => $schedules,
 		]);
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -72,6 +75,14 @@ class HotelController extends Controller
             // ], 201);
             
             return redirect()->route('hotel.index');
+            //giap code
+            // if($hotel){
+            //   return redirect()->route('admin.hotels.index');
+            // } else {
+            //   return response()->json([
+            //       'id' => $hotel->id,
+            //       'created_at' => $hotel->created_at,], 201);
+            // }
         }
         catch(QueryException $ex) {
             return response()->json([
@@ -107,8 +118,8 @@ class HotelController extends Controller
                 'hotel' => $hotel,
                 'schedules' => $schedules,
                 ]);
-                
-        
+
+
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
@@ -137,6 +148,8 @@ class HotelController extends Controller
             $hotel->schedules()->sync($request->get('schedules'));
 
             return redirect()->route('hotel.index');
+            //giap code
+            //return redirect()->route('admin.hotels.index');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
@@ -164,6 +177,8 @@ class HotelController extends Controller
 		return view('hotels.edit', [
         'hotel' => $hotel,
         'schedules' => $schedules,
+		// return view('admin.hotels.edit', [
+		// 'hotel' => $hotel
 		]);
 	}
     /**
@@ -174,13 +189,13 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        
+
         try {
             $hotel = Hotel::find($id);
             if(!$hotel) throw new ModelNotFoundException;
 
             //remove the detach()
-            $hotel->delete(); 
+            $hotel->delete();
             // $hotel->saveOrFail();
 
             //return response()->json(null, 204);

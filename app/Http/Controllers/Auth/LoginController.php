@@ -18,7 +18,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+
 
     /**
      * Where to redirect users after login.
@@ -33,7 +33,7 @@ class LoginController extends Controller
      * @return void
      */
      public function login(){
-      // return redirect()->route('admin.home');
+       return redirect()->route('admin.home');
      }
 
      public function logout(){

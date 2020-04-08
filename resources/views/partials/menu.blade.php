@@ -12,7 +12,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route("admin.home") }}" class="nav-link">
+                    <a href="{{ route('admin.home') }}" class="nav-link">
                         <p>
                             <i class="fas fa-fw fa-tachometer-alt">
 
@@ -102,22 +102,17 @@
                             <p>
                                 <span>{{ trans('Plan') }}</span>
                             </p>
-                        </a>
+                            </a>
                     </li>
-
                     <li class="nav-item">
                         <a href="{{ route('hotel.index') }}" class="nav-link {{ request()->is('admin/hotel') || request()->is('admin/hotel/*') ? 'active' : '' }}">
                             <i class="fa-fw far fa-clock">
-
                             </i>
                             <p>
                                 <span>{{ trans('Hotel') }}</span>
                             </p>
                         </a>
                     </li>
-
-
-
                     <li class="nav-item">
                         <a href="{{ route("admin.galleries.index") }}" class="nav-link {{ request()->is('admin/galleries') || request()->is('admin/galleries/*') ? 'active' : '' }}">
                             <i class="fa-fw fas fa-images">
@@ -132,7 +127,6 @@
                     <li class="nav-item">
                         <a href="{{ route("admin.faqs.index") }}" class="nav-link {{ request()->is('admin/faqs') || request()->is('admin/faqs/*') ? 'active' : '' }}">
                             <i class="fa-fw fas fa-question">
-
                             </i>
                             <p>
                                 <span>{{ trans('cruds.faq.title') }}</span>

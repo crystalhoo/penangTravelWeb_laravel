@@ -68,12 +68,16 @@
                     {{ trans('cruds.schedule.fields.full_description_helper') }}
                 </p> -->
             </div>
-            <div class="form-group {{ $errors->has('hotels') ? 'has-error' : '' }}">
-                <label for="hotels">{{ trans('hotels') }}*</label>
-                <input type="array" id="hotels" name="hotels" class="form-control" value="{{ old('hotels', isset($schedule) ? $schedule->hotels : '') }}" step="1" required>
-                @if($errors->has('hotels'))
+            <div class="form-group {{ $errors->has('plan_id') ? 'has-error' : '' }}">
+                <label for="plan">{{ trans('cruds.schedule.fields.plan') }}</label>
+                <select name="plan_id" id="plan" class="form-control select2">
+                    @foreach($plans ?? '' as $id => $plan)
+                        <option value="{{ $id }}" {{ (isset($schedule) && $schedule->plan ? $schedule->plan->id : old('plan_id')) == $id ? 'selected' : '' }}>{{ $plan }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('plan_id'))
                     <p class="help-block">
-                        {{ $errors->first('hotels') }}
+                        {{ $errors->first('plan_id') }}
                     </p>
                 @endif
                 <!-- <p class="helper-block">

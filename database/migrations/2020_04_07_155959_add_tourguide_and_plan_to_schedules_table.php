@@ -18,7 +18,7 @@ class AddTourguideAndPlanToSchedulesTable extends Migration
 			$table->unsignedInteger('plan_id')->after('tourguide');
 
 			$table->foreign('plan_id')
-			->references('id')->on('plans');
+			->references('id')->on('plans')->onDelete('cascade');
         });
     }
 
