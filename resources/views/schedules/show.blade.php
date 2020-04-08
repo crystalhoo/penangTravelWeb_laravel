@@ -1,3 +1,10 @@
+<?php
+use App\Common;
+use App\Plan;
+use App\Hotel;
+use App\Schedule;
+
+?>
 @extends('layouts.admin')
 @section('content')
 
@@ -28,10 +35,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.schedule.fields.start_time') }}
+                            {{ trans('cruds.schedule.fields.start_date') }}
                         </th>
                         <td>
-                            {{ $schedule->start_time }}
+                            {{ $schedule->start_date }}
                         </td>
                     </tr>
                     <tr>
@@ -56,6 +63,18 @@
                         </th>
                         <td>
                             {{ $schedule->plan_id }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('Hotel ID') }}
+                        </th>
+                        <td>
+                        <ul>
+                            @foreach ($hotels as $hotel)
+                            <li>{{ $hotel->name }}</li>
+                            @endforeach
+                            </ul>
                         </td>
                     </tr>
                     

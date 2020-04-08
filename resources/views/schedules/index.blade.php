@@ -1,7 +1,7 @@
 <?php
-
 use App\Common;
 use App\Plan;
+use App\Hotel;
 use App\Schedule;
 
 ?>
@@ -32,7 +32,7 @@ use App\Schedule;
                         <th>No.</th>
                         <th>Title</th>
                         <th>Day_Number</th>
-                        <th>Start_Time</th>
+                        <th>Start_Date</th>
                         <th>Full_Description</th>
                         <th>Tour Guide</th>
                         <th>Plan ID</th>
@@ -59,7 +59,7 @@ use App\Schedule;
                                 <div>{{ $schedule->day_number }}</div>
                             </td>
                             <td class="table-text">
-                                <div>{{ $schedule->start_time }}</div>
+                                <div>{{ $schedule->start_date }}</div>
                             </td>
                             <td class="table-text">
                                 <div>{{ $schedule->full_description }}</div>

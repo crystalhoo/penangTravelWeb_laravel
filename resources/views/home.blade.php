@@ -9,7 +9,11 @@
   @include('sections.plan')
   @include('sections.hotels')
   @include('sections.gallery')
+
+  @include('sections.schedule')
+  @include('sections.hotels')
   @include('sections.faq')
+  
 
 </main>
 @endsection

@@ -19,7 +19,7 @@ class HomeController extends Controller
         $hotels = Hotel::all();
         $plans = Plan::all();
         $schedules = Schedule::with('plan')
-        ->orderBy('start_time', 'asc')
+        ->orderBy('start_date', 'asc')
         ->get()
         ->groupBy('day_number');
         $galleries = Gallery::all();

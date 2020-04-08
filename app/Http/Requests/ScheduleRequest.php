@@ -25,7 +25,7 @@ class ScheduleRequest extends ApiFormRequest
             'title'           => 'required|string|max:100',
             'plan_id'         => 'required',
             'day_number'      => 'required|integer|max:30',
-            'start_time'      => 'required',
+            'start_date'      => 'required',
             'full_description'=> 'string|max:500'
         ];
     }

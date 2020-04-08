@@ -41,16 +41,16 @@ use App\Schedule;
                     {{ trans('cruds.schedule.fields.day_number_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('start_time') ? 'has-error' : '' }}">
-                <label for="start_time">{{ trans('cruds.schedule.fields.start_time') }}*</label>
-                <input type="text" id="start_time" name="start_time" class="form-control timepicker" value="{{ old('start_time', isset($schedule) ? $schedule->start_time : '') }}" required>
-                @if($errors->has('start_time'))
+            <div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
+                <label for="start_date">{{ trans('cruds.schedule.fields.start_date') }}*</label>
+                <input type="text" id="start_date" name="start_date" class="form-control datepicker" value="{{ old('start_date', isset($schedule) ? $schedule->start_date : '') }}" required>
+                @if($errors->has('start_date'))
                     <p class="help-block">
-                        {{ $errors->first('start_time') }}
+                        {{ $errors->first('start_date') }}
                     </p>
                 @endif
                 <p class="helper-block">
-                    {{ trans('cruds.schedule.fields.start_time_helper') }}
+                    {{ trans('cruds.schedule.fields.start_date_helper') }}
                 </p>
             </div>
             <div class="form-group {{ $errors->has('full_description') ? 'has-error' : '' }}">
