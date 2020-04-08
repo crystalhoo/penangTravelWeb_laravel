@@ -72,7 +72,7 @@ public function store(Request $request)
 		$schedule->fill($request->all());
 		$schedule->save();
 		
-		$schedule->groups()->sync($request->get('hotels'));
+		$schedule->hotels()->sync($request->get('hotels'));
 	
 		return redirect()->route('schedule.index');
 }
@@ -97,7 +97,7 @@ public function show($id)
             'hotels' => $hotels,
             ]);
     
-        $groups = Group::pluck('name','id');
+        $hotels = Hotel::pluck('name','id');
 	
     }
     catch(ModelNotFoundException $ex) {

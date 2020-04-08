@@ -38,7 +38,7 @@ class PlanController extends Controller
 	{
 		$plan = new Plan();
 
-		return view('admin.plans.create', [
+		return view('plans.create', [
 		'plan' => $plan,
 		]);
     }
