@@ -20,6 +20,7 @@ class Schedule extends Model
     protected $fillable = [
 
         'plan_id',
+        'tourguide',
         'day_number',
         'start_time',
         'title',

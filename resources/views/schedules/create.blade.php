@@ -65,7 +65,18 @@ use App\Schedule;
                     {{ trans('') }}
                 </p>
             </div>
-            
+            <div class="form-group {{ $errors->has('tourguide') ? 'has-error' : '' }}">
+                <label for="tourguide">{{ trans('Tour Guide*') }}</label>
+                <input type="text" id="tourguide" name="tourguide" class="form-control" value="{{ old('tourguide', isset($schedule) ? $schedule->tourguide : '') }}">
+                @if($errors->has('tourguide'))
+                    <p class="help-block">
+                        {{ $errors->first('tourguide') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('') }}
+                </p>
+            </div>
             <!-- Division ID -->
             <div class="form-group row">
                 {!! Form::label('plan-id', 'Plan ID*', [

@@ -14,7 +14,7 @@ use App\Schedule;
     </div>
 
     <div class="card-body">
-        <form action="{{ route('schedule.update', [$schedule->id]) }}" method="PUT" enctype="multipart/form-data">
+        <form action="{{ route('schedule.update', [$schedule->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
@@ -65,7 +65,43 @@ use App\Schedule;
                     {{ trans('') }}
                 </p>
             </div>
+            <div class="form-group {{ $errors->has('tourguide') ? 'has-error' : '' }}">
+                <label for="tourguide">{{ trans('Tour Guide*') }}</label>
+                <input type="text" id="tourguide" name="tourguide" class="form-control" value="{{ old('tourguide', isset($schedule) ? $schedule->tourguide : '') }}">
+                @if($errors->has('tourguide'))
+                    <p class="help-block">
+                        {{ $errors->first('tourguide') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('') }}
+                </p>
+            </div>
+            <!-- Division ID -->
+            <div class="form-group row">
+                {!! Form::label('plan-id', 'Plan ID*', [
+                'class' => 'control-label col-sm-3',
+                ]) !!}
+            <div class="col-sm-9">
+                {!! Form::select('plan_id',
+                Plan::pluck('title', 'id'),
+                null, [
+                'class' => 'form-control',
+                'placeholder' => '- Select Plan -',
+                ]) !!}
+            </div>
+            </div>
             
+            <div class="form-group row">
+                {!! Form::label('Hotels') !!}
+            <div class="col-sm-9">
+                {!! Form::select('hotels[]',
+                $hotels,
+                null,
+                ['class' => 'form-control',
+                'multiple' => 'multiple']) !!}
+            </div>
+            </div>
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>

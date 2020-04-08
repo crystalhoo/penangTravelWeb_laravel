@@ -57,7 +57,7 @@ return [
         'pdf'           => 'PDF',
         'print'         => 'Print',
         'colvis'        => 'Column visibility',
-        'delete'        => 'Delete selected',
+       
         'zero_selected' => 'No rows selected',
     ],
     'action'                               => 'Action',

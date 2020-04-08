@@ -62,7 +62,7 @@ class HotelController extends Controller
     //public function store(HotelRequest $request)
     public function store(HotelRequest $request)
     {
-        try {
+       
             $hotel = new Hotel;
             $hotel->fill($request->all());
 
@@ -83,17 +83,7 @@ class HotelController extends Controller
             //       'id' => $hotel->id,
             //       'created_at' => $hotel->created_at,], 201);
             // }
-        }
-        catch(QueryException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-        catch(\Exception $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
+       
     }
 
     /**
