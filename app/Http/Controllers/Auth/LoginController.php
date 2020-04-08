@@ -40,9 +40,17 @@ class LoginController extends Controller
        $email = $request->input('email');
        $password = $request->input('password');
 
-       Auth::attempt($request->only(['email','password']));
+       if (Auth::attempt(['email' => $email, 'password' => $password])) {
           // Authentication passed...
+         
           return redirect()->route('admin.home');
+       }else {
+            // echo $email;
+            // echo $password;
+            echo "Incorrect Email or Password.";
+
+       }
+
      }
 
      public function logout(){
@@ -56,6 +64,6 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('guest')->except('logout');
+      $this->middleware('guest')->except('logout');
     }
 }

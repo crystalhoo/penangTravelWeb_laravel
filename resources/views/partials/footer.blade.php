@@ -22,7 +22,7 @@
               <li><i class="fa fa-angle-right"></i> <a href="{{ route('login') }}">Login</a></li>
             @endguest
             @auth
-              <li><i class="fa fa-angle-right"></i> <a href="{{ route('admin.home') }}">Admin Panel</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="{{ route('login') }}">Admin Panel</a></li>
             @endauth
           </ul>
         </div>
