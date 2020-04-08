@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -32,12 +36,25 @@ class LoginController extends Controller
      *
      * @return void
      */
-     public function login(){
-       return redirect()->route('admin.home');
+     public function login(Request $request){
+       $email = $request->input('email');
+       $password = $request->input('password');
+
+       if (Auth::attempt(['email' => $email, 'password' => $password])) {
+          // Authentication passed...
+          return redirect()->route('admin.home');
+       }else {
+         echo $email;
+         echo $password;
+       }
+
      }
 
      public function logout(){
-
+       if(Auth::check()){
+        Auth::logout();
+        return redirect()->route('home');
+       }
      }
 
      public function showLoginForm(){

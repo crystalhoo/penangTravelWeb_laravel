@@ -34,7 +34,7 @@ use App\Plan;
                             &nbsp;
                         </th>
                     </tr>
-                </thead>   
+                </thead>
                 <tbody>
                   @foreach ($plans as $i => $plan)
                         <tr data-entry-id="{{ $plan->id }}">
@@ -79,9 +79,6 @@ use App\Plan;
 @parent
 <script>
     $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-
-
   $.extend(true, $.fn.dataTable.defaults, {
     order: [[ 1, 'desc' ]],
     pageLength: 100,
