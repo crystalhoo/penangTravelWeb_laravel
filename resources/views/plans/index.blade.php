@@ -25,8 +25,8 @@ use App\Plan;
             <table class=" table table-bordered table-striped table-hover datatable datatable-Plan">
                 <thead>
                     <tr>
-                        <th width="10">
-                        </th>
+                        <!-- <th width="10">
+                        </th> -->
                         <th>No.</th>
                         <th>Title</th>
                         <th>Description</th>
@@ -38,9 +38,9 @@ use App\Plan;
                 <tbody>
                   @foreach ($plans as $i => $plan)
                         <tr data-entry-id="{{ $plan->id }}">
-                            <td>
+                            <!-- <td>
 
-                            </td>
+                            </td> -->
                             <td class="table-text">
                                 <div>
                                     <a href="{{ route('plan.show', $plan->id) }}">{{ $i+1 }}</a>
@@ -79,16 +79,17 @@ use App\Plan;
 @parent
 <script>
     $(function () {
-  $.extend(true, $.fn.dataTable.defaults, {
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-  });
-  $('.datatable-Plan:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-})
+        let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+        $.extend(true, $.fn.dataTable.defaults, {
+            order: [[ 1, 'desc' ]],
+            pageLength: 100,
+        });
+        $('.datatable-Plan:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+                $($.fn.dataTable.tables(true)).DataTable()
+                    .columns.adjust();
+            });
+    })
 
 </script>
 @endsection

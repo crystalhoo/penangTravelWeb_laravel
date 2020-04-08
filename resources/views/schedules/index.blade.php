@@ -26,9 +26,9 @@ use App\Schedule;
             <table class=" table table-bordered table-striped table-hover datatable datatable-Schedule">
                 <thead>
                     <tr>
-                        <th width="10">
+                        <!-- <th width="10">
 
-                        </th>
+                        </th> -->
                         <th>No.</th>
                         <th>Title</th>
                         <th>Day_Number</th>
@@ -44,9 +44,9 @@ use App\Schedule;
                 <tbody>
                     @foreach($schedules as $i => $schedule)
                         <tr data-entry-id="{{ $schedule->id }}">
-                            <td>
+                            <!-- <td>
 
-                            </td>
+                            </td> -->
                             <td class="table-text">
                                 <div>
                                 <a href="{{ route('schedule.show', $schedule->id) }}">{{ $i+1 }}</a>
@@ -97,17 +97,18 @@ use App\Schedule;
 @parent
 <script>
     $(function () {
+        let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 
-  $.extend(true, $.fn.dataTable.defaults, {
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-  });
-  $('.datatable-Schedule:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-})
+        $.extend(true, $.fn.dataTable.defaults, {
+            order: [[ 1, 'desc' ]],
+            pageLength: 100,
+        });
+        $('.datatable-Schedule:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+                $($.fn.dataTable.tables(true)).DataTable()
+                    .columns.adjust();
+            });
+    })
 
 </script>
 @endsection

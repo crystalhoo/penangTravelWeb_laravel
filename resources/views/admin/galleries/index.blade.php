@@ -19,9 +19,9 @@
             <table class=" table table-bordered table-striped table-hover datatable datatable-Gallery">
                 <thead>
                     <tr>
-                        <th width="10">
+                        <!-- <th width="10">
 
-                        </th>
+                        </th> -->
                         <th>
                             {{ trans('cruds.gallery.fields.id') }}
                         </th>
@@ -32,16 +32,16 @@
                             {{ trans('cruds.gallery.fields.photos') }}
                         </th>
                         <th>
-                            &nbsp;
+                            Actions
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($galleries as $key => $gallery)
                         <tr data-entry-id="{{ $gallery->id }}">
-                            <td>
+                            <!-- <td>
 
-                            </td>
+                            </td> -->
                             <td>
                                 {{ $gallery->id ?? '' }}
                             </td>
@@ -93,15 +93,16 @@
 <script>
     $(function () {
 
-  $.extend(true, $.fn.dataTable.defaults, {
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-  });
-  $('.datatable-Gallery:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
+    let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+    $.extend(true, $.fn.dataTable.defaults, {
+        order: [[ 1, 'desc' ]],
+        pageLength: 100,
     });
+    $('.datatable-Gallery:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+            $($.fn.dataTable.tables(true)).DataTable()
+                .columns.adjust();
+        });
 })
 
 </script>
