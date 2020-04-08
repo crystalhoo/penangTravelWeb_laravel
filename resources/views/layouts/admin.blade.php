@@ -82,7 +82,7 @@
             </div>
             <strong> &copy;</strong> {{ trans('global.allRightsReserved') }}
         </footer>
-        <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+        <form id="logoutform" action="{{ route('logout') }}" method="GET" style="display: none;">
             {{ csrf_field() }}
         </form>
     </div>

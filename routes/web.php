@@ -23,7 +23,7 @@ Route::post('register', 'RegisterController@store')->name('auth.register.store')
 
 Route::post('login', 'Auth\LoginController@login');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 

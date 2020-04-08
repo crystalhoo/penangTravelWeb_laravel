@@ -20,6 +20,7 @@ class AuthController extends Controller
       if (!$token = auth()->attempt($credentials)) {
       return response()->json(['error' => 'Unauthorized'], 401);
     }
+   
   return $this->respondWithToken($token);
  }
 
@@ -57,7 +58,4 @@ class AuthController extends Controller
       'expires_in' => auth()->factory()->getTTL() * 60
     ]);
   }
-
-
-
 }

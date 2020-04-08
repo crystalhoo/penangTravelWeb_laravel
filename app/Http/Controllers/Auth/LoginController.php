@@ -40,20 +40,14 @@ class LoginController extends Controller
        $email = $request->input('email');
        $password = $request->input('password');
 
-       if (Auth::attempt(['email' => $email, 'password' => $password])) {
+       Auth::attempt($request->only(['email','password']));
           // Authentication passed...
-         
           return redirect()->route('admin.home');
-       }else {
-         echo $email;
-         echo $password;
-       }
-
      }
 
      public function logout(){
         Auth::logout();
-        return redirect()->route('home');
+        return view('auth.login');
      }
 
      public function showLoginForm(){
@@ -62,6 +56,6 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        // $this->middleware('guest')->except('logout');
     }
 }
