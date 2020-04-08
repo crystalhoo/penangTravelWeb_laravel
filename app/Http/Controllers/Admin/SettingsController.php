@@ -25,66 +25,66 @@ class SettingsController extends Controller
     public function create()
     {
         //abort_if(Gate::denies('setting_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else {
-            dd('You are not Admin');
-        }
+        // if (Gate::allows('isAdmin')) {
+        //     dd('Admin allowed');
+        // } else {
+        //     dd('You are not Admin');
+        // }
         return view('admin.settings.create');
     }
 
     public function store(StoreSettingRequest $request)
     {
         $setting = Setting::create($request->all());
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else {
-            dd('You are not Admin');
-        }
+        // if (Gate::allows('isAdmin')) {
+        //     dd('Admin allowed');
+        // } else {
+        //     dd('You are not Admin');
+        // }
         return redirect()->route('admin.settings.index');
     }
 
     public function edit(Setting $setting)
     {
         //abort_if(Gate::denies('setting_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else {
-            dd('You are not Admin');
-        }
+        // if (Gate::allows('isAdmin')) {
+        //     dd('Admin allowed');
+        // } else {
+        //     dd('You are not Admin');
+        // }
         return view('admin.settings.edit', compact('setting'));
     }
 
     public function update(UpdateSettingRequest $request, Setting $setting)
     {
         $setting->update($request->all());
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else {
-            dd('You are not Admin');
-        }
+        // if (Gate::allows('isAdmin')) {
+        //     dd('Admin allowed');
+        // } else {
+        //     dd('You are not Admin');
+        // }
         return redirect()->route('admin.settings.index');
     }
 
     public function show(Setting $setting)
     {
       //  abort_if(Gate::denies('setting_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-      if (Gate::allows('isAdmin')) {
-          dd('Admin allowed');
-      } else {
-          dd('You are not Admin');
-      }
+      // if (Gate::allows('isAdmin')) {
+      //     dd('Admin allowed');
+      // } else {
+      //     dd('You are not Admin');
+      // }
         return view('admin.settings.show', compact('setting'));
     }
 
     public function destroy(Setting $setting)
     {
       //  abort_if(Gate::denies('setting_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-      if (Gate::allows('isAdmin')) {
-          dd('Admin allowed');
-      } else {
-          dd('You are not Admin');
-      }
+      // if (Gate::allows('isAdmin')) {
+      //     dd('Admin allowed');
+      // } else {
+      //     dd('You are not Admin');
+      // }
         $setting->delete();
 
         return back();

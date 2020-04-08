@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 
 class PlanController extends Controller
 {
-    //havent test: this is front end 
+    //havent test: this is front end
     public function index(Request $request)
     {
         $title = $request->input('title');
@@ -36,7 +36,7 @@ class PlanController extends Controller
 	{
 		$plan = new Plan();
 
-		return view('plans.create', [
+		return view('admin.plans.create', [
 		'plan' => $plan,
 		]);
     }
@@ -49,12 +49,14 @@ class PlanController extends Controller
 
             $plan->saveOrFail();
 
-            return response()->json([
-                'id' => $plan->id,
-                'created_at' => $plan->created_at,
-            ], 201);
+            if($plan){
+              return redirect()->route('admin.plans.index');
+            }else {
+              return response()->json([
+                  'id' => $plan->id,
+                  'created_at' => $plan->created_at,], 201);
+            }       
 
-            return redirect()->route('plans.index');
         }
         catch(QueryException $ex) {
             return response()->json([
@@ -75,7 +77,7 @@ class PlanController extends Controller
             if(!$plan) throw new ModelNotFoundException;
 
             // return new PlanResource($plan);
-            return view('plans.show', [
+            return view('admin.plans.show', [
                 'plan' => $plan
                 ]);
         }
@@ -98,7 +100,7 @@ class PlanController extends Controller
             $plan->saveOrFail();
 
             // return response()->json(null, 204);
-            return redirect()->route('plan.index');
+            return redirect()->route('admin.plans.index');
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
@@ -121,18 +123,18 @@ class PlanController extends Controller
 		$plan = Plan::find($id);
 		if(!$plan) throw new ModelNotFoundException;
 
-		return view('plans.edit', [
+		return view('admin.plans.edit', [
 		'plan' => $plan
 		]);
 	}
     public function destroy($id)
     {
-        
+
         try {
             $plan = Plan::find($id);
             if(!$plan) throw new ModelNotFoundException;
 
-            $plan->delete(); 
+            $plan->delete();
             // $plan->saveOrFail();
 
             //return response()->json(null, 204);
