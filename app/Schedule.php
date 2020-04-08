@@ -22,7 +22,7 @@ class Schedule extends Model
         'plan_id',
         'tourguide',
         'day_number',
-        'start_time',
+        'start_date',
         'title',
         'full_description'
     ];

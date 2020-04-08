@@ -18,7 +18,7 @@ class ScheduleController extends Controller
     {
         $title = $request->input('title');
         $day_number = $request->input('day_number');
-        $start_time = $request->input('start_time');
+        $start_date = $request->input('start_date');
         $full_description = $request->input('full_description');
         // $hotel = $request->input('hotel');
         $plan = $request->input('plan');
@@ -34,8 +34,8 @@ class ScheduleController extends Controller
             ->when($day_number, function($query) use($day_number) {
                 return $query->where('day_number', $day_number);
             })
-            ->when($start_time, function($query) use($start_time) {
-                return $query->where('start_time', $start_time);
+            ->when($start_date, function($query) use($start_date) {
+                return $query->where('start_date', $start_date);
             })
             ->when($title, function($query) use($title) {
                 return $query->where('title', 'like', "%$title%");

@@ -20,7 +20,7 @@ class CreateSchedulesTable extends Migration
                 
                 $table->integer('day_number')->nullable();
     
-                $table->time('start_time')->nullable();
+                $table->date('start_date')->nullable();
     
                 $table->string('title')->indexed();;
     
