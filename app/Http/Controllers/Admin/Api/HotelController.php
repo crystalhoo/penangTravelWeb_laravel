@@ -32,9 +32,6 @@ class HotelController extends Controller
             })
             ->paginate(20);
 
-        // $hotels = Hotel::orderBy('name', 'asc')->get();
-
-        // return new HotelCollection($hotels);
         return view('hotels.index', [
             'hotels' => $hotels,
             'request' => $request,
@@ -64,26 +61,15 @@ class HotelController extends Controller
     {
        
             $hotel = new Hotel;
+
             $hotel->fill($request->all());
 
             $hotel->saveOrFail();
 
             $hotel->schedules()->sync($request->get('schedules'));
-            // return response()->json([
-            //     'id' => $hotel->id,
-            //     'created_at' => $hotel->created_at,
-            // ], 201);
-            
+
             return redirect()->route('hotel.index');
-            //giap code
-            // if($hotel){
-            //   return redirect()->route('admin.hotels.index');
-            // } else {
-            //   return response()->json([
-            //       'id' => $hotel->id,
-            //       'created_at' => $hotel->created_at,], 201);
-            // }
-       
+
     }
 
     /**
@@ -103,7 +89,6 @@ class HotelController extends Controller
             $hotel = Hotel::find($id);
 		    $schedules = $hotel->schedules()->get();
 
-            // return new HotelResource($hotel);
             return view('hotels.show', [
                 'hotel' => $hotel,
                 'schedules' => $schedules,
@@ -127,7 +112,6 @@ class HotelController extends Controller
      */
     public function update(HotelRequest $request, $id)
     {
-        try {
             $hotel = Hotel::find($id);
             if(!$hotel) throw new ModelNotFoundException;
 
@@ -138,24 +122,6 @@ class HotelController extends Controller
             $hotel->schedules()->sync($request->get('schedules'));
 
             return redirect()->route('hotel.index');
-            //giap code
-            //return redirect()->route('admin.hotels.index');
-        }
-        catch(ModelNotFoundException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 404);
-        }
-        catch(QueryException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-        catch(\Exception $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
     }
     public function edit($id)
 	{
@@ -167,8 +133,6 @@ class HotelController extends Controller
 		return view('hotels.edit', [
         'hotel' => $hotel,
         'schedules' => $schedules,
-		// return view('admin.hotels.edit', [
-		// 'hotel' => $hotel
 		]);
 	}
     /**
@@ -180,34 +144,12 @@ class HotelController extends Controller
     public function destroy($id)
     {
 
-        try {
+
             $hotel = Hotel::find($id);
             if(!$hotel) throw new ModelNotFoundException;
 
-            //remove the detach()
             $hotel->delete();
-            // $hotel->saveOrFail();
 
-            //return response()->json(null, 204);
-            // return redirect()->route('hotels')
-            //             ->with('success','hotel deleted successfully');
             return redirect()->route('hotel.index');
-                        // ->with('success','Hotel deleted successfully');
-        }
-        catch(ModelNotFoundException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 404);
-        }
-        catch(QueryException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-        catch(\Exception $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
     }
 }

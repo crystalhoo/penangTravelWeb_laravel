@@ -26,6 +26,7 @@ class ScheduleRequest extends ApiFormRequest
             'plan_id'         => 'required',
             'day_number'      => 'required|integer|max:30',
             'start_date'      => 'required',
+            'tourguide'       => 'required',
             'full_description'=> 'string|max:500'
         ];
     }
