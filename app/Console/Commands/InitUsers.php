@@ -28,16 +28,19 @@ class InitUsers extends Command
          'name' => 'Administrator',
          'email' => 'admin@mylib.info',
          'password' => 'adminpass',
+
        ],
        [
          'name' => 'User One',
          'email' => 'user1@mylib.info',
          'password' => 'user1pass',
+
        ],
        [
          'name' => 'User Two',
          'email' => 'user2@mylib.info',
          'password' => 'user2pass',
+         
        ],
      ];
 

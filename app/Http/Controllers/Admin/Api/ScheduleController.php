@@ -11,6 +11,7 @@ use App\Http\Resources\ScheduleResource;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Gate;
 
 class ScheduleController extends Controller
 {
@@ -60,10 +61,15 @@ public function create()
 
     $hotels = Hotel::pluck('name','id');
 
-    return view('schedules.create', [
-    'schedule' => $schedule,
-    'hotels' => $hotels,
-    ]);
+    if (Gate::allows('admin-only', auth()->user())) {
+      return view('schedules.create', [
+      'schedule' => $schedule,
+      'hotels' => $hotels,
+      ]);
+        }
+        return 'You are not admin!!!!';
+
+
 }
 
 //public function store(ScheduleRequest $request)
@@ -72,12 +78,17 @@ public function store(ScheduleRequest $request)
     $schedule = new Schedule;
 
     $schedule->fill($request->all());
-    
+
     $schedule->save();
-    
+
     $schedule->hotels()->sync($request->get('hotels'));
 
-    return redirect()->route('schedule.index');
+    if (Gate::allows('admin-only', auth()->user())) {
+            return redirect()->route('schedule.index');
+        }
+        return 'You are not admin!!!!';
+
+
 }
 
 /**
@@ -123,21 +134,31 @@ public function update(ScheduleRequest $request, $id)
         $schedule->saveOrFail();
         $schedule->hotels()->sync($request->get('hotels'));
     });
-    return redirect()->route('schedule.index');
+
+    if (Gate::allows('admin-only', auth()->user())) {
+            return redirect()->route('schedule.index');
+        }
+        return 'You are not admin!!!!';
+
 }
 
 public function edit($id)
 {
     $schedule = Schedule::find($id);
-    
+
     if(!$schedule) throw new ModelNotFoundException;
-    
+
     $hotels = Hotel::pluck('name','id');
 
-    return view('schedules.edit', [
-    'schedule' => $schedule,
-    'hotels' => $hotels,
-    ]);
+    if (Gate::allows('admin-only', auth()->user())) {
+      return view('schedules.edit', [
+      'schedule' => $schedule,
+      'hotels' => $hotels,
+      ]);
+        }
+        return 'You are not admin!!!!';
+
+
 }
 
     /**
@@ -152,8 +173,13 @@ public function edit($id)
 
         if(!$schedule) throw new ModelNotFoundException;
 
-        $schedule->delete(); 
+        $schedule->delete();
 
-        return redirect()->route('schedule.index');
+        if (Gate::allows('admin-only', auth()->user())) {
+            return redirect()->route('schedule.index');
+        }
+        return 'You are not admin!!!!';
+
+
     }
 }

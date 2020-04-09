@@ -11,6 +11,7 @@ use App\Http\Resources\GalleryResource;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Gate;
 
 class GalleriesApiController extends Controller
 {
@@ -31,9 +32,14 @@ class GalleriesApiController extends Controller
             $gallery->addMedia(storage_path('tmp/uploads/' . $request->input('photos')))->toMediaCollection('photos');
         }
 
-        return (new GalleryResource($gallery))
-            ->response()
-            ->setStatusCode(Response::HTTP_CREATED);
+        if  (Gate::allows('admin-only', auth()->user())) {
+          return (new GalleryResource($gallery))
+              ->response()
+              ->setStatusCode(Response::HTTP_CREATED);
+        }
+        return 'You are not admin!!!!';
+
+
     }
 
     public function show(Gallery $gallery)
@@ -56,9 +62,14 @@ class GalleriesApiController extends Controller
             $gallery->photos->delete();
         }
 
-        return (new GalleryResource($gallery))
-            ->response()
-            ->setStatusCode(Response::HTTP_ACCEPTED);
+        if (Gate::allows('admin-only', auth()->user())) {
+          return (new GalleryResource($gallery))
+              ->response()
+              ->setStatusCode(Response::HTTP_ACCEPTED);
+        }
+        return 'You are not admin!!!!';
+
+
 
         // try {
         //     $gallery = Gallery::find($id);
@@ -96,6 +107,8 @@ class GalleriesApiController extends Controller
         //
         // return response(null, Response::HTTP_NO_CONTENT);
 
+
+
         try {
             $gallery = Gallery::find($id);
             if(!$gallery) throw new ModelNotFoundException;
@@ -104,8 +117,13 @@ class GalleriesApiController extends Controller
             // $plan->saveOrFail();
 
             //return response()->json(null, 204);
-            return redirect()->route('admin.galleries.index')
-                        ->with('success','gallery deleted successfully');
+
+            if (Gate::allows('admin-only', auth()->user())) {
+              return redirect()->route('admin.galleries.index')
+                          ->with('success','gallery deleted successfully');
+            }
+            return 'You are not admin!!!!';
+
         }
         catch(ModelNotFoundException $ex) {
             return response()->json([
@@ -122,5 +140,7 @@ class GalleriesApiController extends Controller
                 'message' => $ex->getMessage(),
             ], 500);
         }
+
+
     }
 }

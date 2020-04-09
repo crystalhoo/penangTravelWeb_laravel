@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
+use Illuminate\Support\Facades\Gate;
 
 class HotelController extends Controller
 {
@@ -41,13 +42,18 @@ class HotelController extends Controller
     public function create()
 	{
         $hotel = new Hotel();
-        
+
         $schedules = Schedule::pluck('title','id');
 
-		return view('hotels.create', [
-        'hotel' => $hotel,
-        'schedules' => $schedules,
-		]);
+        if (Gate::allows('admin-only', auth()->user())) {
+          return view('hotels.create', [
+              'hotel' => $hotel,
+              'schedules' => $schedules,
+          ]);
+        }
+        return 'You are not admin!!!!';
+
+
     }
 
     /**
@@ -59,7 +65,7 @@ class HotelController extends Controller
     //public function store(HotelRequest $request)
     public function store(HotelRequest $request)
     {
-       
+
             $hotel = new Hotel;
 
             $hotel->fill($request->all());
@@ -68,7 +74,12 @@ class HotelController extends Controller
 
             $hotel->schedules()->sync($request->get('schedules'));
 
-            return redirect()->route('hotel.index');
+            if (Gate::allows('admin-only', auth()->user())) {
+              return redirect()->route('hotel.index');
+        }
+        return 'You are not admin!!!!';
+
+
 
     }
 
@@ -88,6 +99,7 @@ class HotelController extends Controller
 
             $hotel = Hotel::find($id);
 		    $schedules = $hotel->schedules()->get();
+
 
             return view('hotels.show', [
                 'hotel' => $hotel,
@@ -121,19 +133,29 @@ class HotelController extends Controller
 
             $hotel->schedules()->sync($request->get('schedules'));
 
+            if (Gate::allows('admin-only', auth()->user())) {
             return redirect()->route('hotel.index');
+        }
+        return 'You are not admin!!!!';
+
+
     }
     public function edit($id)
 	{
 		$hotel = Hotel::find($id);
         if(!$hotel) throw new ModelNotFoundException;
-        
+
         $schedules = Schedule::pluck('title','id');
 
-		return view('hotels.edit', [
-        'hotel' => $hotel,
-        'schedules' => $schedules,
-		]);
+        if (Gate::allows('admin-only', auth()->user())) {
+          return view('hotels.edit', [
+              'hotel' => $hotel,
+              'schedules' => $schedules,
+          ]);
+        }
+        return 'You are not admin!!!!';
+
+
 	}
     /**
      * Remove the specified resource from storage.
@@ -150,6 +172,11 @@ class HotelController extends Controller
 
             $hotel->delete();
 
+            if (Gate::allows('admin-only', auth()->user())) {
             return redirect()->route('hotel.index');
+        }
+        return 'You are not admin!!!!';
+
+
     }
 }

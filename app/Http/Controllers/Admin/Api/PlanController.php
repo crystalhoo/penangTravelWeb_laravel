@@ -11,10 +11,11 @@ use App\Http\Resources\PlanResource;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 
 class PlanController extends Controller
-{ 
+{
     public function index(Request $request)
     {
         $title = $request->input('title');
@@ -36,10 +37,13 @@ class PlanController extends Controller
     public function create()
 	{
 		$plan = new Plan();
+    if (Gate::allows('admin-only', auth()->user())) {
+      return view('plans.create', [
+      'plan' => $plan,
+      ]);
+        }
+        return 'You are not admin!!!!';
 
-		return view('plans.create', [
-		'plan' => $plan,
-		]);
     }
 
     public function store(PlanRequest $request)
@@ -50,7 +54,12 @@ class PlanController extends Controller
 
         $plan->saveOrFail();
 
-        return redirect()->route('plan.index');
+        if (Gate::allows('admin-only', auth()->user())) {
+              return redirect()->route('plan.index');
+        }
+        return 'You are not admin!!!!';
+
+
     }
 
     public function show($id)
@@ -77,19 +86,29 @@ class PlanController extends Controller
 
         $plan->saveOrFail();
 
-        return redirect()->route('plan.index');
+        if (Gate::allows('admin-only', auth()->user())) {
+          return redirect()->route('plan.index');
+        }
+        return 'You are not admin!!!!';
+
+
     }
 
 
     public function edit($id)
 	{
         $plan = Plan::find($id);
-        
+
 		if(!$plan) throw new ModelNotFoundException;
 
-		return view('plans.edit', [
-		'plan' => $plan
-		]);
+    if (Gate::allows('admin-only', auth()->user())) {
+      return view('plans.edit', [
+      'plan' => $plan
+      ]);
+        }
+        return 'You are not admin!!!!';
+
+
 	}
 
     public function destroy($id)
@@ -100,7 +119,13 @@ class PlanController extends Controller
 
         $plan->delete();
 
-        return redirect()->route('plan.index');
+        if (Gate::allows('admin-only', auth()->user())) {
+              return redirect()->route('plan.index');
+        }
+        return 'You are not admin!!!!';
+
+
+
     }
 
 }

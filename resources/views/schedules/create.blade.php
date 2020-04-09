@@ -52,7 +52,7 @@ use App\Schedule;
                     {{ trans('cruds.schedule.fields.start_date_helper') }}
                 </p>
             </div>
-            
+
             <div class="form-group {{ $errors->has('full_description') ? 'has-error' : '' }}">
                 <label for="full_description">{{ trans('Full Description*') }}</label>
                 <input type="text" id="full_description" name="full_description" class="form-control" value="{{ old('full_description', isset($schedule) ? $schedule->full_description : '') }}">
@@ -91,7 +91,7 @@ use App\Schedule;
                 ]) !!}
             </div>
             </div>
-            
+
             <div class="form-group row">
                 {!! Form::label('Hotels') !!}
             <div class="col-sm-9">

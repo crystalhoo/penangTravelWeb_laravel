@@ -72,9 +72,9 @@ public function store(Request $request)
     $schedule = new Schedule;
 
     $schedule->fill($request->all());
-    
+
     $schedule->save();
-    
+
     $schedule->hotels()->sync($request->get('hotels'));
 
     return redirect()->route('schedule.index');
@@ -129,9 +129,9 @@ public function update(Request $request, $id)
 public function edit($id)
 {
     $schedule = Schedule::find($id);
-    
+
     if(!$schedule) throw new ModelNotFoundException;
-    
+
     $hotels = Hotel::pluck('name','id');
 
     return view('schedules.edit', [
@@ -152,7 +152,7 @@ public function edit($id)
 
         if(!$schedule) throw new ModelNotFoundException;
 
-        $schedule->delete(); 
+        $schedule->delete();
 
         return redirect()->route('schedule.index');
     }
