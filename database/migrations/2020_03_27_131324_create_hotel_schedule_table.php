@@ -17,13 +17,10 @@ class CreateHotelScheduleTable extends Migration
             $table->unsignedInteger('schedule_id');
             $table->unsignedInteger('hotel_id');
             
-
             $table->primary(['schedule_id','hotel_id']);
             
             $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
-
-
         });
     }
 
