@@ -40,9 +40,10 @@ class LoginController extends Controller
        $email = $request->input('email');
        $password = $request->input('password');
 
+       Auth::logout();
        if (Auth::attempt(['email' => $email, 'password' => $password])) {
           // Authentication passed...
-         
+
           return redirect()->route('admin.home');
        }else {
             // echo $email;

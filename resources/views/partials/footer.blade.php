@@ -4,7 +4,6 @@
       <div class="row">
 
         <div class="col-lg-3 col-md-6 footer-info">
-          <!-- <img src="img/logo.png" alt="logo"> -->
           <strong><font size="25">{{ env('APP_NAME') }}</font></strong>
           <p>{{ $settings['footer_description'] ?? '' }}</p>
         </div>
@@ -14,15 +13,11 @@
           <ul>
             <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
             <li><i class="fa fa-angle-right"></i><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#about">About Us</a></li>
-            <!-- <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li> -->
-            <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-            <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li> -->
             @guest
               <li><i class="fa fa-angle-right"></i> <a href="{{ route('login') }}">Login</a></li>
             @endguest
             @auth
-              <li><i class="fa fa-angle-right"></i> <a href="{{ route('login') }}">Admin Panel</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="{{ route('admin.home') }}">Admin Panel</a></li>
             @endauth
           </ul>
         </div>
@@ -34,15 +29,6 @@
             <strong>Phone:</strong> {{ $settings['contact_phone'] }}<br>
             <strong>Email:</strong> {{ $settings['contact_email'] }}<br>
           </p>
-
-          <!-- <div class="social-links">
-            <a href="{{ $settings['footer_twitter'] ?? '' }}" class="twitter"><i class="fa fa-twitter"></i></a>
-            <a href="{{ $settings['footer_facebook'] ?? '' }}" class="facebook"><i class="fa fa-facebook"></i></a>
-            <a href="{{ $settings['footer_instagram'] ?? '' }}" class="instagram"><i class="fa fa-instagram"></i></a>
-            <a href="{{ $settings['footer_googleplus'] ?? '' }}" class="google-plus"><i class="fa fa-google-plus"></i></a>
-            <a href="{{ $settings['footer_linkedin'] ?? '' }}" class="linkedin"><i class="fa fa-linkedin"></i></a>
-          </div> -->
-
         </div>
 
       </div>
