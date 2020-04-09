@@ -11,159 +11,121 @@ use App\Http\Resources\PlanResource;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 
 class PlanController extends Controller
 {
-    //havent test: this is front end
     public function index(Request $request)
     {
         $title = $request->input('title');
+
         $description = $request->input('description');
 
         $plans = Plan::with('schedules')
-            ->when($title, function($query) use($title) {
-                return $query->where('title', 'like', "%$title%");
-            })
-            ->paginate(20);
-    //need to create 1 plan collection
-        // return new PlanCollection($plans);
+        ->when($title, function($query) use($title) {
+            return $query->where('title', 'like', "%$title%");
+        })
+        ->paginate(20);
+
         return view('plans.index', [
-            'plans' => $plans
-            ]);
+        'plans' => $plans
+        ]);
 
     }
 
     public function create()
 	{
 		$plan = new Plan();
+    if (Gate::allows('admin-only', auth()->user())) {
+      return view('plans.create', [
+      'plan' => $plan,
+      ]);
+        }
+        return 'You are not admin!!!!';
 
-		return view('plans.create', [
-		'plan' => $plan,
-		]);
     }
 
-    //need to add plan request here 
     public function store(PlanRequest $request)
     {
-        try {
-            $plan = new Plan;
-            $plan->fill($request->all());
+        $plan = new Plan;
 
-            $plan->saveOrFail();
+        $plan->fill($request->all());
 
-            // return response()->json([
-            //     'id' => $plan->id,
-            //     'created_at' => $plan->created_at,
-            // ], 201);
+        $plan->saveOrFail();
 
-            return redirect()->route('plan.index');
+        if (Gate::allows('admin-only', auth()->user())) {
+              return redirect()->route('plan.index');
         }
-        catch(QueryException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-        catch(\Exception $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
+        return 'You are not admin!!!!';
+
+
     }
 
     public function show($id)
     {
-        try {
-            $plan = Plan::find($id);
-            $schedules = $plan->schedules()->get();
-            if(!$plan) throw new ModelNotFoundException;
+        $plan = Plan::find($id);
 
-            // return new PlanResource($plan);
-            return view('plans.show', [
-                'plan' => $plan,
-                'schedules' => $schedules,
-                ]);
-                
-        }
-        catch(ModelNotFoundException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 404);
-        }
+        $schedules = $plan->schedules()->get();
+
+        if(!$plan) throw new ModelNotFoundException;
+
+        return view('plans.show', [
+            'plan' => $plan,
+            'schedules' => $schedules,
+            ]);
     }
 
-    //need to add plan req here
     public function update(PlanRequest $request, $id)
     {
-        try {
-            $plan = Plan::find($id);
-            if(!$plan) throw new ModelNotFoundException;
+        $plan = Plan::find($id);
 
-            $plan->fill($request->all());
+        if(!$plan) throw new ModelNotFoundException;
 
-            $plan->saveOrFail();
+        $plan->fill($request->all());
 
-            // return response()->json(null, 204);
-            return redirect()->route('plan.index');
+        $plan->saveOrFail();
+
+        if (Gate::allows('admin-only', auth()->user())) {
+          return redirect()->route('plan.index');
         }
-        catch(ModelNotFoundException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 404);
-        }
-        catch(QueryException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-        catch(\Exception $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
+        return 'You are not admin!!!!';
+
+
     }
 
 
     public function edit($id)
 	{
-		$plan = Plan::find($id);
+        $plan = Plan::find($id);
+
 		if(!$plan) throw new ModelNotFoundException;
 
-		return view('plans.edit', [
-		'plan' => $plan
-		]);
+    if (Gate::allows('admin-only', auth()->user())) {
+      return view('plans.edit', [
+      'plan' => $plan
+      ]);
+        }
+        return 'You are not admin!!!!';
+
 
 	}
 
     public function destroy($id)
     {
+        $plan = Plan::find($id);
 
-        try {
-            $plan = Plan::find($id);
-            if(!$plan) throw new ModelNotFoundException;
+        if(!$plan) throw new ModelNotFoundException;
 
-            $plan->delete();
-            // $plan->saveOrFail();
+        $plan->delete();
 
-            //return response()->json(null, 204);
-            return redirect()->route('plan.index');
-                        // ->with('success','Plan deleted successfully');
+        if (Gate::allows('admin-only', auth()->user())) {
+              return redirect()->route('plan.index');
         }
-        catch(ModelNotFoundException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 404);
-        }
-        catch(QueryException $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-        catch(\Exception $ex) {
-            return response()->json([
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
+        return 'You are not admin!!!!';
+
+
+
     }
 
 }

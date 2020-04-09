@@ -91,7 +91,7 @@ use App\Schedule;
                 ]) !!}
             </div>
             </div>
-            
+
             <div class="form-group row">
                 {!! Form::label('Hotels') !!}
             <div class="col-sm-9">

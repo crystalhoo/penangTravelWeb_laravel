@@ -84,7 +84,6 @@ use App\Schedule;
                             </div>
                             </td>
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>

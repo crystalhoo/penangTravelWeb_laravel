@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -19,7 +19,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','isAdmin',
     ];
 
     /**
@@ -40,15 +40,15 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    public function getJWTIdentifier()
-{
-return $this->getKey();
-}
+    // public function getJWTIdentifier()
+    // {
+    //     return $this->getKey();
+    // }
 
-public function getJWTCustomClaims()
-{
-return [];
-}
+    // public function getJWTCustomClaims()
+    // {
+    //     return [];
+    // }
 
 
 
