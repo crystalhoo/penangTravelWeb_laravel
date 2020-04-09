@@ -5,11 +5,6 @@
         <h2>About TRAVEL</h2>
         <p>{{ $settings['about_description'] ?? '' }}</p>
       </div>
-      <!--
-      <div class="col-lg-3">
-        <h3>Where</h3>
-        <p>{!! $settings['about_where'] ?? '' !!}</p>
-      </div> -->
       <div class="col-lg-3">
         <h3>Location</h3>
         <p>{!! $settings['contact_address'] ?? '' !!}</p><br>
