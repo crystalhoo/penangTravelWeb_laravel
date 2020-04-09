@@ -37,25 +37,24 @@ class LoginController extends Controller
      * @return void
      */
      public function login(Request $request){
-       $email = $request->input('email');
-       $password = $request->input('password');
 
-       Auth::logout();
-       if (Auth::attempt(['email' => $email, 'password' => $password])) {
+       $credentials = $request->only('email', 'password');
+
+       if (Auth::attempt($credentials))
           // Authentication passed...
-
           return redirect()->route('admin.home');
-       }else {
-            // echo $email;
-            // echo $password;
-            echo "Incorrect Email or Password.";
+      //  }else {
+      //       // echo $email;
+      //       // echo $password;
+      //       echo "Incorrect Email or Password.";
 
-       }
-
+      //  }
+        echo "Incorrect email or password";
      }
 
      public function logout(){
         Auth::logout();
+        // return view('auth.login');
         return redirect()->route('home');
      }
 

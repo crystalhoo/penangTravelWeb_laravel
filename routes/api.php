@@ -19,16 +19,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //authentication
-Route::middleware('api')->namespace('Auth')->prefix('auth')->group(function() {
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-});
+// Route::middleware('api')->namespace('Auth')->prefix('auth')->group(function() {
+//     Route::post('login', 'AuthController@login');
+//     Route::post('logout', 'AuthController@logout');
+//     Route::post('refresh', 'AuthController@refresh');
+//     Route::post('me', 'AuthController@me');
+// });
 
-Route::middleware(['jwt.auth', 'can:manage-users'])->group(function() {
+// Route::middleware(['jwt.auth', 'can:manage-users'])->group(function() {
 
-});
+// });
 
 Route::post('galleries/media', 'GalleriesApiController@storeMedia')->name('admin.galleries.storeMedia');
 Route::apiResource('galleries', 'GalleriesApiController');
