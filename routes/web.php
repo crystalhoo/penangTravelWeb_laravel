@@ -27,14 +27,14 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 
-Route::get('/admin/settings', 'Admin\SettingsController@index')->name('admin.settings.index');
-Route::post('/admin/settings/create', 'Admin\SettingsController@create')->name('admin.settings.create');
-Route::get('/admin/settings/$settings.id', 'Admin\SettingsController@show')->name('admin.settings.show');
-Route::get('/admin/settings/edit', 'Admin\SettingsController@edit')->name('admin.settings.edit');
-Route::post('/admin/settings/update', 'Admin\SettingsController@update')->name('admin.settings.update');
-Route::post('/admin/settings/store', 'Admin\SettingsController@store')->name('admin.settings.store');
-Route::post('/admin/settings/destroy', 'Admin\SettingsController@destroy')->name('admin.settings.destroy');
-Route::get('/admin/settings/massDestroy', 'Admin\SettingsController@massDestroy')->name('admin.settings.massDestroy');
+// Route::get('/admin/settings', 'Admin\SettingsController@index')->name('admin.settings.index');
+// Route::post('/admin/settings/create', 'Admin\SettingsController@create')->name('admin.settings.create');
+// Route::get('/admin/settings/$settings.id', 'Admin\SettingsController@show')->name('admin.settings.show');
+// Route::get('/admin/settings/edit', 'Admin\SettingsController@edit')->name('admin.settings.edit');
+// Route::post('/admin/settings/update', 'Admin\SettingsController@update')->name('admin.settings.update');
+// Route::post('/admin/settings/store', 'Admin\SettingsController@store')->name('admin.settings.store');
+// Route::post('/admin/settings/destroy', 'Admin\SettingsController@destroy')->name('admin.settings.destroy');
+// Route::get('/admin/settings/massDestroy', 'Admin\SettingsController@massDestroy')->name('admin.settings.massDestroy');
 
 //Giap schedule
 // Route::resource('/admin/schedules', 'ScheduleController');
@@ -97,14 +97,14 @@ Route::put('/admin/galleries/{galleries}/edit',['as' => 'admin.galleries.update'
 Route::post('galleries/media', 'Admin\GalleriesController@storeMedia')->name('admin.galleries.storeMedia');
 
 
-Route::get('/admin/faqs', 'Admin\FaqsController@index')->name('admin.faqs.index');
-Route::get('/admin/faqs/create', 'Admin\FaqsController@create')->name('admin.faqs.create');
-Route::get('/admin/faqs/{faqs}', 'Admin\FaqsController@show')->name('admin.faqs.show');
-Route::get('/admin/faqs/edit', 'Admin\FaqsController@edit')->name('admin.faqs.edit');
-Route::post('/admin/faqs/update', 'Admin\FaqsController@update')->name('admin.faqs.update');
-Route::get('/admin/faqs/store', 'Admin\FaqsController@store')->name('admin.faqs.store');
-Route::post('/admin/faqs/destroy', 'Admin\FaqsController@destroy')->name('admin.faqs.destroy');
-Route::get('/admin/faqs/massDestroy', 'Admin\FaqsController@massDestroy')->name('admin.faqs.massDestroy');
+// Route::get('/admin/faqs', 'Admin\FaqsController@index')->name('admin.faqs.index');
+// Route::get('/admin/faqs/create', 'Admin\FaqsController@create')->name('admin.faqs.create');
+// Route::get('/admin/faqs/{faqs}', 'Admin\FaqsController@show')->name('admin.faqs.show');
+// Route::get('/admin/faqs/edit', 'Admin\FaqsController@edit')->name('admin.faqs.edit');
+// Route::post('/admin/faqs/update', 'Admin\FaqsController@update')->name('admin.faqs.update');
+// Route::get('/admin/faqs/store', 'Admin\FaqsController@store')->name('admin.faqs.store');
+// Route::post('/admin/faqs/destroy', 'Admin\FaqsController@destroy')->name('admin.faqs.destroy');
+// Route::get('/admin/faqs/massDestroy', 'Admin\FaqsController@massDestroy')->name('admin.faqs.massDestroy');
 
 // Route::redirect('/home', '/admin');
 //
