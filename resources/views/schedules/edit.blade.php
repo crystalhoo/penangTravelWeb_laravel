@@ -77,7 +77,7 @@ use App\Schedule;
                     {{ trans('') }}
                 </p>
             </div>
-            <!-- Division ID -->
+            <!-- Plan ID -->
             <div class="form-group row">
                 {!! Form::label('plan-id', 'Plan ID*', [
                 'class' => 'control-label col-sm-3',

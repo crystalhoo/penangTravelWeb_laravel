@@ -33,21 +33,10 @@ class Schedule extends Model
     }
     public function hotels()
     {
-        //return $this->belongsToMany(Hotel::class)->withPivot('hotel_id', 'schedule_id');
         return $this->belongsToMany(Hotel::class);
     }
 
 }
-//}
-// public function hotel()
-// {
-//     return $this->belongsTo(Hotel::class);
-// }
-
-/**
- * Get the authors who wrote the book
- *
- */
 
 
 

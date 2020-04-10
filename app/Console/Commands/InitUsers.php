@@ -35,16 +35,16 @@ class InitUsers extends Command
        [
         'isAdmin' => 0,
          'name' => 'Subadmin',
-         'email' => 'user1@mylib.info',
-         'password' => 'user1pass',
+         'email' => 'subAdmin1@mylib.info',
+         'password' => 'subAdmin1',
 
 
        ],
        [
         'isAdmin' => 0,
          'name' => 'Subadmin',
-         'email' => 'user2@mylib.info',
-         'password' => 'user2pass',
+         'email' => 'subAdmin2@mylib.info',
+         'password' => 'subAdmin2',
 
        ],
      ];
@@ -71,7 +71,6 @@ class InitUsers extends Command
         $user->name = $user_data['name'];
         $user->isAdmin = $user_data['isAdmin'];
         $user->email = $user_data['email'];
-        $user->isAdmin = $user_data['isAdmin'];
         $user->password = bcrypt($user_data['password']);
         $user->save();
         echo "User $user->email created successfully\n";

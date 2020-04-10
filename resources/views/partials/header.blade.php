@@ -15,7 +15,6 @@
         <li class="menu-active"><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#intro">Home</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#about">About</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#schedule">Schedule</a></li>
-        <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#plan">Plan</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#hotel">Hotel</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home') : '' }}#gallery">Gallery</a></li>
       </ul>

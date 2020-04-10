@@ -72,7 +72,6 @@ public function create()
 
 }
 
-//public function store(ScheduleRequest $request)
 public function store(ScheduleRequest $request)
 {
     $schedule = new Schedule;

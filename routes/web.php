@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//this is for?
 Route::get('/', function () {
     return view('home');
 });

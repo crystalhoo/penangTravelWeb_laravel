@@ -7,11 +7,9 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 
-class Plan extends Model implements HasMedia
+class Plan extends Model
 {
 
-    use HasMediaTrait;
-    
     public $table = 'plans';
 
     protected $dates = [
@@ -25,12 +23,6 @@ class Plan extends Model implements HasMedia
         'description',
     ];
 
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('thumb')->width(50)->height(50);
-    }
-
-    //change here
     public function schedules()
     {
         return $this->hasMany(Schedule::class);

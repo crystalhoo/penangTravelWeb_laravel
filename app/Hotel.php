@@ -26,22 +26,7 @@ class Hotel extends Model implements HasMedia
         'rating',
     ];
 
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('thumb')->width(50)->height(50);
-    }
 
-    public function getPhotoAttribute()
-    {
-        $file = $this->getMedia('photo')->last();
-
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-        }
-
-        return $file;
-    }
     public function schedules()
     {
         return $this->belongsToMany(Schedule::class);
