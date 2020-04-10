@@ -8,16 +8,13 @@ use App\User;
 
 <div class="login-box">
     <div class="login-logo">
-        <div class="login-logo">
             <a href="#">
                 {{ trans('TRAVEL APP LOGIN') }}
             </a>
-        </div>
     </div>
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
-           
             <form action="{{ route('login') }}" method="POST">
                 {{ csrf_field() }}
 
@@ -38,20 +35,8 @@ use App\User;
                         </div>
                     @endif
                 </div>
-
                 <div class="row">
-                  <div class="col-10">
-                    <a href="{{ route("register") }}">New user? Click here to Register.</a>
-                  </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" name="remember" id="remember">
-                            <label for="remember">{{ trans('global.remember_me') }}</label>
-                        </div>
-                    </div>
+                    
                     <!-- /.col -->
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('global.login') }}</button>

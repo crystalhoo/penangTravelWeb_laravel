@@ -12,10 +12,6 @@
         </li>
       @endforeach
     </ul>
-
-    <!-- <h3 class="sub-heading">Voluptatem nulla veniam soluta et corrupti consequatur neque eveniet officia. Eius
-      necessitatibus voluptatem quis labore perspiciatis quia.</h3>  -->
-
     <div class="tab-content row justify-content-center">
       @foreach($schedules ?? '' as $key => $day)
         <div role="tabpanel" class="col-lg-9 tab-pane fade{{ $key === 1 ? ' show active' : '' }}" id="day-{{ $key }}">

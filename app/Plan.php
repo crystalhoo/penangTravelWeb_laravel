@@ -14,10 +14,6 @@ class Plan extends Model implements HasMedia
     
     public $table = 'plans';
 
-    // protected $appends = [
-    //     'photo',
-    // ];
-
     protected $dates = [
         'created_at',
         'updated_at',

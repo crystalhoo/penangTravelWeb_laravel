@@ -17,7 +17,6 @@ class CreateSchedulesTable extends Migration
 
                 $table->increments('id');
     
-                
                 $table->integer('day_number')->nullable();
     
                 $table->date('start_date')->nullable();
@@ -25,8 +24,6 @@ class CreateSchedulesTable extends Migration
                 $table->string('title')->indexed();;
     
                 $table->longText('full_description')->nullable();
-    
-              
     
                 $table->timestamps();
         });
@@ -42,4 +39,3 @@ class CreateSchedulesTable extends Migration
         Schema::dropIfExists('schedules');
     }
 }
-//php artisan make:migration add_tourguide_and_plan_to_schedules_table --table=schedules

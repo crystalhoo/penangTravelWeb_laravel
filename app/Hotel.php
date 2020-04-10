@@ -13,10 +13,6 @@ class Hotel extends Model implements HasMedia
     
     public $table = 'hotels';
 
-    protected $appends = [
-        'photo',
-    ];
-
     protected $dates = [
         'created_at',
         'updated_at',
