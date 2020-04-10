@@ -140,6 +140,8 @@ class HotelController extends Controller
 
 
     }
+
+
     public function edit($id)
 	{
 		$hotel = Hotel::find($id);
