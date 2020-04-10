@@ -172,10 +172,9 @@ class HotelController extends Controller
             $hotel = Hotel::find($id);
             if(!$hotel) throw new ModelNotFoundException;
 
-            $hotel->delete();
-
             if (Gate::allows('admin-only', auth()->user())) {
-            return redirect()->route('hotel.index');
+                $hotel->delete();
+                return redirect()->route('hotel.index');
         }
         return 'You are not admin!!!!';
 

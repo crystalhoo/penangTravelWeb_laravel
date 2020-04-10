@@ -117,9 +117,10 @@ class PlanController extends Controller
 
         if(!$plan) throw new ModelNotFoundException;
 
-        $plan->delete();
+       
 
         if (Gate::allows('admin-only', auth()->user())) {
+            $plan->delete();
               return redirect()->route('plan.index');
         }
         return 'You are not admin!!!!';

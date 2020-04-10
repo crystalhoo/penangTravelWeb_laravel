@@ -76,9 +76,9 @@ class GalleriesApiController extends Controller
             $gallery = Gallery::find($id);
             if(!$gallery) throw new ModelNotFoundException;
 
-            $gallery->delete();
 
             if (Gate::allows('admin-only', auth()->user())) {
+            $gallery->delete();
               return redirect()->route('admin.galleries.index')
                           ->with('success','gallery deleted successfully');
             }

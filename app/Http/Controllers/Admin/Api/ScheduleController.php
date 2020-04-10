@@ -172,9 +172,10 @@ public function edit($id)
 
         if(!$schedule) throw new ModelNotFoundException;
 
-        $schedule->delete();
+       
 
         if (Gate::allows('admin-only', auth()->user())) {
+            $schedule->delete();
             return redirect()->route('schedule.index');
         }
         return 'You are not admin!!!!';
