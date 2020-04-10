@@ -34,7 +34,7 @@ class InitUsers extends Command
        ],
        [
         'isAdmin' => 0,
-         'name' => 'User One',
+         'name' => 'Subadmin',
          'email' => 'user1@mylib.info',
          'password' => 'user1pass',
 
@@ -42,7 +42,7 @@ class InitUsers extends Command
        ],
        [
         'isAdmin' => 0,
-         'name' => 'User Two',
+         'name' => 'Subadmin',
          'email' => 'user2@mylib.info',
          'password' => 'user2pass',
 
