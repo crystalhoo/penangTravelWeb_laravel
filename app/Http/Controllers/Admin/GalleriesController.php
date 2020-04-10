@@ -18,8 +18,6 @@ class GalleriesController extends Controller
 
     public function index()
     {
-        // abort_if(Gate::denies('gallery_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         $galleries = Gallery::all();
 
         return view('admin.galleries.index', compact('galleries'));
@@ -27,12 +25,6 @@ class GalleriesController extends Controller
 
     public function create()
     {
-        // abort_if(Gate::denies('gallery_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        // if (Gate::allows('isAdmin')) {
-        //     dd('Admin allowed');
-        // } else {
-        //     dd('You are not Admin');
-        // }
         return view('admin.galleries.create');
     }
 
@@ -44,23 +36,11 @@ class GalleriesController extends Controller
             $gallery->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('photos');
         }
 
-        // if (Gate::allows('isAdmin')) {
-        //     dd('Admin allowed');
-        // } else {
-        //     dd('You are not Admin');
-        // }
-
         return redirect()->route('admin.galleries.index');
     }
 
     public function edit(Gallery $gallery)
     {
-        // abort_if(Gate::denies('gallery_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        // if (Gate::allows('isAdmin')) {
-        //     dd('Admin allowed');
-        // } else {
-        //     dd('You are not Admin');
-        // }
         return view('admin.galleries.edit', compact('gallery'));
     }
 
@@ -76,11 +56,6 @@ class GalleriesController extends Controller
                 }
             }
         }
-        // if (Gate::allows('isAdmin')) {
-        //     dd('Admin allowed');
-        // } else {
-        //     dd('You are not Admin');
-        // }
 
         $media = $gallery->photos->pluck('file_name')->toArray();
 
@@ -95,15 +70,11 @@ class GalleriesController extends Controller
 
     public function show(Gallery $gallery)
     {
-        // abort_if(Gate::denies('gallery_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         return view('admin.galleries.show', compact('gallery'));
     }
 
     public function destroy(Gallery $gallery)
     {
-        // abort_if(Gate::denies('gallery_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         $gallery->delete();
 
         return back();
